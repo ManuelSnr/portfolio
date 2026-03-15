@@ -52,11 +52,69 @@ nav {
   justify-content: space-between;
 }
 
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nav-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .nav-name {
   font-family: "Lora", serif;
   font-size: 15px;
   font-weight: 400;
   letter-spacing: -0.01em;
+}
+
+.nav-subtext {
+  font-size: 11px;
+  color: var(--ink-3);
+  font-style: italic;
+  transition: opacity 0.3s;
+}
+
+.nav-subtext::before {
+  content: "Currently building with AI.";
+}
+
+.nav-brand:hover .nav-subtext::before {
+  content: "Figma x VS Code x Claude";
+  font-style: normal;
+  animation: decrypt 0.5s steps(20, end);
+}
+
+@keyframes decrypt {
+  0% {
+    content: "█████ █ ██ ████ █ ██████";
+  }
+  20% {
+    content: "F█gm█ x ██ C█de █ Claude";
+  }
+  40% {
+    content: "Figm█ x VS ██de x Cl█ude";
+  }
+  60% {
+    content: "Figma x VS C█de x Claude";
+  }
+  80% {
+    content: "Figma x VS Code x Claude";
+  }
+  100% {
+    content: "Figma x VS Code x Claude";
+  }
 }
 
 .nav-links {
@@ -404,6 +462,45 @@ nav {
   text-transform: uppercase;
   color: var(--ink-3);
   margin-bottom: 40px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.section-header .section-label {
+  margin-bottom: 0;
+}
+
+.see-all-link {
+  font-size: 13px;
+  color: var(--ink-2);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.see-all-link:hover {
+  background: var(--hover-bg);
+  border-color: var(--ink-4);
+}
+
+.see-all-link sup {
+  font-size: 10px;
+  color: var(--ink-3);
+  margin-left: 2px;
+}
+
+.mobile-only {
+  display: none;
 }
 
 /* ── WORK/EXPERIENCE LIST ── */
@@ -917,6 +1014,15 @@ nav {
 /* Homepage projects - 1 per row */
 .home-projects {
   grid-template-columns: 1fr;
+}
+
+.home-projects .card-wrap:last-child {
+  border-bottom: none;
+}
+
+.work-cta {
+  margin-top: 40px;
+  text-align: center;
 }
 
 .card {
@@ -1781,35 +1887,68 @@ nav {
   color: var(--ink);
 }
 
-/* ── FOOTER ── */
-footer {
+/* ── NEXT PROJECT ── */
+.next-project {
+  padding: 64px var(--side);
   max-width: var(--max);
   margin: 0 auto;
-  padding: 36px var(--side) 56px;
   border-top: 1px solid var(--rule);
+}
+.next-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 20px;
+}
+.next-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
+  padding: 24px 20px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+  background: var(--bg);
+  margin-top: 8px;
 }
-
-.footer-copy {
-  font-size: 12px;
+.next-card:hover {
+  background: var(--hover-bg);
+  border-color: #bbb;
+}
+.next-card-title {
+  font-family: "Lora", serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.next-card-sub {
+  font-size: 13px;
   color: var(--ink-3);
 }
-
-.footer-links {
-  display: flex;
-  gap: 20px;
-}
-
-.footer-links a {
-  font-size: 12px;
+.next-arrow {
+  font-size: 18px;
   color: var(--ink-3);
-  transition: color 0.15s;
+  transition: transform 0.15s;
+  flex-shrink: 0;
 }
-
-.footer-links a:hover {
-  color: var(--ink);
+.next-card:hover .next-arrow {
+  transform: translate(4px, -4px);
+}
+@media (max-width: 640px) {
+  .next-project {
+    padding: 40px var(--side);
+  }
+  .next-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px 12px;
+  }
 }
 
 /* ── FADE ANIMATION ── */
@@ -1853,6 +1992,23 @@ footer {
     align-items: flex-start;
     gap: 8px;
     padding-bottom: 40px;
+  }
+
+  /* Mobile: Hide "See all works" button in header */
+  .section-header .see-all-link {
+    display: none;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  /* Mobile: Show button below projects */
+  .mobile-only {
+    display: inline-flex;
+    margin-top: 40px;
+    width: 100%;
+    justify-content: center;
   }
 
   .intro {
@@ -1930,5 +2086,44 @@ footer {
   .tab-bar {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ── FOOTER ── */
+footer {
+  max-width: calc(var(--max) + 80px);
+  margin: 0 auto;
+  padding: 36px var(--side) 56px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+}
+.footer-copy {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+.footer-links a {
+  font-size: 12px;
+  color: var(--ink-3);
+  transition: color 0.15s;
+}
+.footer-links a:hover {
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  footer {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 32px var(--side) 40px;
+  }
+  .footer-links {
+    gap: 14px;
   }
 }
