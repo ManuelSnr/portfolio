@@ -685,6 +685,119 @@ nav {
   font-weight: 400;
 }
 
+/* ── SNAPSHOT CARD ── */
+.snapshot-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.snapshot-title {
+  background: var(--bg);
+  padding: 24px 28px 20px;
+  font-family: "Lora", serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0;
+}
+
+.snapshot-header {
+  background: var(--bg);
+  padding: 24px 28px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.snapshot-title {
+  padding: 0;
+  background: transparent;
+}
+
+.snapshot-expand {
+  font-size: 13px;
+  color: var(--ink-2);
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-weight: 400;
+}
+
+.snapshot-expand:hover {
+  color: var(--ink);
+  border-color: var(--ink-2);
+  background: var(--hover-bg);
+}
+
+.snapshot-grid {
+  background: var(--bg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+}
+
+.snapshot-item {
+  background: var(--bg);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.snapshot-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  line-height: 1;
+}
+
+.snapshot-value {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .snapshot-card {
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+
+  .snapshot-header {
+    padding: 20px 24px 16px;
+  }
+
+  .snapshot-title {
+    font-size: 16px;
+  }
+
+  .snapshot-expand {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .snapshot-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .snapshot-item {
+    padding: 20px 24px;
+  }
+}
+
 /* ── CAPABILITIES GRID ── */
 .cap-grid {
   display: grid;
