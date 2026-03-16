@@ -1100,7 +1100,7 @@ nav {
   border-radius: 50%;
   width: 64px;
   height: 64px;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
