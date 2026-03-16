@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
   </head>
   <body>
     <!-- NAV -->
@@ -108,7 +109,9 @@
         <div class="intro-links">
           <a href="mailto:manuelsnr.design@gmail.com">Email</a>
           <span class="sep"></span>
-          <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank"
+          <a
+            href="https://www.linkedin.com/in/emmanuel-odoemelam/"
+            target="_blank"
             >LinkedIn</a
           >
           <span class="sep"></span>
@@ -518,64 +521,12 @@
       <span class="footer-copy">© 2026 Emmanuel Odoemelam, GMT +1</span>
       <div class="footer-links">
         <a href="mailto:odoemelamuemmanuel@gmail.com">Email</a>
-        <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank"
+        <a
+          href="https://www.linkedin.com/in/emmanuel-odoemelam/"
+          target="_blank"
           >LinkedIn</a
         >
       </div>
     </footer>
-
-    <script>
-      // Fade-in on scroll
-      const fades = document.querySelectorAll(".fade");
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("in");
-              io.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.06 },
-      );
-      fades.forEach((el) => io.observe(el));
-
-      // Vision checklist — toggle (non-persisted, purely visual)
-      document.querySelectorAll(".vision-check").forEach((box) => {
-        box.addEventListener("click", () => {
-          const item = box.closest(".vision-item");
-          const isDone = box.classList.contains("done");
-          if (isDone) {
-            box.classList.remove("done");
-            item.classList.remove("done-item");
-          } else {
-            box.classList.add("done");
-            item.classList.add("done-item");
-          }
-        });
-      });
-
-      // Mobile menu
-      const hamburger = document.querySelector(".hamburger");
-      const drawer = document.querySelector(".mobile-drawer");
-      const overlay = document.querySelector(".drawer-overlay");
-      const drawerClose = document.querySelector(".drawer-close");
-
-      function openDrawer() {
-        drawer.classList.add("active");
-        overlay.classList.add("active");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeDrawer() {
-        drawer.classList.remove("active");
-        overlay.classList.remove("active");
-        document.body.style.overflow = "";
-      }
-
-      hamburger.addEventListener("click", openDrawer);
-      drawerClose.addEventListener("click", closeDrawer);
-      overlay.addEventListener("click", closeDrawer);
-    </script>
   </body>
 </html>

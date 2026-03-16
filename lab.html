@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
   </head>
   <body>
     <!-- NAV -->
@@ -552,66 +553,13 @@
       <span class="footer-copy">© 2025 Emmanuel Odoemelam, Lagos</span>
       <div class="footer-links">
         <a href="mailto:manuelsnr.design@gmail.com">Email</a>
-        <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank"
+        <a
+          href="https://www.linkedin.com/in/emmanuel-odoemelam/"
+          target="_blank"
           >LinkedIn</a
         >
         <a href="/">Work</a>
       </div>
     </footer>
-
-    <script>
-      // Fade-in
-      const fades = document.querySelectorAll(".fade");
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("in");
-              io.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.06 },
-      );
-      fades.forEach((el) => io.observe(el));
-
-      // Tabs
-      const tabs = document.querySelectorAll(".tab-btn");
-      const panels = document.querySelectorAll(".tab-panel");
-
-      tabs.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const target = btn.dataset.tab;
-
-          tabs.forEach((t) => t.classList.remove("active"));
-          panels.forEach((p) => p.classList.remove("active"));
-
-          btn.classList.add("active");
-          document.getElementById("panel-" + target).classList.add("active");
-        });
-      });
-
-      // Mobile menu
-      const hamburger = document.querySelector(".hamburger");
-      const drawer = document.querySelector(".mobile-drawer");
-      const overlay = document.querySelector(".drawer-overlay");
-      const drawerClose = document.querySelector(".drawer-close");
-
-      function openDrawer() {
-        drawer.classList.add("active");
-        overlay.classList.add("active");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeDrawer() {
-        drawer.classList.remove("active");
-        overlay.classList.remove("active");
-        document.body.style.overflow = "";
-      }
-
-      hamburger.addEventListener("click", openDrawer);
-      drawerClose.addEventListener("click", closeDrawer);
-      overlay.addEventListener("click", closeDrawer);
-    </script>
   </body>
 </html>

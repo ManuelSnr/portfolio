@@ -11,11 +11,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
   </head>
   <body>
     <nav>
-      <a href="/" class="nav-brand">
+      <a href="index.html" class="nav-brand">
         <img
           src="Assets/General/AVI.jpg"
           alt="Emmanuel Odoemelam"
@@ -32,9 +31,9 @@
         <span></span>
       </button>
       <ul class="nav-links">
-        <li><a href="/work" class="active">Work</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/lab">Lab</a></li>
+        <li><a href="work.html" class="active">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="lab.html">Lab</a></li>
       </ul>
     </nav>
 
@@ -45,10 +44,10 @@
           <button class="drawer-close" aria-label="Close menu">&times;</button>
         </div>
         <ul class="drawer-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/work" class="active">Work</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/lab">Lab</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="work.html" class="active">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="lab.html">Lab</a></li>
         </ul>
         <div class="drawer-footer">
           <p class="drawer-footer-text">
@@ -61,7 +60,7 @@
 
     <div class="page-header fade">
       <div class="header-left">
-        <h1 class="page-heading">Selected works<em>.</em></h1>
+        <h1 class="page-heading">Selected work<em>.</em></h1>
         <p class="page-sub">
           Case studies from 5+ years of product design across fintech,
           healthtech, AI, and gaming.
@@ -73,7 +72,7 @@
       <div class="projects-grid home-projects fade">
         <!-- Hyper -->
         <div class="card-wrap" data-tags="gaming">
-          <a class="card" href="/work-hyper">
+          <a class="card" href="work-hyper.html">
             <div class="card-cover cp-hyper">
               <div class="cover-placeholder cp-hyper">
                 <svg
@@ -119,7 +118,7 @@
 
         <!-- Penciled -->
         <div class="card-wrap" data-tags="healthtech saas">
-          <a class="card" href="/work-penciled">
+          <a class="card" href="work-penciled.html">
             <div class="card-cover cp-penciled">
               <div class="cover-placeholder cp-penciled">
                 <svg
@@ -163,7 +162,7 @@
 
         <!-- Theya -->
         <div class="card-wrap" data-tags="fintech">
-          <a class="card" href="/work-theya">
+          <a class="card" href="work-theya.html">
             <div class="card-cover cp-theya">
               <div class="cover-placeholder cp-theya">
                 <svg
@@ -207,7 +206,7 @@
 
         <!-- Layup -->
         <div class="card-wrap" data-tags="saas">
-          <a class="card" href="/work-layup">
+          <a class="card" href="work-layup.html">
             <div class="card-cover cp-layup">
               <div class="cover-placeholder cp-layup">
                 <svg
@@ -251,7 +250,7 @@
 
         <!-- TaraCares -->
         <div class="card-wrap" data-tags="healthtech">
-          <a class="card" href="/work-taracares">
+          <a class="card" href="work-taracares.html">
             <div class="card-cover cp-taracares">
               <div class="cover-placeholder cp-taracares">
                 <svg
@@ -295,7 +294,7 @@
 
         <!-- AmatNow -->
         <div class="card-wrap" data-tags="fintech">
-          <a class="card" href="/work-amatnow">
+          <a class="card" href="work-amatnow.html">
             <div class="card-cover cp-amatnow">
               <div class="cover-placeholder cp-amatnow">
                 <svg
@@ -354,5 +353,43 @@
         >
       </div>
     </footer>
+
+    <script>
+      const fades = document.querySelectorAll(".fade");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      fades.forEach((el) => io.observe(el));
+
+      // Mobile menu
+      const hamburger = document.querySelector(".hamburger");
+      const drawer = document.querySelector(".mobile-drawer");
+      const overlay = document.querySelector(".drawer-overlay");
+      const drawerClose = document.querySelector(".drawer-close");
+
+      function openDrawer() {
+        drawer.classList.add("active");
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeDrawer() {
+        drawer.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      hamburger.addEventListener("click", openDrawer);
+      drawerClose.addEventListener("click", closeDrawer);
+      overlay.addEventListener("click", closeDrawer);
+    </script>
   </body>
 </html>
