@@ -16,6 +16,7 @@
   --ink: #141414;
   --ink-2: #555;
   --ink-3: #999;
+  --metric: #555555;
   --rule: #e4e2db;
   --hover-bg: #f0ede5;
   --check: #3d9e4a;
@@ -516,21 +517,14 @@ nav {
   grid-template-columns: 1fr auto;
   gap: 16px;
   align-items: start;
-  padding: 24px 12px;
+  padding: 24px 0;
   border-bottom: 1px solid var(--rule);
-  border-radius: 4px;
-  margin: 0 -12px;
   transition: background 0.15s;
 }
 
 .work-item:first-child,
 .exp-item:first-child {
   border-top: 1px solid var(--rule);
-}
-
-.work-item:hover,
-.exp-item:hover {
-  background: var(--hover-bg);
 }
 
 .work-role,
@@ -552,6 +546,43 @@ nav {
 
 .exp-company {
   font-size: 17px;
+}
+
+/* Experience header with logo and title group */
+.exp-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+  justify-content: center;
+}
+
+.exp-logo {
+  flex-shrink: 0;
+}
+
+.exp-title-group {
+  flex: 1;
+}
+
+.exp-logo img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.logo-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
 }
 
 .work-desc,
@@ -590,7 +621,7 @@ nav {
   display: inline-block;
   margin-top: 10px;
   font-size: 12px;
-  color: var(--ink-3);
+  color: var(--metric);
   background: var(--rule);
   padding: 2px 8px;
   border-radius: 3px;
@@ -831,10 +862,8 @@ nav {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 16px;
-  padding: 20px 12px;
+  padding: 20px 0;
   border-bottom: 1px solid var(--rule);
-  border-radius: 4px;
-  margin: 0 -12px;
   align-items: center;
   transition: background 0.15s;
   cursor: pointer;
@@ -842,10 +871,6 @@ nav {
 
 .writing-item:first-child {
   border-top: 1px solid var(--rule);
-}
-
-.writing-item:hover {
-  background: var(--hover-bg);
 }
 
 .writing-title {
@@ -864,14 +889,30 @@ nav {
 .writing-arrow {
   font-size: 16px;
   color: var(--ink-3);
+  opacity: 0;
   transition:
     transform 0.15s,
-    color 0.15s;
+    color 0.15s,
+    opacity 0.15s;
+}
+
+.writing-arrow svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--ink-3);
+  transition:
+    transform 0.15s,
+    stroke 0.15s;
 }
 
 .writing-item:hover .writing-arrow {
+  opacity: 1;
   transform: translate(3px, -3px);
   color: var(--ink);
+}
+
+.writing-item:hover .writing-arrow svg {
+  stroke: var(--rule);
 }
 
 /* ── VISION BOARD (About page checklist) ── */
