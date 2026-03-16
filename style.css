@@ -323,7 +323,7 @@ nav {
 
 /* ── HERO SECTION (Homepage) ── */
 .hero {
-  padding: 80px var(--side) 96px;
+  padding: 80px var(--side) 64px;
   max-width: var(--max);
   margin: 0 auto;
 }
@@ -2172,7 +2172,7 @@ nav {
   }
 
   .hero {
-    padding: 52px var(--side) 64px;
+    padding: 52px var(--side) 48px;
   }
 
   .page-header {
