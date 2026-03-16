@@ -323,7 +323,7 @@ nav {
 
 /* ── HERO SECTION (Homepage) ── */
 .hero {
-  padding: 80px var(--side) 64px;
+  padding: 80px var(--side) 32px;
   max-width: var(--max);
   margin: 0 auto;
 }
@@ -2295,7 +2295,8 @@ nav {
   border: none;
   height: 1px;
   background: var(--rule);
-  margin: 56px 0;
+  margin: 64px auto 0;
+  max-width: calc(var(--max) - (2 * var(--side)));
 }
 
 .cs-next {
@@ -2425,7 +2426,7 @@ nav {
   }
 
   .hero {
-    padding: 52px var(--side) 48px;
+    padding: 52px var(--side) 32px;
   }
 
   .page-header {
@@ -2456,17 +2457,27 @@ nav {
     height: 56px;
   }
 
-  /* Reduce spacing between showreel and selected work on mobile */
+  /* Match showreel and selected work section spacing on mobile */
   #reel.section {
-    padding-bottom: 32px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  #reel .section-label {
+    margin-bottom: 32px;
   }
 
   #work.section {
-    padding-top: 32px;
+    padding-top: 56px !important;
   }
 
   .section-header {
-    margin-bottom: 40px;
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  #work .section-header {
+    margin-bottom: 24px;
   }
 
   /* Mobile: Show button below projects */
@@ -2528,6 +2539,10 @@ nav {
     background: none;
     gap: 0;
     border-top: 1px solid var(--rule);
+  }
+
+  .projects-grid.home-projects {
+    border-top: none;
   }
 
   .projects-grid .card {
@@ -2687,4 +2702,20 @@ footer {
     background: inherit !important;
     border-color: inherit !important;
   }
+}
+
+.section {
+  padding: 72px var(--side);
+  max-width: var(--max);
+  margin: 0 auto;
+  border-top: 1px solid var(--rule);
+}
+
+#reel.section {
+  border-top: none;
+  padding-bottom: 40px;
+}
+
+#work.section {
+  border-top: none;
 }
