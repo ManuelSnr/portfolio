@@ -702,19 +702,23 @@ nav {
 
 .snapshot-expand {
   font-size: 13px;
-  color: var(--ink-2);
-  text-decoration: none;
-  padding: 6px 12px;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  font-family: "DM Sans", sans-serif;
   font-weight: 400;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: all 0.15s;
+  display: inline-block;
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  box-shadow: none;
 }
 
 .snapshot-expand:hover {
-  color: var(--ink);
-  border-color: var(--ink-2);
-  background: var(--hover-bg);
+  opacity: 0.82;
+  color: var(--bg);
+  background: var(--ink);
+  border: none;
 }
 
 .snapshot-grid {
