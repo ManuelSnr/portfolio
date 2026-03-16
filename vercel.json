@@ -1,0 +1,111 @@
+{
+  "rewrites": [
+    {
+      "source": "/work",
+      "destination": "/work.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/lab",
+      "destination": "/lab.html"
+    },
+    {
+      "source": "/work-hyper",
+      "destination": "/work-hyper.html"
+    },
+    {
+      "source": "/work-penciled",
+      "destination": "/work-penciled.html"
+    },
+    {
+      "source": "/work-theya",
+      "destination": "/work-theya.html"
+    },
+    {
+      "source": "/work-layup",
+      "destination": "/work-layup.html"
+    },
+    {
+      "source": "/work-taracares",
+      "destination": "/work-taracares.html"
+    },
+    {
+      "source": "/work-amatnow",
+      "destination": "/work-amatnow.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/work.html",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/lab.html",
+      "destination": "/lab",
+      "permanent": true
+    },
+    {
+      "source": "/work-hyper.html",
+      "destination": "/work-hyper",
+      "permanent": true
+    },
+    {
+      "source": "/work-penciled.html",
+      "destination": "/work-penciled",
+      "permanent": true
+    },
+    {
+      "source": "/work-theya.html",
+      "destination": "/work-theya",
+      "permanent": true
+    },
+    {
+      "source": "/work-layup.html",
+      "destination": "/work-layup",
+      "permanent": true
+    },
+    {
+      "source": "/work-taracares.html",
+      "destination": "/work-taracares",
+      "permanent": true
+    },
+    {
+      "source": "/work-amatnow.html",
+      "destination": "/work-amatnow",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}
