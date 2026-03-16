@@ -58,24 +58,45 @@ function initShowreel() {
 
   if (!reelContainer || !reelVideo || !reelThumbnail || !playBtn) return;
 
+  let autoplayBlocked = false;
+
   function playReel() {
-    reelVideo.play();
-    reelThumbnail.classList.add("hidden");
-    playBtn.classList.add("hidden");
+    const playPromise = reelVideo.play();
+
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          // Successfully playing
+          reelThumbnail.classList.add("hidden");
+          playBtn.classList.add("hidden");
+          autoplayBlocked = false;
+        })
+        .catch((error) => {
+          console.log("Autoplay prevented by browser:", error);
+          // Autoplay was blocked, keep controls visible
+          autoplayBlocked = true;
+          // Make sure thumbnail and play button are visible
+          reelThumbnail.classList.remove("hidden");
+          playBtn.classList.remove("hidden");
+        });
+    }
   }
 
-  // Play on click
-  reelContainer.addEventListener("click", playReel);
+  // Play on click - this will work even if autoplay was blocked
+  reelContainer.addEventListener("click", () => {
+    playReel();
+  });
 
-  // Auto-play immediately when video is loaded and ready
+  // Attempt auto-play immediately when video is loaded and ready
   if (reelVideo.readyState >= 3) {
-    // HAVE_FUTURE_DATA or better
-    setTimeout(playReel, 500); // Small delay for better UX
+    // Video is already loaded
+    setTimeout(playReel, 500);
   } else {
+    // Wait for video to load
     reelVideo.addEventListener(
       "canplaythrough",
       () => {
-        setTimeout(playReel, 500); // Small delay for better UX
+        setTimeout(playReel, 500);
       },
       { once: true },
     );
@@ -130,6 +151,160 @@ function initTabs() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// TESTIMONIAL CAROUSEL (Homepage only)
+// ═══════════════════════════════════════════════════════════════
+function initTestimonials() {
+  const track = document.querySelector(".testimonial-track");
+  const cards = document.querySelectorAll(".testimonial-card");
+  const dotsContainer = document.querySelector(".testimonial-dots");
+  const prevBtn = document.querySelector(".testimonial-prev");
+  const nextBtn = document.querySelector(".testimonial-next");
+  const testimonialSection = document.getElementById("testimonials");
+
+  if (
+    !track ||
+    cards.length === 0 ||
+    !dotsContainer ||
+    !prevBtn ||
+    !nextBtn ||
+    !testimonialSection
+  )
+    return;
+
+  let currentIndex = 0;
+  const totalSlides = cards.length;
+  let autoScrollInterval = null;
+  const autoScrollDelay = 7000; // 7 seconds - increased from 5
+  let isInView = false;
+
+  // Create dots
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement("button");
+    dot.classList.add("testimonial-dot");
+    dot.setAttribute("aria-label", `Go to testimonial ${i + 1}`);
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      goToSlide(i);
+      resetAutoScroll();
+    });
+    dotsContainer.appendChild(dot);
+  }
+
+  const dots = document.querySelectorAll(".testimonial-dot");
+
+  function updateSlider() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    // Update active card with smoother transition
+    cards.forEach((card, index) => {
+      card.classList.toggle("active", index === currentIndex);
+    });
+
+    // Update active dot
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentIndex);
+    });
+
+    // Update button states - don't disable, loop instead
+    prevBtn.disabled = false;
+    nextBtn.disabled = false;
+  }
+
+  function goToSlide(index) {
+    currentIndex = index;
+    updateSlider();
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlider();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlider();
+  }
+
+  function startAutoScroll() {
+    // Clear any existing interval first
+    stopAutoScroll();
+    // Only start if section is in view
+    if (isInView) {
+      autoScrollInterval = setInterval(() => {
+        nextSlide();
+      }, autoScrollDelay);
+    }
+  }
+
+  function stopAutoScroll() {
+    if (autoScrollInterval) {
+      clearInterval(autoScrollInterval);
+      autoScrollInterval = null;
+    }
+  }
+
+  function resetAutoScroll() {
+    stopAutoScroll();
+    startAutoScroll();
+  }
+
+  prevBtn.addEventListener("click", () => {
+    prevSlide();
+    resetAutoScroll();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    nextSlide();
+    resetAutoScroll();
+  });
+
+  // Keyboard navigation
+  const handleKeydown = (e) => {
+    const testimonialCards = document.querySelector("#testimonials");
+    if (!testimonialCards) return;
+
+    if (e.key === "ArrowLeft") {
+      prevSlide();
+      resetAutoScroll();
+    }
+    if (e.key === "ArrowRight") {
+      nextSlide();
+      resetAutoScroll();
+    }
+  };
+
+  document.addEventListener("keydown", handleKeydown);
+
+  // Pause auto-scroll on hover
+  testimonialSection.addEventListener("mouseenter", stopAutoScroll);
+  testimonialSection.addEventListener("mouseleave", () => {
+    if (isInView) {
+      startAutoScroll();
+    }
+  });
+
+  // Only start auto-scroll when testimonial section comes into view
+  const testimonialObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        isInView = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          startAutoScroll();
+        } else {
+          stopAutoScroll();
+        }
+      });
+    },
+    { threshold: 0.3 },
+  );
+
+  testimonialObserver.observe(testimonialSection);
+
+  // Initialize
+  updateSlider();
+}
+
+// ═══════════════════════════════════════════════════════════════
 // INITIALIZATION
 // ═══════════════════════════════════════════════════════════════
 document.addEventListener("DOMContentLoaded", function () {
@@ -138,4 +313,5 @@ document.addEventListener("DOMContentLoaded", function () {
   initShowreel();
   initVisionChecklist();
   initTabs();
+  initTestimonials();
 });
