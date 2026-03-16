@@ -743,7 +743,7 @@ nav {
 }
 
 .snapshot-value {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--ink-2);
   font-weight: 400;
@@ -1296,7 +1296,6 @@ nav {
 .filter-btn.active {
   background: var(--ink);
   color: var(--bg);
-  border-color: var(--ink);
 }
 
 /* ── SHOWREEL ── */
@@ -2602,6 +2601,18 @@ footer {
 }
 .footer-links a:hover {
   color: var(--ink);
+}
+
+@media (max-width: 700px) {
+  .footer-links {
+    margin-top: 16px !important;
+  }
+  footer {
+    padding-bottom: 48px;
+  }
+  .footer-social {
+    margin-top: 28px !important;
+  }
 }
 
 /* ── PHOTO GRID (Moments section) ── */
