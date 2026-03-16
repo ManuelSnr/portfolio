@@ -1049,6 +1049,79 @@ nav {
   border-color: var(--ink);
 }
 
+/* ── SHOWREEL ── */
+.reel-container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.reel-video-wrap {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--rule);
+  cursor: pointer;
+}
+
+.reel-thumbnail,
+.reel-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reel-thumbnail {
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.reel-thumbnail.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reel-video {
+  z-index: 1;
+}
+
+.reel-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--ink);
+}
+
+.reel-play-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.reel-play-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reel-play-btn svg {
+  margin-left: 2px; /* Optical alignment */
+}
+
 /* ── PROJECT CARDS (Work page) ── */
 .projects-wrap {
   padding: 0 var(--side) 100px;
@@ -2117,6 +2190,26 @@ nav {
   /* Mobile: Hide divider above work section */
   #work.section {
     border-top: none;
+  }
+
+  /* Showreel mobile styles */
+  .reel-video-wrap {
+    height: 280px;
+    border-radius: 8px;
+  }
+
+  .reel-play-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  /* Reduce spacing between showreel and selected work on mobile */
+  #reel.section {
+    padding-bottom: 32px;
+  }
+
+  #work.section {
+    padding-top: 32px;
   }
 
   .section-header {

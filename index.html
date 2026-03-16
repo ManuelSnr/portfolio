@@ -81,6 +81,29 @@
       </div>
     </div>
 
+    <!-- SHOWREEL -->
+    <div class="section fade" id="reel">
+      <div class="section-label">Showreel</div>
+      <div class="reel-container">
+        <div class="reel-video-wrap">
+          <img
+            src="Assets/General/Reel thumbnail.jpg"
+            alt="Showreel thumbnail"
+            class="reel-thumbnail"
+          />
+          <video class="reel-video" muted loop playsinline preload="metadata">
+            <source src="Assets/General/reel_portfolio.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <button class="reel-play-btn" aria-label="Play showreel">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M8 5.14v13.72L19 12L8 5.14z" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="section fade" id="work">
       <div class="section-header">
         <div class="section-label">Selected Work</div>
@@ -385,6 +408,38 @@
       hamburger.addEventListener("click", openDrawer);
       drawerClose.addEventListener("click", closeDrawer);
       overlay.addEventListener("click", closeDrawer);
+
+      // Showreel functionality
+      const reelContainer = document.querySelector(".reel-video-wrap");
+      const reelThumbnail = document.querySelector(".reel-thumbnail");
+      const reelVideo = document.querySelector(".reel-video");
+      const playBtn = document.querySelector(".reel-play-btn");
+
+      if (reelContainer && reelVideo && reelThumbnail && playBtn) {
+        function playReel() {
+          reelVideo.play();
+          reelThumbnail.classList.add("hidden");
+          playBtn.classList.add("hidden");
+        }
+
+        // Play on click
+        reelContainer.addEventListener("click", playReel);
+
+        // Auto-play when video comes into view
+        const reelObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                setTimeout(playReel, 800); // Small delay for better UX
+                reelObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+
+        reelObserver.observe(reelContainer);
+      }
     </script>
   </body>
 </html>
