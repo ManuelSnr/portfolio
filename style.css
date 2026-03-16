@@ -1013,7 +1013,6 @@ nav {
   padding: 0 var(--side) 100px;
   max-width: 860px;
   margin: 0 auto;
-  border-top: 1px solid var(--rule);
 }
 
 .project-featured {
@@ -2074,6 +2073,11 @@ nav {
     display: none;
   }
 
+  /* Mobile: Hide divider above work section */
+  #work.section {
+    border-top: none;
+  }
+
   .section-header {
     margin-bottom: 40px;
   }
@@ -2128,6 +2132,7 @@ nav {
 
   .projects-grid .card {
     border-bottom: 1px solid var(--rule);
+    padding: 24px 0 28px;
   }
 
   .projects-grid .card.full {
@@ -2166,6 +2171,12 @@ nav {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+}
+
+/* ── WORK PAGE ADJUSTMENTS ── */
+.page-header + .section {
+  border-top: none;
+  padding-top: 16px;
 }
 
 /* ── FOOTER ── */
