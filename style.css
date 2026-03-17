@@ -1166,7 +1166,7 @@ nav {
 }
 
 .writing-item:hover .writing-arrow svg {
-  stroke: var(--rule);
+  stroke: var(--ink-3);
 }
 
 /* ── VISION BOARD (About page checklist) ── */
@@ -1977,11 +1977,7 @@ nav {
   gap: 7px;
   font-size: 12px;
   color: var(--ink-3);
-  padding: 0 var(--side) 40px;
-  max-width: calc(720px + 80px);
-  margin: 0 auto;
-  display: flex;
-  width: fit-content;
+  margin-bottom: 24px;
   transition: color 0.15s;
 }
 
@@ -2384,7 +2380,8 @@ nav {
   color: var(--ink-3);
 }
 .next-arrow {
-  font-size: 18px;
+  width: 20px;
+  height: 20px;
   color: var(--ink-3);
   transition: transform 0.15s;
   flex-shrink: 0;
@@ -2426,7 +2423,7 @@ nav {
   }
 
   .hero {
-    padding: 52px var(--side) 32px;
+    padding: 40px var(--side) 24px;
   }
 
   .page-header {
@@ -2460,7 +2457,7 @@ nav {
   /* Match showreel and selected work section spacing on mobile */
   #reel.section {
     padding-top: 56px;
-    padding-bottom: 56px;
+    padding-bottom: 0;
   }
 
   #reel .section-label {
