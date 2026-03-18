@@ -1,6 +1,135 @@
 // Emmanuel Odoemelam - Website JavaScript
 
 // ═══════════════════════════════════════════════════════════════
+// DRAG/SWIPE UTILITY
+// ═══════════════════════════════════════════════════════════════
+function addDragSupport(
+  element,
+  onDrag,
+  getCurrentIndex,
+  getMaxIndex,
+  threshold = 50,
+  usePercentage = false,
+  allowLoop = false,
+) {
+  let isDragging = false;
+  let startX = 0;
+  let currentX = 0;
+  let initialTransform = 0;
+
+  function getTransformX() {
+    const transform =
+      element.style.transform ||
+      (usePercentage ? "translateX(0%)" : "translateX(0px)");
+    if (usePercentage) {
+      const match = transform.match(/translateX\((.+?)%\)/);
+      return match ? parseFloat(match[1]) : 0;
+    } else {
+      const match = transform.match(/translateX\((.+?)px\)/);
+      return match ? parseFloat(match[1]) : 0;
+    }
+  }
+
+  function handleStart(e) {
+    // Only allow touch events (mobile), not mouse events (desktop)
+    if (e.type === "mousedown") return;
+
+    isDragging = true;
+    startX = e.touches[0].clientX;
+    currentX = startX;
+    initialTransform = getTransformX();
+
+    element.style.transition = "none";
+
+    e.preventDefault();
+  }
+
+  function handleMove(e) {
+    if (!isDragging || e.type === "mousemove") return;
+
+    currentX = e.touches[0].clientX;
+    const deltaX = currentX - startX;
+    const currentIndex = getCurrentIndex();
+    const maxIndex = getMaxIndex();
+
+    // For non-looping carousels, prevent dragging at boundaries
+    if (!allowLoop) {
+      // Prevent dragging left when at first position (index 0)
+      if (currentIndex === 0 && deltaX > 0) {
+        return;
+      }
+
+      // Prevent dragging right when at last position
+      if (currentIndex >= maxIndex && deltaX < 0) {
+        return;
+      }
+    }
+
+    if (usePercentage) {
+      // Convert pixel movement to percentage for testimonial carousel
+      const containerWidth = element.parentElement.offsetWidth;
+      const percentageDelta = (deltaX / containerWidth) * 100;
+      element.style.transform = `translateX(${initialTransform + percentageDelta}%)`;
+    } else {
+      element.style.transform = `translateX(${initialTransform + deltaX}px)`;
+    }
+
+    e.preventDefault();
+  }
+
+  function handleEnd() {
+    if (!isDragging) return;
+
+    isDragging = false;
+    const deltaX = currentX - startX;
+    const currentIndex = getCurrentIndex();
+    const maxIndex = getMaxIndex();
+
+    element.style.transition = "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
+
+    if (Math.abs(deltaX) > threshold) {
+      // For looping carousels, always allow navigation
+      if (allowLoop) {
+        if (deltaX > 0) {
+          onDrag("prev");
+        } else {
+          onDrag("next");
+        }
+      } else {
+        // Check boundaries before triggering navigation for non-looping carousels
+        if (deltaX > 0 && currentIndex > 0) {
+          onDrag("prev");
+        } else if (deltaX < 0 && currentIndex < maxIndex) {
+          onDrag("next");
+        } else {
+          // Snap back to current position if at boundary
+          if (usePercentage) {
+            element.style.transform = `translateX(${initialTransform}%)`;
+          } else {
+            element.style.transform = `translateX(${initialTransform}px)`;
+          }
+        }
+      }
+    } else {
+      // Snap back to current position
+      if (usePercentage) {
+        element.style.transform = `translateX(${initialTransform}%)`;
+      } else {
+        element.style.transform = `translateX(${initialTransform}px)`;
+      }
+    }
+  }
+
+  // Only add touch events (mobile), no mouse events (desktop)
+  element.addEventListener("touchstart", handleStart, { passive: false });
+  element.addEventListener("touchmove", handleMove, { passive: false });
+  element.addEventListener("touchend", handleEnd);
+
+  // Prevent drag on images and links
+  element.addEventListener("dragstart", (e) => e.preventDefault());
+}
+
+// ═══════════════════════════════════════════════════════════════
 // FADE-IN ON SCROLL
 // ═══════════════════════════════════════════════════════════════
 function initFadeInObserver() {
@@ -300,6 +429,26 @@ function initTestimonials() {
 
   testimonialObserver.observe(testimonialSection);
 
+  // Add drag/swipe support with boundary-respecting navigation
+  addDragSupport(
+    track,
+    (direction) => {
+      if (direction === "prev" && currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      } else if (direction === "next" && currentIndex < totalSlides - 1) {
+        currentIndex++;
+        updateSlider();
+      }
+      resetAutoScroll();
+    },
+    () => currentIndex,
+    () => totalSlides - 1,
+    50,
+    true,
+    false,
+  );
+
   // Initialize
   updateSlider();
 }
@@ -358,6 +507,20 @@ function initResourcesCarousel() {
   // Event listeners
   nextBtn.addEventListener("click", goToNext);
   prevBtn.addEventListener("click", goToPrev);
+
+  // Add drag/swipe support
+  addDragSupport(
+    track,
+    (direction) => {
+      if (direction === "prev") {
+        goToPrev();
+      } else {
+        goToNext();
+      }
+    },
+    () => currentIndex,
+    getMaxIndex,
+  );
 
   // Handle window resize
   let resizeTimeout;
@@ -472,6 +635,22 @@ function initMomentsCarousel() {
     isHovering = false;
   });
 
+  // Add drag/swipe support
+  addDragSupport(
+    carousel,
+    (direction) => {
+      if (direction === "prev") {
+        goToPrev();
+      } else {
+        goToNext();
+      }
+      stopAutoSlide();
+      startAutoSlide();
+    },
+    () => currentIndex,
+    getMaxIndex,
+  );
+
   // Handle window resize
   let resizeTimeout;
   window.addEventListener("resize", () => {
@@ -488,6 +667,103 @@ function initMomentsCarousel() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// VISION CAROUSEL NAVIGATION
+// ═══════════════════════════════════════════════════════════════
+function initVisionCarousel() {
+  const carousel = document.querySelector(".vision-list");
+  const prevBtn = document.querySelector(".vision-prev");
+  const nextBtn = document.querySelector(".vision-next");
+
+  if (!carousel || !prevBtn || !nextBtn) return;
+
+  const items = carousel.querySelectorAll(".vision-item");
+  if (items.length === 0) return;
+
+  let currentIndex = 0;
+  const columnWidth = 320 + 24; // item width + gap
+  const itemsPerColumn = 3;
+  const totalColumns = Math.ceil(items.length / itemsPerColumn);
+  const visibleColumns = Math.floor(
+    carousel.parentElement.offsetWidth / columnWidth,
+  );
+  const maxIndex = Math.max(0, totalColumns - visibleColumns);
+
+  function updateCarousel() {
+    const isMobile = window.innerWidth <= 640;
+    const currentColumnWidth = isMobile ? 280 + 16 : columnWidth;
+    const translateX = currentIndex * -currentColumnWidth;
+    carousel.style.transform = `translateX(${translateX}px)`;
+
+    // Update button states
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= maxIndex;
+  }
+
+  function goToPrev() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCarousel();
+    }
+  }
+
+  function goToNext() {
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      updateCarousel();
+    }
+  }
+
+  prevBtn.addEventListener("click", goToPrev);
+  nextBtn.addEventListener("click", goToNext);
+
+  // Add drag/swipe support
+  addDragSupport(
+    carousel,
+    (direction) => {
+      if (direction === "prev") {
+        goToPrev();
+      } else {
+        goToNext();
+      }
+    },
+    () => currentIndex,
+    () => maxIndex,
+  );
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    const isMobile = window.innerWidth <= 640;
+    const currentColumnWidth = isMobile ? 280 + 16 : columnWidth;
+    const newVisibleColumns = Math.floor(
+      carousel.parentElement.offsetWidth / currentColumnWidth,
+    );
+    const newMaxIndex = Math.max(0, totalColumns - newVisibleColumns);
+
+    if (currentIndex > newMaxIndex) {
+      currentIndex = newMaxIndex;
+    }
+
+    updateCarousel();
+  });
+
+  // Initial update
+  updateCarousel();
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (document.querySelector("#vision:hover")) {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goToPrev();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goToNext();
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
 // INITIALIZATION
 // ═══════════════════════════════════════════════════════════════
 document.addEventListener("DOMContentLoaded", function () {
@@ -495,6 +771,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initMobileMenu();
   initShowreel();
   initVisionChecklist();
+  initVisionCarousel();
   initTabs();
   initTestimonials();
   initResourcesCarousel();

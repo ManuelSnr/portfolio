@@ -526,112 +526,146 @@
 
     <!-- VISION BOARD -->
     <div class="section fade" id="vision">
-      <div class="section-label">Vision Board</div>
+      <div class="vision-header">
+        <div class="section-label">Vision Board</div>
+        <div class="vision-nav">
+          <button class="vision-prev" aria-label="Previous vision">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M15 18l-6-6 6-6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button class="vision-next" aria-label="Next vision">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M9 18l6-6-6-6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
       <p class="vision-intro">
         Things I'm working toward — personally and professionally. Some done,
         most in progress.
       </p>
-      <div class="vision-list" id="visionList">
-        <!-- Done -->
-        <div class="vision-item done-item">
-          <div class="vision-check done" data-idx="0"></div>
-          <div class="vision-text">
-            <div class="vision-label">
-              Ship a product used by 10,000+ people
-            </div>
-            <div class="vision-detail">Theya · 10K+ iOS downloads</div>
-          </div>
-        </div>
-
-        <div class="vision-item done-item">
-          <div class="vision-check done" data-idx="1"></div>
-          <div class="vision-text">
-            <div class="vision-label">Work with a YC-backed company</div>
-            <div class="vision-detail">Theya, Penciled, Layup</div>
-          </div>
-        </div>
-
-        <div class="vision-item done-item">
-          <div class="vision-check done" data-idx="2"></div>
-          <div class="vision-text">
-            <div class="vision-label">Design a product that raises funding</div>
-            <div class="vision-detail">TaraCares · £200K pre-seed</div>
-          </div>
-        </div>
-
-        <div class="vision-item done-item">
-          <div class="vision-check done" data-idx="3"></div>
-          <div class="vision-text">
-            <div class="vision-label">Launch a product into the US market</div>
-            <div class="vision-detail">Hyper · iOS App Store</div>
-          </div>
-        </div>
-
-        <!-- In progress / upcoming -->
-        <div class="vision-item">
-          <div class="vision-check" data-idx="4"></div>
-          <div class="vision-text">
-            <div class="vision-label">
-              Build and ship my own product from scratch
-            </div>
-            <div class="vision-detail">Hyper, LuvlyFans — in progress</div>
-          </div>
-        </div>
-
-        <div class="vision-item">
-          <div class="vision-check" data-idx="5"></div>
-          <div class="vision-text">
-            <div class="vision-label">Relocate to the UK or US</div>
-            <div class="vision-detail">Global Talent Visa in process</div>
-          </div>
-        </div>
-
-        <div class="vision-item">
-          <div class="vision-check" data-idx="6"></div>
-          <div class="vision-text">
-            <div class="vision-label">
-              Land a staff or principal designer role at a top-tier company
+      <div class="vision-carousel-wrap">
+        <div class="vision-list" id="visionList">
+          <!-- Done -->
+          <div class="vision-item done-item">
+            <div class="vision-check done" data-idx="0"></div>
+            <div class="vision-text">
+              <div class="vision-label">
+                Ship a product used by 10,000+ people
+              </div>
+              <div class="vision-detail">Theya · 10K+ iOS downloads</div>
             </div>
           </div>
-        </div>
 
-        <div class="vision-item">
-          <div class="vision-check" data-idx="7"></div>
-          <div class="vision-text">
-            <div class="vision-label">
-              Publish a design course or in-depth case study series
+          <div class="vision-item done-item">
+            <div class="vision-check done" data-idx="1"></div>
+            <div class="vision-text">
+              <div class="vision-label">Work with a YC-backed company</div>
+              <div class="vision-detail">Theya, Penciled, Layup</div>
             </div>
           </div>
-        </div>
 
-        <div class="vision-item">
-          <div class="vision-check" data-idx="8"></div>
-          <div class="vision-text">
-            <div class="vision-label">Reach 100 mentees through ADPList</div>
-            <div class="vision-detail">3,000+ minutes logged so far</div>
-          </div>
-        </div>
-
-        <div class="vision-item">
-          <div class="vision-check" data-idx="9"></div>
-          <div class="vision-text">
-            <div class="vision-label">
-              Design a product that reaches 100K+ users
+          <div class="vision-item done-item">
+            <div class="vision-check done" data-idx="2"></div>
+            <div class="vision-text">
+              <div class="vision-label">
+                Design a product that raises funding
+              </div>
+              <div class="vision-detail">TaraCares · £200K pre-seed</div>
             </div>
           </div>
-        </div>
 
-        <div class="vision-item">
-          <div class="vision-check" data-idx="10"></div>
-          <div class="vision-text">
-            <div class="vision-label">Speak at a design or tech conference</div>
+          <div class="vision-item done-item">
+            <div class="vision-check done" data-idx="3"></div>
+            <div class="vision-text">
+              <div class="vision-label">
+                Launch a product into the US market
+              </div>
+              <div class="vision-detail">Hyper · iOS App Store</div>
+            </div>
           </div>
-        </div>
 
-        <div class="vision-item">
-          <div class="vision-check" data-idx="11"></div>
-          <div class="vision-text">
-            <div class="vision-label">Build a design studio or agency</div>
+          <!-- In progress / upcoming -->
+          <div class="vision-item">
+            <div class="vision-check" data-idx="4"></div>
+            <div class="vision-text">
+              <div class="vision-label">
+                Build and ship my own product from scratch
+              </div>
+              <div class="vision-detail">Hyper, LuvlyFans — in progress</div>
+            </div>
+          </div>
+
+          <div class="vision-item">
+            <div class="vision-check" data-idx="5"></div>
+            <div class="vision-text">
+              <div class="vision-label">Relocate to the UK or US</div>
+              <div class="vision-detail">Global Talent Visa in process</div>
+            </div>
+          </div>
+
+          <div class="vision-item">
+            <div class="vision-check" data-idx="6"></div>
+            <div class="vision-text">
+              <div class="vision-label">
+                Land a staff or principal designer role at a top-tier company
+              </div>
+            </div>
+          </div>
+
+          <div class="vision-item">
+            <div class="vision-check" data-idx="7"></div>
+            <div class="vision-text">
+              <div class="vision-label">
+                Publish a design course or in-depth case study series
+              </div>
+            </div>
+          </div>
+
+          <div class="vision-item">
+            <div class="vision-check" data-idx="8"></div>
+            <div class="vision-text">
+              <div class="vision-label">Reach 100 mentees through ADPList</div>
+              <div class="vision-detail">3,000+ minutes logged so far</div>
+            </div>
+          </div>
+
+          <div class="vision-item">
+            <div class="vision-check" data-idx="9"></div>
+            <div class="vision-text">
+              <div class="vision-label">
+                Design a product that reaches 100K+ users
+              </div>
+            </div>
+          </div>
+
+          <div class="vision-item">
+            <div class="vision-check" data-idx="10"></div>
+            <div class="vision-text">
+              <div class="vision-label">
+                Speak at a design or tech conference
+              </div>
+            </div>
+          </div>
+
+          <div class="vision-item">
+            <div class="vision-check" data-idx="11"></div>
+            <div class="vision-text">
+              <div class="vision-label">Build a design studio or agency</div>
+            </div>
           </div>
         </div>
       </div>
