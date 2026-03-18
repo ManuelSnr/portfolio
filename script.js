@@ -305,6 +305,75 @@ function initTestimonials() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// RESOURCES CAROUSEL
+// ═══════════════════════════════════════════════════════════════
+function initResourcesCarousel() {
+  const track = document.querySelector(".resources-track");
+  const prevBtn = document.querySelector(".resources-prev");
+  const nextBtn = document.querySelector(".resources-next");
+  const cards = document.querySelectorAll(".resource-card");
+
+  if (!track || !prevBtn || !nextBtn || cards.length === 0) return;
+
+  let currentIndex = 0;
+
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  function getMaxIndex() {
+    // On mobile: 3 positions (0, 1, 2) to show each card individually
+    // On desktop: 2 positions (0, 1) to show 2 cards at a time
+    return isMobile() ? cards.length - 1 : 1;
+  }
+
+  function updateCarousel() {
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 16; // Gap between cards
+    const offset = currentIndex * (cardWidth + gap);
+
+    track.style.transform = `translateX(-${offset}px)`;
+
+    // Update button states
+    const maxIndex = getMaxIndex();
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === maxIndex;
+  }
+
+  function goToNext() {
+    const maxIndex = getMaxIndex();
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      updateCarousel();
+    }
+  }
+
+  function goToPrev() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCarousel();
+    }
+  }
+
+  // Event listeners
+  nextBtn.addEventListener("click", goToNext);
+  prevBtn.addEventListener("click", goToPrev);
+
+  // Handle window resize
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      currentIndex = Math.min(currentIndex, getMaxIndex());
+      updateCarousel();
+    }, 250);
+  });
+
+  // Initialize
+  updateCarousel();
+}
+
+// ═══════════════════════════════════════════════════════════════
 // INITIALIZATION
 // ═══════════════════════════════════════════════════════════════
 document.addEventListener("DOMContentLoaded", function () {
@@ -314,4 +383,5 @@ document.addEventListener("DOMContentLoaded", function () {
   initVisionChecklist();
   initTabs();
   initTestimonials();
+  initResourcesCarousel();
 });
