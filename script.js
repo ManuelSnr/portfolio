@@ -374,6 +374,120 @@ function initResourcesCarousel() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// MOMENTS CAROUSEL (Auto-sliding with navigation)
+// ═══════════════════════════════════════════════════════════════
+function initMomentsCarousel() {
+  const carousel = document.querySelector(".moments-carousel");
+  const cards = document.querySelectorAll(".moment-card");
+  const prevBtn = document.querySelector(".moments-prev");
+  const nextBtn = document.querySelector(".moments-next");
+
+  if (!carousel || cards.length === 0) return;
+
+  let currentIndex = 0;
+  let autoSlideInterval;
+  const autoSlideDelay = 3000; // 3 seconds
+  let isHovering = false;
+
+  function getCardWidth() {
+    return cards[0].offsetWidth + 16; // card width + gap
+  }
+
+  function getVisibleCards() {
+    const containerWidth = carousel.parentElement.offsetWidth;
+    const cardWidth = getCardWidth();
+    return Math.floor(containerWidth / cardWidth);
+  }
+
+  function getMaxIndex() {
+    return Math.max(0, cards.length - getVisibleCards());
+  }
+
+  function updateCarousel() {
+    const offset = currentIndex * getCardWidth();
+    carousel.style.transform = `translateX(-${offset}px)`;
+    updateButtons();
+  }
+
+  function updateButtons() {
+    const maxIndex = getMaxIndex();
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= maxIndex;
+  }
+
+  function goToNext() {
+    const maxIndex = getMaxIndex();
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      updateCarousel();
+    } else {
+      // Loop back to start
+      currentIndex = 0;
+      updateCarousel();
+    }
+  }
+
+  function goToPrev() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCarousel();
+    }
+  }
+
+  function startAutoSlide() {
+    stopAutoSlide();
+    autoSlideInterval = setInterval(() => {
+      if (!isHovering) {
+        goToNext();
+      }
+    }, autoSlideDelay);
+  }
+
+  function stopAutoSlide() {
+    if (autoSlideInterval) {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = null;
+    }
+  }
+
+  // Event listeners
+  prevBtn.addEventListener("click", () => {
+    goToPrev();
+    stopAutoSlide();
+    startAutoSlide();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    goToNext();
+    stopAutoSlide();
+    startAutoSlide();
+  });
+
+  // Pause on hover
+  carousel.addEventListener("mouseenter", () => {
+    isHovering = true;
+  });
+
+  carousel.addEventListener("mouseleave", () => {
+    isHovering = false;
+  });
+
+  // Handle window resize
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      currentIndex = Math.min(currentIndex, getMaxIndex());
+      updateCarousel();
+    }, 250);
+  });
+
+  // Initialize
+  updateCarousel();
+  startAutoSlide();
+}
+
+// ═══════════════════════════════════════════════════════════════
 // INITIALIZATION
 // ═══════════════════════════════════════════════════════════════
 document.addEventListener("DOMContentLoaded", function () {
@@ -384,4 +498,5 @@ document.addEventListener("DOMContentLoaded", function () {
   initTabs();
   initTestimonials();
   initResourcesCarousel();
+  initMomentsCarousel();
 });

@@ -62,24 +62,25 @@
 
     <!-- INTRO -->
     <div class="intro fade">
-      <div class="intro-photo">
-        <!--
-        Replace the div below with:
-        <img src="your-photo.jpg" alt="Emmanuel Odoemelam" />
-      -->
-        <div class="photo-placeholder">
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.2"
-          >
-            <circle cx="12" cy="8" r="4" />
-            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-          </svg>
-          <span>Your photo</span>
+      <div class="intro-left">
+        <div class="intro-photo">
+          <!--
+          Replace the div below with:
+          <img src="your-photo.jpg" alt="Emmanuel Odoemelam" />
+        -->
+          <img src="Assets/General/AVI.jpg" alt="Emmanuel Odoemelam" />
+        </div>
+        <!-- ASSISTANT MEDIA -->
+        <div class="assistant-wrapper">
+          <div class="assistant-container">
+            <!-- Replace with image or video -->
+            <div class="assistant-placeholder">
+              <img src="Assets/General/AVI.jpg" alt="Emmanuel Odoemelam" />
+            </div>
+            <!-- For image: <img src="path/to/image.jpg" alt="Assistant Designer" /> -->
+            <!-- For video: <video autoplay muted loop playsinline><source src="path/to/video.mp4" type="video/mp4" /></video> -->
+          </div>
+          <p class="assistant-subtext">Assistant Designer</p>
         </div>
       </div>
       <div class="intro-content">
@@ -640,25 +641,121 @@
       </div>
     </div>
 
-    <!-- PHOTO GRID -->
-    <div class="section fade" id="photos">
-      <div class="section-label">Moments</div>
-      <div class="photo-grid">
-        <!--
-        Replace each .grid-placeholder with:
-        <img src="photo-1.jpg" alt="..." />
-        inside the .grid-cell div.
-        Recommended: 600×600px or any square crop.
-      -->
-        <div class="grid-cell"><div class="grid-placeholder">01</div></div>
-        <div class="grid-cell"><div class="grid-placeholder">02</div></div>
-        <div class="grid-cell"><div class="grid-placeholder">03</div></div>
-        <div class="grid-cell"><div class="grid-placeholder">04</div></div>
-        <div class="grid-cell"><div class="grid-placeholder">05</div></div>
-        <div class="grid-cell"><div class="grid-placeholder">06</div></div>
-        <div class="grid-cell"><div class="grid-placeholder">07</div></div>
-        <div class="grid-cell"><div class="grid-placeholder">08</div></div>
-        <div class="grid-cell"><div class="grid-placeholder">09</div></div>
+    <!-- MOMENTS CAROUSEL -->
+    <div class="section fade" id="moments">
+      <div class="moments-header">
+        <div class="section-label">Moments</div>
+        <div class="moments-nav">
+          <button class="moments-prev" aria-label="Previous moment">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M15 18l-6-6 6-6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <button class="moments-next" aria-label="Next moment">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M9 18l6-6-6-6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="moments-carousel-wrap">
+        <div class="moments-carousel">
+          <!-- Moment 1 -->
+          <div class="moment-card">
+            <img src="Assets/General/avatar-1.jpg" alt="Family Time" />
+            <div class="moment-overlay">
+              <div class="moment-text">
+                <h3 class="moment-title">Family Time</h3>
+                <p class="moment-desc">Quality moments with loved ones</p>
+              </div>
+            </div>
+          </div>
+          <!-- Moment 2 -->
+          <div class="moment-card">
+            <video autoplay muted loop playsinline>
+              <source
+                src="Assets/General/reel_portfolio.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div class="moment-overlay">
+              <div class="moment-text">
+                <h3 class="moment-title">Creative Process</h3>
+                <p class="moment-desc">Designing at the studio</p>
+              </div>
+            </div>
+          </div>
+          <!-- Moment 3 -->
+          <div class="moment-card">
+            <img src="Assets/General/avatar-2.jpg" alt="Team Collaboration" />
+            <div class="moment-overlay">
+              <div class="moment-text">
+                <h3 class="moment-title">Team Collaboration</h3>
+                <p class="moment-desc">Working with amazing people</p>
+              </div>
+            </div>
+          </div>
+          <!-- Moment 4 -->
+          <div class="moment-card">
+            <img src="Assets/General/AVI.jpg" alt="Conference Talk" />
+            <div class="moment-overlay">
+              <div class="moment-text">
+                <h3 class="moment-title">Conference Talk</h3>
+                <p class="moment-desc">Sharing design insights</p>
+              </div>
+            </div>
+          </div>
+          <!-- Moment 5 -->
+          <div class="moment-card">
+            <img src="Assets/General/resource-3.jpg" alt="Travel Adventures" />
+            <div class="moment-overlay">
+              <div class="moment-text">
+                <h3 class="moment-title">Travel Adventures</h3>
+                <p class="moment-desc">Exploring new places</p>
+              </div>
+            </div>
+          </div>
+          <!-- Moment 6 -->
+          <div class="moment-card">
+            <img src="Assets/General/avatar-1.jpg" alt="Morning Routine" />
+            <div class="moment-overlay">
+              <div class="moment-text">
+                <h3 class="moment-title">Morning Routine</h3>
+                <p class="moment-desc">Starting the day right</p>
+              </div>
+            </div>
+          </div>
+          <!-- Moment 7 -->
+          <div class="moment-card">
+            <img src="Assets/General/avatar-2.jpg" alt="Weekend Vibes" />
+            <div class="moment-overlay">
+              <div class="moment-text">
+                <h3 class="moment-title">Weekend Vibes</h3>
+                <p class="moment-desc">Relaxing and recharging</p>
+              </div>
+            </div>
+          </div>
+          <!-- Moment 8 -->
+          <div class="moment-card">
+            <img src="Assets/General/AVI.jpg" alt="Celebration" />
+            <div class="moment-overlay">
+              <div class="moment-text">
+                <h3 class="moment-title">Celebration</h3>
+                <p class="moment-desc">Milestones and achievements</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
