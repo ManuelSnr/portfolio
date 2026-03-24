@@ -322,7 +322,12 @@ function initTestimonials() {
   const dots = document.querySelectorAll(".testimonial-dot");
 
   function updateSlider() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    // On mobile, CSS handles vertical stacking — don't apply transform
+    if (window.innerWidth <= 768) {
+      track.style.transform = 'none';
+    } else {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
 
     // Update active card with smoother transition
     cards.forEach((card, index) => {
@@ -429,28 +434,33 @@ function initTestimonials() {
 
   testimonialObserver.observe(testimonialSection);
 
-  // Add drag/swipe support with boundary-respecting navigation
-  addDragSupport(
-    track,
-    (direction) => {
-      if (direction === "prev" && currentIndex > 0) {
-        currentIndex--;
-        updateSlider();
-      } else if (direction === "next" && currentIndex < totalSlides - 1) {
-        currentIndex++;
-        updateSlider();
-      }
-      resetAutoScroll();
-    },
-    () => currentIndex,
-    () => totalSlides - 1,
-    50,
-    true,
-    false,
-  );
+  // Add drag/swipe support with boundary-respecting navigation (desktop only)
+  if (window.innerWidth > 768) {
+    addDragSupport(
+      track,
+      (direction) => {
+        if (direction === "prev" && currentIndex > 0) {
+          currentIndex--;
+          updateSlider();
+        } else if (direction === "next" && currentIndex < totalSlides - 1) {
+          currentIndex++;
+          updateSlider();
+        }
+        resetAutoScroll();
+      },
+      () => currentIndex,
+      () => totalSlides - 1,
+      50,
+      true,
+      false,
+    );
+  }
 
   // Initialize
   updateSlider();
+
+  // Re-evaluate on resize
+  window.addEventListener('resize', updateSlider);
 }
 
 // ═══════════════════════════════════════════════════════════════
