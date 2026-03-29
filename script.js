@@ -324,7 +324,7 @@ function initTestimonials() {
   function updateSlider() {
     // On mobile, CSS handles vertical stacking — don't apply transform
     if (window.innerWidth <= 768) {
-      track.style.transform = 'none';
+      track.style.transform = "none";
     } else {
       track.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
@@ -460,7 +460,7 @@ function initTestimonials() {
   updateSlider();
 
   // Re-evaluate on resize
-  window.addEventListener('resize', updateSlider);
+  window.addEventListener("resize", updateSlider);
 }
 
 // ═══════════════════════════════════════════════════════════════

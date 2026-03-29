@@ -559,6 +559,12 @@ nav {
   max-width: 460px;
 }
 
+.exp-desc a {
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--ink-2);
+}
+
 .work-meta,
 .exp-meta {
   text-align: right;
