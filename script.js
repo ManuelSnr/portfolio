@@ -145,7 +145,17 @@ function initFadeInObserver() {
     },
     { threshold: 0.08 },
   );
-  fades.forEach((el) => io.observe(el));
+
+  // Immediately mark elements already in viewport as visible
+  fades.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    const isInViewport = rect.top < window.innerHeight && rect.bottom >= 0;
+    if (isInViewport) {
+      el.classList.add("in");
+    } else {
+      io.observe(el);
+    }
+  });
 }
 
 // ═══════════════════════════════════════════════════════════════

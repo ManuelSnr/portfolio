@@ -88,197 +88,466 @@
 
     <div class="cs-divider"></div>
 
-    <!-- SHOWREEL -->
-    <div class="section fade" id="reel">
-      <div class="section-label">Showreel</div>
-      <div class="reel-container">
-        <div class="reel-video-wrap">
-          <img
-            src="Assets/General/reel-thumbnail.jpg"
-            alt="Showreel thumbnail"
-            class="reel-thumbnail"
-          />
-          <video
-            class="reel-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-          >
-            <source src="Assets/General/reel_portfolio.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <button class="reel-play-btn" aria-label="Play showreel">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M8 5.14v13.72L19 12L8 5.14z" fill="currentColor" />
-            </svg>
-          </button>
+    <!-- TAB BAR -->
+    <div class="tab-bar fade">
+      <button class="tab-btn active" data-tab="visual">Visual Design</button>
+      <button class="tab-btn" data-tab="work">Work</button>
+      <button class="tab-btn" data-tab="products">Products</button>
+    </div>
+
+    <div class="cs-divider"></div>
+
+    <!-- TAB PANEL: VISUAL DESIGN -->
+    <div class="tab-panel active" id="panel-visual">
+      <div class="section fade">
+        <div class="visual-grid">
+          <!-- Visual Design Card 1 -->
+          <div class="visual-item">
+            <div class="visual-placeholder tall">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+              <span>Visual Design 1</span>
+            </div>
+            <div class="visual-overlay">
+              <span class="visual-label">Project Name</span>
+              <span class="visual-type">UI · Mobile</span>
+            </div>
+          </div>
+
+          <!-- Visual Design Card 2 -->
+          <div class="visual-item">
+            <div class="visual-placeholder sq">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+              <span>Visual Design 2</span>
+            </div>
+            <div class="visual-overlay">
+              <span class="visual-label">Project Name</span>
+              <span class="visual-type">UI · Web</span>
+            </div>
+          </div>
+
+          <!-- Visual Design Card 3 -->
+          <div class="visual-item">
+            <div class="visual-placeholder sq">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+              <span>Visual Design 3</span>
+            </div>
+            <div class="visual-overlay">
+              <span class="visual-label">Project Name</span>
+              <span class="visual-type">Animation</span>
+            </div>
+          </div>
+
+          <!-- Visual Design Card 4 -->
+          <div class="visual-item">
+            <div class="visual-placeholder wide">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+              <span>Visual Design 4</span>
+            </div>
+            <div class="visual-overlay">
+              <span class="visual-label">Project Name</span>
+              <span class="visual-type">Web · UI</span>
+            </div>
+          </div>
+
+          <!-- Visual Design Card 5 -->
+          <div class="visual-item">
+            <div class="visual-placeholder tall">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+              <span>Visual Design 5</span>
+            </div>
+            <div class="visual-overlay">
+              <span class="visual-label">Project Name</span>
+              <span class="visual-type">Mobile · UI</span>
+            </div>
+          </div>
+
+          <!-- Visual Design Card 6 -->
+          <div class="visual-item">
+            <div class="visual-placeholder sq">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+              <span>Visual Design 6</span>
+            </div>
+            <div class="visual-overlay">
+              <span class="visual-label">Project Name</span>
+              <span class="visual-type">Brand</span>
+            </div>
+          </div>
+
+          <!-- Visual Design Card 7 -->
+          <div class="visual-item">
+            <div class="visual-placeholder wide">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+              <span>Visual Design 7</span>
+            </div>
+            <div class="visual-overlay">
+              <span class="visual-label">Project Name</span>
+              <span class="visual-type">Mobile · UI</span>
+            </div>
+          </div>
+
+          <!-- Visual Design Card 8 -->
+          <div class="visual-item">
+            <div class="visual-placeholder sq">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+              <span>Visual Design 8</span>
+            </div>
+            <div class="visual-overlay">
+              <span class="visual-label">Project Name</span>
+              <span class="visual-type">Web · UI</span>
+            </div>
+          </div>
+
+          <!-- Visual Design Card 9 -->
+          <div class="visual-item">
+            <div class="visual-placeholder sq">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+              <span>Visual Design 9</span>
+            </div>
+            <div class="visual-overlay">
+              <span class="visual-label">Project Name</span>
+              <span class="visual-type">Animation</span>
+            </div>
+          </div>
+
+          <!-- Visual Design Card 10 -->
+          <div class="visual-item">
+            <div class="visual-placeholder wide">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+              <span>Visual Design 10</span>
+            </div>
+            <div class="visual-overlay">
+              <span class="visual-label">Project Name</span>
+              <span class="visual-type">Brand · Identity</span>
+            </div>
+          </div>
         </div>
+        <a
+          href="lab.html"
+          class="see-all-link"
+          style="margin-top: 2rem; display: inline-block"
+        >
+          View more <sup>12</sup>
+        </a>
+      </div>
+    </div>
+
+    <!-- TAB PANEL: WORK -->
+    <div class="tab-panel" id="panel-work">
+      <div class="section fade">
+        <div class="projects-grid home-projects">
+          <!-- Regirl -->
+          <div class="card-wrap" data-tags="E-commerce">
+            <a class="card" href="work-regirl.html">
+              <div class="card-cover cp-hyper">
+                <img
+                  src="Assets/Projects/Regirl/Content/Cover Image.webp"
+                  alt="Regirl — Instant Glam In a Box"
+                />
+              </div>
+              <div class="card-eyebrow">E-commerce</div>
+              <div class="card-title">
+                A New Identity for Modern, Inclusive Hair
+              </div>
+              <div class="card-desc">
+                Led end-to-end design of the v2 mobile platform, enabling US
+                market expansion and a successful iOS App Store launch.
+                Redesigned KYC and payout flows to dramatically reduce friction
+                and cost.
+              </div>
+              <div class="card-outcomes">
+                <span class="outcome">8,000+ iOS downloads</span>
+                <span class="outcome">60% fewer support tickets</span>
+                <span class="outcome">$1,700/mo saved</span>
+              </div>
+              <div class="card-footer"></div>
+              <span class="card-cta">
+                View case study
+                <svg
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M2 10L10 2M10 2H4M10 2v6" />
+                </svg>
+              </span>
+            </a>
+          </div>
+
+          <div class="cs-divider"></div>
+
+          <!-- Hyper -->
+          <div class="card-wrap" data-tags="gaming">
+            <a class="card" href="work-hyper.html">
+              <div class="card-cover cp-hyper">
+                <img
+                  src="Assets/Projects/cover-hyper.jpg"
+                  alt="Hyper — Social Gaming Platform"
+                />
+              </div>
+              <div class="card-eyebrow">Gaming</div>
+              <div class="card-title">Hyper — Social Gaming Platform</div>
+              <div class="card-desc">
+                Led end-to-end design of the v2 mobile platform, enabling US
+                market expansion and a successful iOS App Store launch.
+                Redesigned KYC and payout flows to dramatically reduce friction
+                and cost.
+              </div>
+              <div class="card-outcomes">
+                <span class="outcome">8,000+ iOS downloads</span>
+                <span class="outcome">60% fewer support tickets</span>
+                <span class="outcome">$1,700/mo saved</span>
+              </div>
+              <div class="card-footer"></div>
+              <span class="card-cta">
+                View case study
+                <svg
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M2 10L10 2M10 2H4M10 2v6" />
+                </svg>
+              </span>
+            </a>
+          </div>
+
+          <div class="cs-divider"></div>
+
+          <!-- Penciled -->
+          <div class="card-wrap" data-tags="healthtech saas">
+            <a class="card" href="work-penciled.html">
+              <div class="card-cover cp-penciled">
+                <img
+                  src="Assets/Projects/cover-penciled.jpg"
+                  alt="Penciled (YC W24)"
+                />
+              </div>
+              <div class="card-eyebrow">HealthTech · AI</div>
+              <div class="card-title">Penciled (YC W24)</div>
+              <div class="card-desc">
+                AI-powered scheduling for healthcare clinics. Designed an
+                auto-fill feature for last-minute cancellations and rebuilt the
+                website for trust and conversion.
+              </div>
+              <div class="card-outcomes">
+                <span class="outcome">$200K+ clinic savings</span>
+              </div>
+              <div class="card-footer"></div>
+              <span class="card-cta">
+                View case study
+                <svg
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M2 10L10 2M10 2H4M10 2v6" />
+                </svg>
+              </span>
+            </a>
+          </div>
+
+          <div class="cs-divider"></div>
+
+          <!-- Theya -->
+          <div class="card-wrap" data-tags="fintech">
+            <a class="card" href="work-theya.html">
+              <div class="card-cover cp-theya">
+                <img
+                  src="Assets/Projects/Theya/Content/Cover image.webp"
+                  alt="Theya (YC)"
+                />
+              </div>
+              <div class="card-eyebrow">Web3 · Fintech</div>
+              <div class="card-title">
+                Designing the world's simplest Bitcoin self-custody solution
+              </div>
+              <div class="card-desc">
+                Centralized crypto platforms have repeatedly failed to protect
+                users’ Bitcoin, exposing them to credit, regulatory, and
+                security risks beyond their control. While self-custody is the
+                solution, existing hardware wallets often introduce complexity,
+                poor usability, and single points of failure, making secure
+                ownership difficult for everyday users.
+              </div>
+              <div class="card-outcomes">
+                <span class="outcome">$1.2M revenue</span>
+                <span class="outcome">4.8★ App Store</span>
+              </div>
+              <div class="card-footer"></div>
+              <span class="card-cta">
+                View case study
+                <svg
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M2 10L10 2M10 2H4M10 2v6" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <a href="work.html" class="see-all-link mobile-only"
+          >See all works <sup>6</sup></a
+        >
+      </div>
+    </div>
+
+    <!-- TAB PANEL: PRODUCTS -->
+    <div class="tab-panel" id="panel-products">
+      <div class="section fade">
+        <div class="products-grid">
+          <!-- Product 1 -->
+          <a href="lab.html" class="product-card" target="_blank">
+            <img
+              src="Assets/Projects/Regirl/Content/Cover Image.webp"
+              alt="Product 1"
+              class="product-bg"
+            />
+            <span class="product-tag">End-to-end</span>
+          </a>
+
+          <!-- Product 2 -->
+          <a href="lab.html" class="product-card" target="_blank">
+            <img
+              src="Assets/Projects/Theya/Content/Cover image.webp"
+              alt="Product 2"
+              class="product-bg"
+            />
+            <span class="product-tag">Website Dev</span>
+          </a>
+
+          <!-- Product 3 -->
+          <a href="lab.html" class="product-card" target="_blank">
+            <img
+              src="Assets/General/reel-thumbnail.jpg"
+              alt="Product 3"
+              class="product-bg"
+            />
+            <span class="product-tag">Website Dev</span>
+          </a>
+
+          <!-- Product 4 -->
+          <a href="lab.html" class="product-card" target="_blank">
+            <img
+              src="Assets/General/resource-3.jpg"
+              alt="Product 4"
+              class="product-bg"
+            />
+            <span class="product-tag">Website Dev</span>
+          </a>
+        </div>
+        <a
+          href="lab.html"
+          class="see-all-link"
+          style="margin-top: 2rem; display: inline-block"
+        >
+          View all products <sup>4</sup>
+        </a>
       </div>
     </div>
 
     <div class="cs-divider"></div>
 
-    <div class="section fade" id="work">
-      <div class="section-header">
-        <div class="section-label">Selected Work</div>
-        <a href="work.html" class="see-all-link">See all works <sup>6</sup></a>
-      </div>
-      <div class="projects-grid home-projects">
-        <!-- Regirl -->
-        <div class="card-wrap" data-tags="E-commerce">
-          <a class="card" href="work-regirl.html">
-            <div class="card-cover cp-hyper">
-              <img
-                src="Assets/Projects/Regirl/Content/Cover Image.webp"
-                alt="Regirl — Instant Glam In a Box"
-              />
-            </div>
-            <div class="card-eyebrow">E-commerce</div>
-            <div class="card-title">
-              A New Identity for Modern, Inclusive Hair
-            </div>
-            <div class="card-desc">
-              Led end-to-end design of the v2 mobile platform, enabling US
-              market expansion and a successful iOS App Store launch. Redesigned
-              KYC and payout flows to dramatically reduce friction and cost.
-            </div>
-            <div class="card-outcomes">
-              <span class="outcome">8,000+ iOS downloads</span>
-              <span class="outcome">60% fewer support tickets</span>
-              <span class="outcome">$1,700/mo saved</span>
-            </div>
-            <div class="card-footer"></div>
-            <span class="card-cta">
-              View case study
-              <svg
-                viewBox="0 0 12 12"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path d="M2 10L10 2M10 2H4M10 2v6" />
-              </svg>
-            </span>
-          </a>
-        </div>
-        <!-- Hyper -->
-        <div class="card-wrap" data-tags="gaming">
-          <a class="card" href="work-hyper.html">
-            <div class="card-cover cp-hyper">
-              <img
-                src="Assets/Projects/cover-hyper.jpg"
-                alt="Hyper — Social Gaming Platform"
-              />
-            </div>
-            <div class="card-eyebrow">Gaming</div>
-            <div class="card-title">Hyper — Social Gaming Platform</div>
-            <div class="card-desc">
-              Led end-to-end design of the v2 mobile platform, enabling US
-              market expansion and a successful iOS App Store launch. Redesigned
-              KYC and payout flows to dramatically reduce friction and cost.
-            </div>
-            <div class="card-outcomes">
-              <span class="outcome">8,000+ iOS downloads</span>
-              <span class="outcome">60% fewer support tickets</span>
-              <span class="outcome">$1,700/mo saved</span>
-            </div>
-            <div class="card-footer"></div>
-            <span class="card-cta">
-              View case study
-              <svg
-                viewBox="0 0 12 12"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path d="M2 10L10 2M10 2H4M10 2v6" />
-              </svg>
-            </span>
-          </a>
-        </div>
-        <!-- Penciled -->
-        <div class="card-wrap" data-tags="healthtech saas">
-          <a class="card" href="work-penciled.html">
-            <div class="card-cover cp-penciled">
-              <img
-                src="Assets/Projects/cover-penciled.jpg"
-                alt="Penciled (YC W24)"
-              />
-            </div>
-            <div class="card-eyebrow">HealthTech · AI</div>
-            <div class="card-title">Penciled (YC W24)</div>
-            <div class="card-desc">
-              AI-powered scheduling for healthcare clinics. Designed an
-              auto-fill feature for last-minute cancellations and rebuilt the
-              website for trust and conversion.
-            </div>
-            <div class="card-outcomes">
-              <span class="outcome">$200K+ clinic savings</span>
-            </div>
-            <div class="card-footer"></div>
-            <span class="card-cta">
-              View case study
-              <svg
-                viewBox="0 0 12 12"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path d="M2 10L10 2M10 2H4M10 2v6" />
-              </svg>
-            </span>
-          </a>
-        </div>
-
-        <!-- Theya -->
-        <div class="card-wrap" data-tags="fintech">
-          <a class="card" href="work-theya.html">
-            <div class="card-cover cp-theya">
-              <img
-                src="Assets/Projects/Theya/Content/Cover image.webp"
-                alt="Theya (YC)"
-              />
-            </div>
-            <div class="card-eyebrow">Web3 · Fintech</div>
-            <div class="card-title">
-              Designing the world's simplest Bitcoin self-custody solution
-            </div>
-            <div class="card-desc">
-              Centralized crypto platforms have repeatedly failed to protect
-              users’ Bitcoin, exposing them to credit, regulatory, and security
-              risks beyond their control. While self-custody is the solution,
-              existing hardware wallets often introduce complexity, poor
-              usability, and single points of failure, making secure ownership
-              difficult for everyday users.
-            </div>
-            <div class="card-outcomes">
-              <span class="outcome">$1.2M revenue</span>
-              <span class="outcome">4.8★ App Store</span>
-            </div>
-            <div class="card-footer"></div>
-            <span class="card-cta">
-              View case study
-              <svg
-                viewBox="0 0 12 12"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path d="M2 10L10 2M10 2H4M10 2v6" />
-              </svg>
-            </span>
-          </a>
-        </div>
-      </div>
-      <a href="work.html" class="see-all-link mobile-only"
-        >See all works <sup>6</sup></a
-      >
-    </div>
-
     <div class="section fade" id="impact">
-      <div class="section-label">By the Numbers</div>
+      <div class="section-label">Impact by Numbers</div>
       <div class="impact-grid">
         <div class="impact-cell">
           <div class="impact-num">$1.2M+</div>
@@ -292,9 +561,7 @@
         </div>
         <div class="impact-cell">
           <div class="impact-num">60%</div>
-          <div class="impact-label">
-            Reduction in support & verification costs at Hyper
-          </div>
+          <div class="impact-label">First-time deposit rate at Hyper</div>
         </div>
         <div class="impact-cell">
           <div class="impact-num">$200K+</div>
@@ -304,6 +571,8 @@
         </div>
       </div>
     </div>
+
+    <div class="cs-divider"></div>
 
     <div class="section fade" id="about">
       <div class="section-label">About</div>
@@ -361,6 +630,8 @@
       </div>
     </div>
 
+    <div class="cs-divider"></div>
+
     <div class="section fade">
       <div class="section-label">VALUE</div>
       <div class="value-grid">
@@ -412,6 +683,8 @@
         </div>
       </div>
     </div>
+
+    <div class="cs-divider"></div>
 
     <div class="section fade" id="testimonials">
       <div class="testimonial-header">
@@ -724,6 +997,8 @@
         </div>
       </div>
     </div>
+
+    <div class="cs-divider"></div>
 
     <div class="section fade" id="contact">
       <div class="section-label">Get in Touch</div>
