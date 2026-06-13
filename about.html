@@ -1,782 +1,678 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About — Emmanuel Odoemelam</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <!-- NAV -->
-    <nav>
-      <a href="/" class="nav-brand">
-        <img
-          src="Assets/General/avi.jpg"
-          alt="Emmanuel Odoemelam"
-          class="nav-profile-img"
-        />
-        <div class="nav-brand-text">
-          <span class="nav-name">Emmanuel Odoemelam</span>
-          <span class="nav-subtext"></span>
-        </div>
-      </a>
-      <button class="hamburger" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-links">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Emmanuel Odoemelam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-brand">
+      <img src="Assets/General/avi.jpg" alt="Emmanuel Odoemelam" class="nav-profile-img" />
+      <div class="nav-brand-text">
+        <span class="nav-name">Emmanuel Odoemelam</span>
+        <span class="nav-subtext"></span>
+      </div>
+    </a>
+    <button class="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="lab.html">Lab</a></li>
+    </ul>
+  </nav>
+
+  <div class="mobile-drawer">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h2 class="drawer-title">Menu</h2>
+        <button class="drawer-close" aria-label="Close menu">&times;</button>
+      </div>
+      <ul class="drawer-links">
+        <li><a href="/">Home</a></li>
         <li><a href="work.html">Work</a></li>
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="lab.html">Lab</a></li>
       </ul>
-    </nav>
-
-    <div class="mobile-drawer">
-      <div class="drawer-content">
-        <div class="drawer-header">
-          <h2 class="drawer-title">Menu</h2>
-          <button class="drawer-close" aria-label="Close menu">&times;</button>
-        </div>
-        <ul class="drawer-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="work.html">Work</a></li>
-          <li><a href="about.html" class="active">About</a></li>
-          <li><a href="lab.html">Lab</a></li>
-        </ul>
-        <div class="drawer-footer">
-          <p class="drawer-footer-text">
-            © 2025 Emmanuel Odoemelam<br />Lagos, Nigeria
-          </p>
-        </div>
+      <div class="drawer-footer">
+        <p class="drawer-footer-text">
+          © 2025 Emmanuel Odoemelam<br />Lagos, Nigeria
+        </p>
       </div>
     </div>
-    <div class="drawer-overlay"></div>
+  </div>
+  <div class="drawer-overlay"></div>
 
-    <!-- INTRO -->
-    <div class="intro fade">
-      <div class="intro-left">
-        <div class="intro-photo">
-          <img src="Assets/General/pfp.jpg" alt="Emmanuel Odoemelam" />
-        </div>
-        <!-- ASSISTANT MEDIA -->
-        <div class="assistant-wrapper">
-          <div class="assistant-container">
-            <!-- Replace with image or video -->
-            <div class="assistant-placeholder">
-              <img src="Assets/General/Kiki.jpg" alt="Kiki" />
-            </div>
-            <!-- For image: <img src="path/to/image.jpg" alt="Assistant Designer" /> -->
-            <!-- For video: <video autoplay muted loop playsinline><source src="path/to/video.mp4" type="video/mp4" /></video> -->
+  <!-- INTRO -->
+  <div class="intro fade">
+    <div class="intro-left">
+      <div class="intro-photo">
+        <img src="Assets/General/pfp.jpg" alt="Emmanuel Odoemelam" />
+      </div>
+      <!-- ASSISTANT MEDIA -->
+      <div class="assistant-wrapper">
+        <div class="assistant-container">
+          <!-- Replace with image or video -->
+          <div class="assistant-placeholder">
+            <img src="Assets/General/Kiki.jpg" alt="Kiki" />
           </div>
-          <p class="assistant-subtext">Assistant Designer</p>
+          <!-- For image: <img src="path/to/image.jpg" alt="Assistant Designer" /> -->
+          <!-- For video: <video autoplay muted loop playsinline><source src="path/to/video.mp4" type="video/mp4" /></video> -->
         </div>
+        <p class="assistant-subtext">Design Assistant</p>
       </div>
-      <div class="intro-content">
-        <div class="intro-label">About</div>
-        <h1 class="intro-heading">
-          Designer who builds,<br />
-          <em>not just delivers.</em>
-        </h1>
-        <div class="intro-body">
-          <p>
-            I'm Emmanuel — a senior product designer based in Lagos, Nigeria.
-            For the past 5+ years I've worked with early-stage founders across
-            fintech, healthtech, AI, Web3, and social gaming to take products
-            from zero to one.
-          </p>
-          <p>
-            I care deeply about <strong>designing for trust</strong> — the kind
-            of design that makes users feel safe giving you their money, their
-            health data, or their time. That means being precise where it
-            matters, and getting out of the way everywhere else.
-          </p>
-          <p>
-            Outside of work I mentor designers on ADPList, think about gaming
-            interfaces, and build things for fun.
-          </p>
-        </div>
-        <div class="intro-links">
-          <a href="mailto:odoemelamuemmanuel@gmail.com">Email</a>
-          <span class="sep"></span>
-          <a href="https://github.com/ManuelSnr" target="_blank">GitHub</a>
-          <span class="sep"></span>
-          <a href="https://adplist.org/mentors/manuel-snr" target="_blank"
-            >ADPList</a
-          >
-        </div>
+    </div>
+    <div class="intro-content">
+      <div class="intro-label">About</div>
+      <h1 class="intro-heading">
+        Built from
+        <em>curiosity.</em>
+      </h1>
+      <div class="intro-body">
+        <p>
+          I’m Emmanuel Odoemelam, a Senior Product Designer with over five years of experience taking products from
+          early ideas to launch across <a href="https://joingerald.com/" target="_blank">fintech</a>, <a
+            href="https://layuplabs.ai/" target="_blank">AI</a>, <a href="https://penciled.com/"
+            target="_blank">healthcare</a>, <a href="https://hyper.mvm.gg/arcade" target="_blank">gaming</a>, and <a
+            href="https://apps.apple.com/us/app/theya-bitcoin-wallet/id1669665032" target="_blank">Web3</a>.
+        </p>
+        <p>
+          I studied engineering, but somewhere along the way, I found myself drawn to design.
+        </p>
+        <p>
+          My journey began with visual design, mostly thinking about colours, layouts, and how things looked. But
+          the more products I worked on, the more curious I became about everything beyond the screen.
+        </p>
+        <p>
+          Why did people trust one product and abandon another? Why did some flows feel effortless while others felt
+          confusing? And how could design do more than make things look good?
+        </p>
+        <p>
+          Those questions pulled me into product design.
+        </p>
+        <p>
+          Since then, I’ve worked closely with founders and engineers to turn early ideas into real products. I enjoy
+          the uncertain stage most, when the problem is still taking shape, and there is room to ask better questions,
+          challenge assumptions, and influence what gets built.
+        </p>
+        <p>
+          My engineering background still shows up in how I work. I like understanding how systems connect, breaking
+          complicated problems into smaller parts, and finding ways to make them feel simple for the people using them.
+        </p>
+        <p>
+          Outside of work, I spend time mentoring designers, experimenting with AI tools, and building ideas that may
+          or may not become real products.
+        </p>
+      </div>
+      <div class="intro-links">
+        <a href="mailto:odoemelamuemmanuel@gmail.com">Email</a>
+        <span class="sep"></span>
+        <a href="https://github.com/ManuelSnr" target="_blank">GitHub</a>
+        <span class="sep"></span>
+        <a href="https://adplist.org/mentors/manuel-snr" target="_blank">ADPList</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div class="section fade" id="resources">
+    <div class="resources-header">
+      <div class="section-label">Figma Resources</div>
+      <div class="resources-controls">
+        <button class="resources-arrow resources-prev" aria-label="Previous resource">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <button class="resources-arrow resources-next" aria-label="Next resource">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
       </div>
     </div>
 
-    <!-- RESOURCES -->
-    <div class="section fade" id="resources">
-      <div class="resources-header">
-        <div class="section-label">Figma Resources</div>
-        <div class="resources-controls">
-          <button
-            class="resources-arrow resources-prev"
-            aria-label="Previous resource"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-          <button
-            class="resources-arrow resources-next"
-            aria-label="Next resource"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="resources-carousel">
-        <div class="resources-track">
-          <!-- Resource 1 -->
-          <div class="resource-card">
-            <div class="resource-image">
-              <img
-                src="Assets/General/resource-1.jpg"
-                alt="Design System Starter Kit"
-              />
-            </div>
-            <div class="resource-meta">2025 · Used by 300+ designers</div>
-            <h3 class="resource-title">Design System Starter Kit</h3>
-            <div class="resource-footer">
-              <a href="#" class="resource-cta">
-                View resource
-                <svg
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path d="M2 10L10 2M10 2H4M10 2v6" />
-                </svg>
-              </a>
-              <div class="resource-avatars">
-                <div class="resource-avatar-wrapper" data-tooltip="Manuel">
-                  <img
-                    src="Assets/General/avatar-1.jpg"
-                    alt="Manuel"
-                    class="resource-avatar"
-                  />
-                </div>
-                <div class="resource-avatar-wrapper" data-tooltip="Emma Ike">
-                  <img
-                    src="Assets/General/avatar-2.jpg"
-                    alt="Emma Ike"
-                    class="resource-avatar"
-                  />
-                </div>
+    <div class="resources-carousel">
+      <div class="resources-track">
+        <!-- Resource 1 -->
+        <div class="resource-card">
+          <div class="resource-image">
+            <img src="Assets/General/resource-1.jpg" alt="Design System Starter Kit" />
+          </div>
+          <div class="resource-meta">2025 · Used by 300+ designers</div>
+          <h3 class="resource-title">Design System Starter Kit</h3>
+          <div class="resource-footer">
+            <a href="#" class="resource-cta">
+              View resource
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 10L10 2M10 2H4M10 2v6" />
+              </svg>
+            </a>
+            <div class="resource-avatars">
+              <div class="resource-avatar-wrapper" data-tooltip="Manuel">
+                <img src="Assets/General/avatar-1.jpg" alt="Manuel" class="resource-avatar" />
+              </div>
+              <div class="resource-avatar-wrapper" data-tooltip="Emma Ike">
+                <img src="Assets/General/avatar-2.jpg" alt="Emma Ike" class="resource-avatar" />
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Resource 2 -->
-          <div class="resource-card">
-            <div class="resource-image">
-              <img
-                src="Assets/General/resource-2.jpg"
-                alt="Figma to Code Workflow"
-              />
-            </div>
-            <div class="resource-meta">2023 · Used by 500+ designers</div>
-            <h3 class="resource-title">Figma to Code Workflow</h3>
-            <div class="resource-footer">
-              <a href="#" class="resource-cta">
-                View resource
-                <svg
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path d="M2 10L10 2M10 2H4M10 2v6" />
-                </svg>
-              </a>
-              <div class="resource-avatars">
-                <div class="resource-avatar-wrapper" data-tooltip="Manuel">
-                  <img
-                    src="Assets/General/avatar-1.jpg"
-                    alt="Manuel"
-                    class="resource-avatar"
-                  />
-                </div>
+        <!-- Resource 2 -->
+        <div class="resource-card">
+          <div class="resource-image">
+            <img src="Assets/General/resource-2.jpg" alt="Figma to Code Workflow" />
+          </div>
+          <div class="resource-meta">2023 · Used by 500+ designers</div>
+          <h3 class="resource-title">Figma to Code Workflow</h3>
+          <div class="resource-footer">
+            <a href="#" class="resource-cta">
+              View resource
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 10L10 2M10 2H4M10 2v6" />
+              </svg>
+            </a>
+            <div class="resource-avatars">
+              <div class="resource-avatar-wrapper" data-tooltip="Manuel">
+                <img src="Assets/General/avatar-1.jpg" alt="Manuel" class="resource-avatar" />
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Resource 3 -->
-          <div class="resource-card">
-            <div class="resource-image">
-              <img
-                src="Assets/General/resource-3.jpg"
-                alt="UX Research Template Pack"
-              />
-            </div>
-            <div class="resource-meta">2024 · Used by 250+ designers</div>
-            <h3 class="resource-title">UX Research Template Pack</h3>
-            <div class="resource-footer">
-              <a href="#" class="resource-cta">
-                View resource
-                <svg
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path d="M2 10L10 2M10 2H4M10 2v6" />
-                </svg>
-              </a>
-              <div class="resource-avatars">
-                <div class="resource-avatar-wrapper" data-tooltip="Manuel">
-                  <img
-                    src="Assets/General/avatar-1.jpg"
-                    alt="Manuel"
-                    class="resource-avatar"
-                  />
-                </div>
+        <!-- Resource 3 -->
+        <div class="resource-card">
+          <div class="resource-image">
+            <img src="Assets/General/resource-3.jpg" alt="UX Research Template Pack" />
+          </div>
+          <div class="resource-meta">2024 · Used by 250+ designers</div>
+          <h3 class="resource-title">UX Research Template Pack</h3>
+          <div class="resource-footer">
+            <a href="#" class="resource-cta">
+              View resource
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 10L10 2M10 2H4M10 2v6" />
+              </svg>
+            </a>
+            <div class="resource-avatars">
+              <div class="resource-avatar-wrapper" data-tooltip="Manuel">
+                <img src="Assets/General/avatar-1.jpg" alt="Manuel" class="resource-avatar" />
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- EXPERIENCE -->
-    <div class="section fade" id="experience">
-      <div class="section-label">Experience</div>
-      <div class="exp-list">
-        <div class="exp-item">
-          <div>
-            <div class="exp-header">
-              <div class="exp-title-group">
-                <div class="exp-role">Senior Product Designer · Current</div>
-                <div class="exp-company">Hyper — Metaverse Magna</div>
-              </div>
-            </div>
-            <div class="exp-desc">
-              Leading the design team at
-              <a href="https://mvm.gg/" target="_blank">MVM</a> , a mobile
-              gaming publisher. Enabled US market expansion for
-              <a
-                href="https://apps.apple.com/ng/app/hyper-play-1v1-games-for-cash/id1631502021"
-                target="_blank"
-                >Hyper Gaming App</a
-              >
-              - achieved 10,000+ iOS downloads, and 4.2-star rating.
+  <!-- EXPERIENCE -->
+  <div class="section fade" id="experience">
+    <div class="section-label">Experience</div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div>
+          <div class="exp-header">
+            <div class="exp-title-group">
+              <div class="exp-role">Senior Product Designer · Current</div>
+              <div class="exp-company">Hyper — Metaverse Magna</div>
             </div>
           </div>
-          <div class="exp-meta">
-            <span class="exp-year">2024 – Present</span>
-            <span class="exp-tag">Gaming</span>
+          <div class="exp-desc">
+            Leading the design team at
+            <a href="https://mvm.gg/" target="_blank">MVM</a> , a mobile
+            gaming publisher. Enabled US market expansion for
+            <a href="https://apps.apple.com/ng/app/hyper-play-1v1-games-for-cash/id1631502021" target="_blank">Hyper
+              Gaming App</a>
+            - achieved 10,000+ iOS downloads, and 4.2-star rating.
           </div>
         </div>
-        <div class="exp-item">
-          <div>
-            <div class="exp-header">
-              <div class="exp-title-group">
-                <div class="exp-role">Strategic Designer</div>
-                <div class="exp-company">Manuel Design</div>
-              </div>
-            </div>
-            <div class="exp-desc">
-              Partnering with Y Combinator founders and ambitious individuals to
-              design and launch revenue-driven mobile apps, web applications,
-              and modern websites that deliver measurable results.
+        <div class="exp-meta">
+          <span class="exp-year">2024 – Present</span>
+          <span class="exp-tag">Gaming</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-header">
+            <div class="exp-title-group">
+              <div class="exp-role">Strategic Designer</div>
+              <div class="exp-company">Manuel Design</div>
             </div>
           </div>
-          <div class="exp-meta">
-            <span class="exp-year">2025 – Present</span>
+          <div class="exp-desc">
+            Partnering with Y Combinator founders and ambitious individuals to
+            design and launch revenue-driven mobile apps, web applications,
+            and modern websites that deliver measurable results.
           </div>
         </div>
-        <div class="exp-item">
-          <div>
-            <div class="exp-header">
-              <div class="exp-title-group">
-                <div class="exp-role">Product Designer</div>
-                <div class="exp-company">Penciled (YC W24)</div>
-              </div>
-            </div>
-            <div class="exp-desc">
-              Designed an AI auto-fill
-              <a href="https://www.penciled.com" target="_blank">calendar</a>
-              feature enabling physical therapists and clinics to fill
-              last-minute cancellations, saving up to $200K.
+        <div class="exp-meta">
+          <span class="exp-year">2025 – Present</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-header">
+            <div class="exp-title-group">
+              <div class="exp-role">Product Designer</div>
+              <div class="exp-company">Penciled (YC W24)</div>
             </div>
           </div>
-          <div class="exp-meta">
-            <span class="exp-year">2024 – 2025</span>
-            <span class="exp-tag">HealthTech · AI</span>
+          <div class="exp-desc">
+            Designed an AI auto-fill
+            <a href="https://www.penciled.com" target="_blank">calendar</a>
+            feature enabling physical therapists and clinics to fill
+            last-minute cancellations, saving up to $200K.
+          </div>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-year">2024 – 2025</span>
+          <span class="exp-tag">HealthTech · AI</span>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-header">
+            <div class="exp-title-group">
+              <div class="exp-role">Founding Product Designer</div>
+              <div class="exp-company">Layup (YC W21)</div>
+            </div>
+          </div>
+          <div class="exp-desc">
+            Owned 0→1 product design for the core SaaS platform: UX strategy,
+            interaction patterns, and visual system from scratch. Acquired by
+            <a href="https://whatfix.com/newsroom/announcements/whatfix-welcomes-layup-team-to-strengthen-ai-native-digital-adoption/"
+              target="_blank">WhatFix</a>
+          </div>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-year">2023 – 2024</span>
+          <span class="exp-tag">SaaS · AI</span>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-header">
+            <div class="exp-title-group">
+              <div class="exp-role">Senior Product Designer</div>
+              <div class="exp-company">Theya (YC W21)</div>
+            </div>
+          </div>
+          <div class="exp-desc">
+            Redesigned the Bitcoin self-custody
+            <a href="https://apps.apple.com/us/app/theya-bitcoin-wallet/id1669665032" target="_blank">mobile app</a>
+            , earning a 4.7-star rating and a 1.4M revenue increase.
+          </div>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-year">2023 – 2024</span>
+          <span class="exp-tag">Web3 · Fintech</span>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-header">
+            <div class="exp-title-group">
+              <div class="exp-role">Founding Product Designer</div>
+              <div class="exp-company">TaraCares</div>
+            </div>
+          </div>
+          <div class="exp-desc">
+            Led end-to-end design of MIMOSA — the company's flagship femtech
+            product. Designed and built the official website using HTML and
+            CSS.
+          </div>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-year">2022 – 2023</span>
+          <span class="exp-tag">HealthTech</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WRITINGS -->
+  <div class="section fade" id="writings">
+    <div class="section-label">Writings</div>
+    <div class="writing-list">
+      <a class="writing-item" href="#" target="_blank">
+        <div>
+          <div class="writing-title">
+            Designing for Trust in Real-Money Products
+          </div>
+          <div class="writing-meta-left">Product Design · 8 min read</div>
+        </div>
+        <span class="writing-arrow">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 10L10 2M10 2H4M10 2v6" />
+          </svg>
+        </span>
+      </a>
+
+      <a class="writing-item" href="#" target="_blank">
+        <div>
+          <div class="writing-title">
+            What Founding Designer Actually Means
+          </div>
+          <div class="writing-meta-left">Career · 5 min read</div>
+        </div>
+        <span class="writing-arrow">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 10L10 2M10 2H4M10 2v6" />
+          </svg>
+        </span>
+      </a>
+
+      <a class="writing-item" href="#" target="_blank">
+        <div>
+          <div class="writing-title">
+            KYC Flows That Don't Feel Like a Trap
+          </div>
+          <div class="writing-meta-left">Compliance UX · 6 min read</div>
+        </div>
+        <span class="writing-arrow">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 10L10 2M10 2H4M10 2v6" />
+          </svg>
+        </span>
+      </a>
+
+      <a class="writing-item" href="#" target="_blank">
+        <div>
+          <div class="writing-title">The Case for Slower Onboarding</div>
+          <div class="writing-meta-left">UX Strategy · 4 min read</div>
+        </div>
+        <span class="writing-arrow">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 10L10 2M10 2H4M10 2v6" />
+          </svg>
+        </span>
+      </a>
+
+      <a class="writing-item" href="#" target="_blank">
+        <div>
+          <div class="writing-title">
+            How I Prototype with Cursor and Figma Together
+          </div>
+          <div class="writing-meta-left">Process · 7 min read</div>
+        </div>
+        <span class="writing-arrow">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 10L10 2M10 2H4M10 2v6" />
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <!-- VISION BOARD -->
+  <div class="section fade" id="vision">
+    <div class="vision-header">
+      <div class="section-label">Vision Board</div>
+      <div class="vision-nav">
+        <button class="vision-prev" aria-label="Previous vision">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button class="vision-next" aria-label="Next vision">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <p class="vision-intro">
+      Things I'm working toward — personally and professionally. Some done,
+      most in progress.
+    </p>
+    <div class="vision-carousel-wrap">
+      <div class="vision-list" id="visionList">
+        <!-- Done -->
+        <div class="vision-item done-item">
+          <div class="vision-check done" data-idx="0"></div>
+          <div class="vision-text">
+            <div class="vision-label">
+              Ship a product used by 10,000+ people
+            </div>
+            <div class="vision-detail">Theya · 10K+ iOS downloads</div>
           </div>
         </div>
 
-        <div class="exp-item">
-          <div>
-            <div class="exp-header">
-              <div class="exp-title-group">
-                <div class="exp-role">Founding Product Designer</div>
-                <div class="exp-company">Layup (YC W21)</div>
-              </div>
-            </div>
-            <div class="exp-desc">
-              Owned 0→1 product design for the core SaaS platform: UX strategy,
-              interaction patterns, and visual system from scratch. Acquired by
-              <a
-                href="https://whatfix.com/newsroom/announcements/whatfix-welcomes-layup-team-to-strengthen-ai-native-digital-adoption/"
-                target="_blank"
-                >WhatFix</a
-              >
-            </div>
-          </div>
-          <div class="exp-meta">
-            <span class="exp-year">2023 – 2024</span>
-            <span class="exp-tag">SaaS · AI</span>
+        <div class="vision-item done-item">
+          <div class="vision-check done" data-idx="1"></div>
+          <div class="vision-text">
+            <div class="vision-label">Work with a YC-backed company</div>
+            <div class="vision-detail">Theya, Penciled, Layup</div>
           </div>
         </div>
 
-        <div class="exp-item">
-          <div>
-            <div class="exp-header">
-              <div class="exp-title-group">
-                <div class="exp-role">Senior Product Designer</div>
-                <div class="exp-company">Theya (YC W21)</div>
-              </div>
+        <div class="vision-item done-item">
+          <div class="vision-check done" data-idx="2"></div>
+          <div class="vision-text">
+            <div class="vision-label">
+              Design a product that raises funding
             </div>
-            <div class="exp-desc">
-              Redesigned the Bitcoin self-custody
-              <a
-                href="https://apps.apple.com/us/app/theya-bitcoin-wallet/id1669665032"
-                target="_blank"
-                >mobile app</a
-              >
-              , earning a 4.7-star rating and a 1.4M revenue increase.
-            </div>
-          </div>
-          <div class="exp-meta">
-            <span class="exp-year">2023 – 2024</span>
-            <span class="exp-tag">Web3 · Fintech</span>
+            <div class="vision-detail">TaraCares · £200K pre-seed</div>
           </div>
         </div>
 
-        <div class="exp-item">
-          <div>
-            <div class="exp-header">
-              <div class="exp-title-group">
-                <div class="exp-role">Founding Product Designer</div>
-                <div class="exp-company">TaraCares</div>
-              </div>
+        <div class="vision-item done-item">
+          <div class="vision-check done" data-idx="3"></div>
+          <div class="vision-text">
+            <div class="vision-label">
+              Launch a product into the US market
             </div>
-            <div class="exp-desc">
-              Led end-to-end design of MIMOSA — the company's flagship femtech
-              product. Designed and built the official website using HTML and
-              CSS.
+            <div class="vision-detail">Hyper · iOS App Store</div>
+          </div>
+        </div>
+
+        <!-- In progress / upcoming -->
+        <div class="vision-item">
+          <div class="vision-check" data-idx="4"></div>
+          <div class="vision-text">
+            <div class="vision-label">
+              Build and ship my own product from scratch
+            </div>
+            <div class="vision-detail">Hyper, LuvlyFans — in progress</div>
+          </div>
+        </div>
+
+        <div class="vision-item">
+          <div class="vision-check" data-idx="5"></div>
+          <div class="vision-text">
+            <div class="vision-label">Relocate to the UK or US</div>
+            <div class="vision-detail">Global Talent Visa in process</div>
+          </div>
+        </div>
+
+        <div class="vision-item">
+          <div class="vision-check" data-idx="6"></div>
+          <div class="vision-text">
+            <div class="vision-label">
+              Land a staff or principal designer role at a top-tier company
             </div>
           </div>
-          <div class="exp-meta">
-            <span class="exp-year">2022 – 2023</span>
-            <span class="exp-tag">HealthTech</span>
+        </div>
+
+        <div class="vision-item">
+          <div class="vision-check" data-idx="7"></div>
+          <div class="vision-text">
+            <div class="vision-label">
+              Publish a design course or in-depth case study series
+            </div>
+          </div>
+        </div>
+
+        <div class="vision-item">
+          <div class="vision-check" data-idx="8"></div>
+          <div class="vision-text">
+            <div class="vision-label">Reach 100 mentees through ADPList</div>
+            <div class="vision-detail">3,000+ minutes logged so far</div>
+          </div>
+        </div>
+
+        <div class="vision-item">
+          <div class="vision-check" data-idx="9"></div>
+          <div class="vision-text">
+            <div class="vision-label">
+              Design a product that reaches 100K+ users
+            </div>
+          </div>
+        </div>
+
+        <div class="vision-item">
+          <div class="vision-check" data-idx="10"></div>
+          <div class="vision-text">
+            <div class="vision-label">
+              Speak at a design or tech conference
+            </div>
+          </div>
+        </div>
+
+        <div class="vision-item">
+          <div class="vision-check" data-idx="11"></div>
+          <div class="vision-text">
+            <div class="vision-label">Build a design studio or agency</div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- WRITINGS -->
-    <div class="section fade" id="writings">
-      <div class="section-label">Writings</div>
-      <div class="writing-list">
-        <a class="writing-item" href="#" target="_blank">
-          <div>
-            <div class="writing-title">
-              Designing for Trust in Real-Money Products
-            </div>
-            <div class="writing-meta-left">Product Design · 8 min read</div>
-          </div>
-          <span class="writing-arrow">
-            <svg
-              viewBox="0 0 12 12"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-            >
-              <path d="M2 10L10 2M10 2H4M10 2v6" />
-            </svg>
-          </span>
-        </a>
-
-        <a class="writing-item" href="#" target="_blank">
-          <div>
-            <div class="writing-title">
-              What Founding Designer Actually Means
-            </div>
-            <div class="writing-meta-left">Career · 5 min read</div>
-          </div>
-          <span class="writing-arrow">
-            <svg
-              viewBox="0 0 12 12"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-            >
-              <path d="M2 10L10 2M10 2H4M10 2v6" />
-            </svg>
-          </span>
-        </a>
-
-        <a class="writing-item" href="#" target="_blank">
-          <div>
-            <div class="writing-title">
-              KYC Flows That Don't Feel Like a Trap
-            </div>
-            <div class="writing-meta-left">Compliance UX · 6 min read</div>
-          </div>
-          <span class="writing-arrow">
-            <svg
-              viewBox="0 0 12 12"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-            >
-              <path d="M2 10L10 2M10 2H4M10 2v6" />
-            </svg>
-          </span>
-        </a>
-
-        <a class="writing-item" href="#" target="_blank">
-          <div>
-            <div class="writing-title">The Case for Slower Onboarding</div>
-            <div class="writing-meta-left">UX Strategy · 4 min read</div>
-          </div>
-          <span class="writing-arrow">
-            <svg
-              viewBox="0 0 12 12"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-            >
-              <path d="M2 10L10 2M10 2H4M10 2v6" />
-            </svg>
-          </span>
-        </a>
-
-        <a class="writing-item" href="#" target="_blank">
-          <div>
-            <div class="writing-title">
-              How I Prototype with Cursor and Figma Together
-            </div>
-            <div class="writing-meta-left">Process · 7 min read</div>
-          </div>
-          <span class="writing-arrow">
-            <svg
-              viewBox="0 0 12 12"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-            >
-              <path d="M2 10L10 2M10 2H4M10 2v6" />
-            </svg>
-          </span>
-        </a>
+  <!-- MOMENTS CAROUSEL -->
+  <div class="section fade" id="moments">
+    <div class="moments-header">
+      <div class="section-label">Moments</div>
+      <div class="moments-nav">
+        <button class="moments-prev" aria-label="Previous moment">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button class="moments-next" aria-label="Next moment">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
       </div>
     </div>
-
-    <!-- VISION BOARD -->
-    <div class="section fade" id="vision">
-      <div class="vision-header">
-        <div class="section-label">Vision Board</div>
-        <div class="vision-nav">
-          <button class="vision-prev" aria-label="Previous vision">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M15 18l-6-6 6-6"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-          <button class="vision-next" aria-label="Next vision">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M9 18l6-6-6-6"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <p class="vision-intro">
-        Things I'm working toward — personally and professionally. Some done,
-        most in progress.
-      </p>
-      <div class="vision-carousel-wrap">
-        <div class="vision-list" id="visionList">
-          <!-- Done -->
-          <div class="vision-item done-item">
-            <div class="vision-check done" data-idx="0"></div>
-            <div class="vision-text">
-              <div class="vision-label">
-                Ship a product used by 10,000+ people
-              </div>
-              <div class="vision-detail">Theya · 10K+ iOS downloads</div>
-            </div>
-          </div>
-
-          <div class="vision-item done-item">
-            <div class="vision-check done" data-idx="1"></div>
-            <div class="vision-text">
-              <div class="vision-label">Work with a YC-backed company</div>
-              <div class="vision-detail">Theya, Penciled, Layup</div>
-            </div>
-          </div>
-
-          <div class="vision-item done-item">
-            <div class="vision-check done" data-idx="2"></div>
-            <div class="vision-text">
-              <div class="vision-label">
-                Design a product that raises funding
-              </div>
-              <div class="vision-detail">TaraCares · £200K pre-seed</div>
-            </div>
-          </div>
-
-          <div class="vision-item done-item">
-            <div class="vision-check done" data-idx="3"></div>
-            <div class="vision-text">
-              <div class="vision-label">
-                Launch a product into the US market
-              </div>
-              <div class="vision-detail">Hyper · iOS App Store</div>
-            </div>
-          </div>
-
-          <!-- In progress / upcoming -->
-          <div class="vision-item">
-            <div class="vision-check" data-idx="4"></div>
-            <div class="vision-text">
-              <div class="vision-label">
-                Build and ship my own product from scratch
-              </div>
-              <div class="vision-detail">Hyper, LuvlyFans — in progress</div>
-            </div>
-          </div>
-
-          <div class="vision-item">
-            <div class="vision-check" data-idx="5"></div>
-            <div class="vision-text">
-              <div class="vision-label">Relocate to the UK or US</div>
-              <div class="vision-detail">Global Talent Visa in process</div>
-            </div>
-          </div>
-
-          <div class="vision-item">
-            <div class="vision-check" data-idx="6"></div>
-            <div class="vision-text">
-              <div class="vision-label">
-                Land a staff or principal designer role at a top-tier company
-              </div>
-            </div>
-          </div>
-
-          <div class="vision-item">
-            <div class="vision-check" data-idx="7"></div>
-            <div class="vision-text">
-              <div class="vision-label">
-                Publish a design course or in-depth case study series
-              </div>
-            </div>
-          </div>
-
-          <div class="vision-item">
-            <div class="vision-check" data-idx="8"></div>
-            <div class="vision-text">
-              <div class="vision-label">Reach 100 mentees through ADPList</div>
-              <div class="vision-detail">3,000+ minutes logged so far</div>
-            </div>
-          </div>
-
-          <div class="vision-item">
-            <div class="vision-check" data-idx="9"></div>
-            <div class="vision-text">
-              <div class="vision-label">
-                Design a product that reaches 100K+ users
-              </div>
-            </div>
-          </div>
-
-          <div class="vision-item">
-            <div class="vision-check" data-idx="10"></div>
-            <div class="vision-text">
-              <div class="vision-label">
-                Speak at a design or tech conference
-              </div>
-            </div>
-          </div>
-
-          <div class="vision-item">
-            <div class="vision-check" data-idx="11"></div>
-            <div class="vision-text">
-              <div class="vision-label">Build a design studio or agency</div>
+    <div class="moments-carousel-wrap">
+      <div class="moments-carousel">
+        <!-- Moment 1 -->
+        <div class="moment-card">
+          <img src="Assets/General/avatar-1.jpg" alt="Family Time" />
+          <div class="moment-overlay">
+            <div class="moment-text">
+              <h3 class="moment-title">Family Time</h3>
+              <p class="moment-desc">Quality moments with loved ones</p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- MOMENTS CAROUSEL -->
-    <div class="section fade" id="moments">
-      <div class="moments-header">
-        <div class="section-label">Moments</div>
-        <div class="moments-nav">
-          <button class="moments-prev" aria-label="Previous moment">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M15 18l-6-6 6-6"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-          <button class="moments-next" aria-label="Next moment">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M9 18l6-6-6-6"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
+        <!-- Moment 2 -->
+        <div class="moment-card">
+          <video autoplay muted loop playsinline>
+            <source src="Assets/General/reel_portfolio.mp4" type="video/mp4" />
+          </video>
+          <div class="moment-overlay">
+            <div class="moment-text">
+              <h3 class="moment-title">Creative Process</h3>
+              <p class="moment-desc">Designing at the studio</p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="moments-carousel-wrap">
-        <div class="moments-carousel">
-          <!-- Moment 1 -->
-          <div class="moment-card">
-            <img src="Assets/General/avatar-1.jpg" alt="Family Time" />
-            <div class="moment-overlay">
-              <div class="moment-text">
-                <h3 class="moment-title">Family Time</h3>
-                <p class="moment-desc">Quality moments with loved ones</p>
-              </div>
+        <!-- Moment 3 -->
+        <div class="moment-card">
+          <img src="Assets/General/avatar-2.jpg" alt="Team Collaboration" />
+          <div class="moment-overlay">
+            <div class="moment-text">
+              <h3 class="moment-title">Team Collaboration</h3>
+              <p class="moment-desc">Working with amazing people</p>
             </div>
           </div>
-          <!-- Moment 2 -->
-          <div class="moment-card">
-            <video autoplay muted loop playsinline>
-              <source
-                src="Assets/General/reel_portfolio.mp4"
-                type="video/mp4"
-              />
-            </video>
-            <div class="moment-overlay">
-              <div class="moment-text">
-                <h3 class="moment-title">Creative Process</h3>
-                <p class="moment-desc">Designing at the studio</p>
-              </div>
+        </div>
+        <!-- Moment 4 -->
+        <div class="moment-card">
+          <img src="Assets/General/avi.jpg" alt="Conference Talk" />
+          <div class="moment-overlay">
+            <div class="moment-text">
+              <h3 class="moment-title">Conference Talk</h3>
+              <p class="moment-desc">Sharing design insights</p>
             </div>
           </div>
-          <!-- Moment 3 -->
-          <div class="moment-card">
-            <img src="Assets/General/avatar-2.jpg" alt="Team Collaboration" />
-            <div class="moment-overlay">
-              <div class="moment-text">
-                <h3 class="moment-title">Team Collaboration</h3>
-                <p class="moment-desc">Working with amazing people</p>
-              </div>
+        </div>
+        <!-- Moment 5 -->
+        <div class="moment-card">
+          <img src="Assets/General/resource-3.jpg" alt="Travel Adventures" />
+          <div class="moment-overlay">
+            <div class="moment-text">
+              <h3 class="moment-title">Travel Adventures</h3>
+              <p class="moment-desc">Exploring new places</p>
             </div>
           </div>
-          <!-- Moment 4 -->
-          <div class="moment-card">
-            <img src="Assets/General/avi.jpg" alt="Conference Talk" />
-            <div class="moment-overlay">
-              <div class="moment-text">
-                <h3 class="moment-title">Conference Talk</h3>
-                <p class="moment-desc">Sharing design insights</p>
-              </div>
+        </div>
+        <!-- Moment 6 -->
+        <div class="moment-card">
+          <img src="Assets/General/avatar-1.jpg" alt="Morning Routine" />
+          <div class="moment-overlay">
+            <div class="moment-text">
+              <h3 class="moment-title">Morning Routine</h3>
+              <p class="moment-desc">Starting the day right</p>
             </div>
           </div>
-          <!-- Moment 5 -->
-          <div class="moment-card">
-            <img src="Assets/General/resource-3.jpg" alt="Travel Adventures" />
-            <div class="moment-overlay">
-              <div class="moment-text">
-                <h3 class="moment-title">Travel Adventures</h3>
-                <p class="moment-desc">Exploring new places</p>
-              </div>
+        </div>
+        <!-- Moment 7 -->
+        <div class="moment-card">
+          <img src="Assets/General/avatar-2.jpg" alt="Weekend Vibes" />
+          <div class="moment-overlay">
+            <div class="moment-text">
+              <h3 class="moment-title">Weekend Vibes</h3>
+              <p class="moment-desc">Relaxing and recharging</p>
             </div>
           </div>
-          <!-- Moment 6 -->
-          <div class="moment-card">
-            <img src="Assets/General/avatar-1.jpg" alt="Morning Routine" />
-            <div class="moment-overlay">
-              <div class="moment-text">
-                <h3 class="moment-title">Morning Routine</h3>
-                <p class="moment-desc">Starting the day right</p>
-              </div>
-            </div>
-          </div>
-          <!-- Moment 7 -->
-          <div class="moment-card">
-            <img src="Assets/General/avatar-2.jpg" alt="Weekend Vibes" />
-            <div class="moment-overlay">
-              <div class="moment-text">
-                <h3 class="moment-title">Weekend Vibes</h3>
-                <p class="moment-desc">Relaxing and recharging</p>
-              </div>
-            </div>
-          </div>
-          <!-- Moment 8 -->
-          <div class="moment-card">
-            <img src="Assets/General/avi.jpg" alt="Celebration" />
-            <div class="moment-overlay">
-              <div class="moment-text">
-                <h3 class="moment-title">Celebration</h3>
-                <p class="moment-desc">Milestones and achievements</p>
-              </div>
+        </div>
+        <!-- Moment 8 -->
+        <div class="moment-card">
+          <img src="Assets/General/avi.jpg" alt="Celebration" />
+          <div class="moment-overlay">
+            <div class="moment-text">
+              <h3 class="moment-title">Celebration</h3>
+              <p class="moment-desc">Milestones and achievements</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- FOOTER -->
-    <footer>
-      <span class="footer-copy">© 2026 Emmanuel Odoemelam, GMT +1</span>
-      <div class="footer-links">
-        <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank">LinkedIn</a>
-        <a href="https://github.com/emmanuelodoemelam" target="_blank">Github</a>
-        <a href="https://dribbble.com/emmanuel_odoemelam" target="_blank">Dribbble</a>
-      </div>
-    </footer>
-  </body>
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">© 2026 Emmanuel Odoemelam, GMT +1</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/emmanuelodoemelam" target="_blank">Github</a>
+      <a href="https://dribbble.com/emmanuel_odoemelam" target="_blank">Dribbble</a>
+    </div>
+  </footer>
+</body>
+
 </html>
