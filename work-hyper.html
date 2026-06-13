@@ -6,428 +6,184 @@
 <title>Hyper — Emmanuel Odoemelam</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="script.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --black: #0a0a0a;
-    --white: #f5f4f0;
-    --muted: #8e8e8e;
-    --border: rgba(255,255,255,0.1);
     --purple: #7c5cbf;
-    --serif: 'EB Garamond', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
-    --max: 760px;
   }
 
-  html { background: var(--black); color: var(--white); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
-
-  body { min-height: 100vh; }
-
-  a { color: inherit; text-decoration: none; }
-  a:hover { opacity: 0.6; }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.25rem max(2rem, calc((100% - var(--max)) / 2 + 2rem));
-    border-bottom: 0.5px solid var(--border);
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(12px);
-  }
-
-  .nav-logo { font-family: var(--serif); font-size: 1.05rem; letter-spacing: -0.01em; }
-
-  .nav-links { display: flex; gap: 2rem; font-size: 0.875rem; color: var(--muted); }
-  .nav-links a:hover { color: var(--white); opacity: 1; }
-
-  /* LAYOUT */
-  .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
-
-  /* HERO */
-  .hero {
-    padding: 9rem 2rem 5rem;
-    max-width: var(--max);
-    margin: 0 auto;
-    border-bottom: 0.5px solid var(--border);
-  }
-
-  .hero-tag {
-    display: inline-block;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero h1 {
-    font-family: var(--serif);
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    max-width: 760px;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero h1 em { font-style: italic; color: rgba(245,244,240,0.55); }
-
-  .hero-lead {
-    font-size: 1.05rem;
-    color: var(--muted);
-    max-width: 560px;
-    line-height: 1.6;
-    margin-bottom: 3rem;
-  }
-
-  .meta-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 0;
-    border: 0.5px solid var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .meta-item {
-    padding: 1.1rem 1.25rem;
-    border-right: 0.5px solid var(--border);
-  }
-  .meta-item:last-child { border-right: none; }
-
-  .meta-label { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
-  .meta-value { font-size: 0.875rem; }
-
-  /* STATS ROW */
+  /* 3-column layout override for Hyper stats */
   .stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: 0.5px solid var(--border);
-    border-top: none;
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  @media (max-width: 700px) {
+    .stats-row {
+      grid-template-columns: 1fr !important;
+    }
   }
 
-  .stat-item {
-    padding: 2rem 1.5rem;
-    border-right: 0.5px solid var(--border);
-  }
-  .stat-item:last-child { border-right: none; }
-
-  .stat-number {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    margin-bottom: 0.4rem;
+  /* Push down and top-border stats-row under metadata */
+  .hero .stats-row {
+    margin-top: 1.5rem;
+    border-top: 0.5px solid var(--border-mid) !important;
   }
 
-  .stat-label { font-size: 0.8rem; color: var(--muted); }
-
-  /* SECTIONS */
-  section {
-    padding: 4.5rem 0;
-  }
-
-  .container {
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 0 2rem 4.5rem;
-    border-bottom: 0.5px solid var(--border);
-  }
-
-  section:last-of-type .container {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .section-tag {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 1.25rem;
-    display: block;
-  }
-
-  h2 {
-    font-family: var(--serif);
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    margin-bottom: 1.25rem;
-  }
-
-  h2 em { font-style: italic; color: rgba(245,244,240,0.5); }
-
-  p { color: rgba(245,244,240,0.75); margin-bottom: 1rem; }
-  p:last-child { margin-bottom: 0; }
-
-  /* CALLOUT */
+  /* Brand callout */
   .callout {
-    border-left: 2px solid var(--purple);
-    padding: 1rem 1.25rem;
-    margin: 2rem 0;
-    background: rgba(124,92,191,0.06);
-    border-radius: 0 2px 2px 0;
+    border-left: 2px solid var(--purple) !important;
+    background: rgba(124, 92, 191, 0.06) !important;
   }
 
-  .callout p { color: rgba(245,244,240,0.85); margin: 0; font-size: 0.95rem; }
-
-  /* INSIGHT GRID */
-  .insight-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 0;
-    border: 0.5px solid var(--border);
-    margin-top: 2.5rem;
-  }
-
-  .insight-item {
-    padding: 1.5rem;
-    border-right: 0.5px solid var(--border);
-    border-bottom: 0.5px solid var(--border);
-  }
-  .insight-item:nth-child(2n) { border-right: none; }
-  .insight-item:last-child { border-right: none; border-bottom: none; }
-
-  .insight-arrow { color: var(--muted); font-size: 0.75rem; margin-bottom: 0.5rem; }
-  .insight-title { font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem; }
-  .insight-body { font-size: 0.875rem; color: var(--muted); line-height: 1.55; }
-
-  /* SOLUTION FLOW */
-  .solution-flow {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border: 0.5px solid var(--border);
-    margin-top: 2.5rem;
-  }
-
-  .solution-row {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 0;
-    border-bottom: 0.5px solid var(--border);
-  }
-  .solution-row:last-child { border-bottom: none; }
-
-  .solution-label {
-    padding: 1.25rem 1.5rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--muted);
-    border-right: 0.5px solid var(--border);
-    display: flex;
-    align-items: flex-start;
-    padding-top: 1.4rem;
-  }
-
-  .solution-content {
-    padding: 1.25rem 1.5rem;
-    font-size: 0.875rem;
-    color: rgba(245,244,240,0.8);
-    line-height: 1.6;
-  }
-
-  /* PRINCIPLES */
-  .principles {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: 0.5px solid var(--border);
-    margin-top: 2.5rem;
-  }
-
-  .principle-item {
-    padding: 1.75rem 1.5rem;
-    border-right: 0.5px solid var(--border);
-  }
-  .principle-item:last-child { border-right: none; }
-
-  .principle-icon {
-    font-family: var(--serif);
-    font-size: 1.5rem;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    font-style: italic;
-  }
-
-  .principle-title { font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem; }
-  .principle-body { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
-
-  /* QUOTE */
-  blockquote {
-    font-family: var(--serif);
-    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
-    font-style: italic;
-    font-weight: 400;
-    line-height: 1.35;
-    color: rgba(245,244,240,0.7);
-    padding: 2.5rem 0;
-    max-width: 680px;
-    letter-spacing: -0.01em;
-  }
-
-  /* PROCESS LIST */
-  .process-list {
-    list-style: none;
+  /* Solutions list and items */
+  .solutions-list {
     margin-top: 2rem;
-    border: 0.5px solid var(--border);
   }
 
-  .process-list li {
-    display: flex;
-    gap: 1.5rem;
-    padding: 1.1rem 1.5rem;
-    border-bottom: 0.5px solid var(--border);
-    font-size: 0.875rem;
-    color: rgba(245,244,240,0.75);
-    align-items: flex-start;
+  .solution-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1rem;
+    padding: 3rem 0;
+    border-bottom: 0.5px solid var(--border-mid);
   }
-  .process-list li:last-child { border-bottom: none; }
+
+  .solution-item:last-child {
+    border-bottom: none;
+  }
 
   .process-num {
     font-family: var(--serif);
-    font-size: 0.75rem;
+    font-size: 1.25rem;
     color: var(--muted);
-    min-width: 1.5rem;
-    padding-top: 0.15rem;
     font-style: italic;
+    line-height: 1.2;
   }
 
-  /* REFLECTION */
-  .reflection-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: 0.5px solid var(--border);
-    margin-top: 2.5rem;
-  }
-
-  .reflection-item {
-    padding: 1.75rem;
-    border-right: 0.5px solid var(--border);
-    border-bottom: 0.5px solid var(--border);
-  }
-  .reflection-item:nth-child(2n) { border-right: none; }
-  .reflection-item:nth-last-child(-n+2) { border-bottom: none; }
-
-  .reflection-label { font-size: 0.75rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
-  .reflection-text { font-size: 0.875rem; color: rgba(245,244,240,0.8); line-height: 1.6; }
-
-  /* NEXT */
-  .next-project {
-    padding: 3.5rem 0;
+  .solution-text {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .next-label { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
-  .next-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; }
-  .next-arrow { font-size: 1.5rem; color: var(--muted); transition: transform 0.2s; }
-  .next-project:hover .next-arrow { transform: translateX(6px); }
-
-  /* FOOTER */
-  footer {
-    padding: 2rem max(2rem, calc((100% - var(--max)) / 2 + 2rem));
-    border-top: 0.5px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: var(--muted);
+  .solution-text strong {
+    font-size: 1.15rem;
+    color: var(--ink);
   }
 
-  .footer-links { display: flex; gap: 1.5rem; }
-
-  /* IMAGE PLACEHOLDER */
-  .img-placeholder {
-    width: 100%;
-    background: rgba(255,255,255,0.03);
-    border: 0.5px solid var(--border);
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin: 2rem 0;
+  .solution-desc {
+    font-size: 0.95rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+    margin: 0;
   }
 
-  .img-placeholder.tall { height: 400px; }
-  .img-placeholder.medium { height: 280px; }
-  .img-placeholder.short { height: 200px; }
-
-  .img-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin: 2rem 0;
+  .solution-image {
+    grid-column: 2;
+    margin-top: 1.5rem;
   }
 
-  /* BACK LINK */
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.875rem;
-    color: var(--muted);
-    padding: 7rem 2rem 0;
-    max-width: var(--max);
-    margin: 0 auto;
-    display: flex;
+  .solution-image .cs-image {
+    margin: 0; /* Override default margins */
   }
 
-  @media (max-width: 680px) {
-    nav { padding: 1rem 1.25rem; }
-    .nav-links { gap: 1.25rem; }
-    .hero { padding: 7rem 1.25rem 3rem; }
-    .container { padding: 0 1.25rem; }
-    .stats-row { grid-template-columns: 1fr; }
-    .stat-item { border-right: none; border-bottom: 0.5px solid var(--border); }
-    .stat-item:last-child { border-bottom: none; }
-    .solution-row { grid-template-columns: 1fr; }
-    .solution-label { border-right: none; border-bottom: 0.5px solid var(--border); padding-bottom: 0.5rem; }
-    .principles { grid-template-columns: 1fr; }
-    .principle-item { border-right: none; border-bottom: 0.5px solid var(--border); }
-    .principle-item:last-child { border-bottom: none; }
-    .reflection-grid { grid-template-columns: 1fr; }
-    .reflection-item { border-right: none; }
-    .img-row { grid-template-columns: 1fr; }
-    .insight-item:nth-child(2n) { border-right: 0.5px solid var(--border); }
-    .insight-grid { grid-template-columns: 1fr; }
-    .insight-item { border-right: none; }
-    .next-project { flex-direction: column; align-items: flex-start; }
-    footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
-    .meta-grid { grid-template-columns: 1fr 1fr; }
-    .meta-item:nth-child(2n) { border-right: none; }
-    .meta-item { border-bottom: 0.5px solid var(--border); }
+  .solution-image .img-placeholder {
+    margin: 0; /* Override default margins */
+  }
+
+  @media (max-width: 700px) {
+    .solution-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 2rem 0;
+    }
+
+    .solution-image {
+      margin-top: 0.5rem;
+    }
+  }
+
+  /* 2x2 layout override for Hyper insight-grid */
+  .insight-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .insight-item {
+    border-right: 0.5px solid var(--border) !important;
+    border-bottom: 0.5px solid var(--border) !important;
+  }
+
+  /* Clear right border on the 2nd column items */
+  .insight-item:nth-child(2n) {
+    border-right: none !important;
+  }
+
+  /* Clear bottom border on the last row (last 2 items) */
+  .insight-item:nth-last-child(-n+2) {
+    border-bottom: none !important;
+  }
+
+  @media (max-width: 700px) {
+    .insight-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .insight-item {
+      border-right: none !important;
+      border-bottom: 0.5px solid var(--border) !important;
+    }
+    .insight-item:last-child {
+      border-bottom: none !important;
+    }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">Emmanuel Odoemelam</a>
-  <div class="nav-links">
-    <a href="/work.html">Work</a>
-    <a href="/about.html">About</a>
-    <a href="/lab.html">Lab</a>
-  </div>
+  <a href="/" class="nav-brand">
+    <img src="Assets/General/avi.jpg" alt="Emmanuel Odoemelam" class="nav-profile-img" />
+    <div class="nav-brand-text">
+      <span class="nav-name">Emmanuel Odoemelam</span>
+      <span class="nav-subtext"></span>
+    </div>
+  </a>
+  <button class="hamburger" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="work.html" class="active">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="lab.html">Lab</a></li>
+  </ul>
 </nav>
 
-<div class="back-link">
-  <a href="/work.html">← Back to works</a>
+<div class="mobile-drawer">
+  <div class="drawer-content">
+    <div class="drawer-header">
+      <h2 class="drawer-title">Menu</h2>
+      <button class="drawer-close" aria-label="Close menu">&times;</button>
+    </div>
+    <ul class="drawer-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="lab.html">Lab</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <p class="drawer-footer-text">
+        © 2026 Emmanuel Odoemelam<br />GMT +1
+      </p>
+    </div>
+  </div>
+</div>
+<div class="drawer-overlay"></div>
+
+<div class="back-wrap">
+  <a href="/work.html" class="back-link">← Back to works</a>
 </div>
 
 <div class="hero">
@@ -435,7 +191,7 @@
   <h1>Hyper — <em>Designing a trust-first social gaming platform for the US market</em></h1>
   <p class="hero-lead">Led end-to-end design of Hyper's v2 experience for Metaverse Magna — redesigning onboarding, monetisation, compliance flows, and the design system to support a US market expansion and iOS App Store launch.</p>
 
-  <div class="meta-grid">
+  <div class="case-meta">
     <div class="meta-item">
       <div class="meta-label">Role</div>
       <div class="meta-value">Senior Product Designer</div>
@@ -592,38 +348,86 @@
     <h2>Turning insights into <em>flows that convert</em></h2>
     <p>The redesign rebuilt the platform around intent, progression, and engagement — rather than rushing users toward monetisation. Each solution mapped directly to a research finding.</p>
 
-    <ul class="process-list">
-      <li>
+    <div class="solutions-list">
+      <!-- Solution 1 -->
+      <div class="solution-item">
         <span class="process-num">01</span>
-        <div><strong style="font-weight: 500; color: var(--white);">Visible winnings before sign-up</strong><br>The welcome screen showed real player wins and contextualised HPR earnings in local currency — giving new users social proof before any commitment. User testing showed this meaningfully reduced initial scepticism.</div>
-      </li>
-      <li>
+        <div class="solution-text">
+          <strong style="font-weight: 500; color: var(--ink);">Visible winnings before sign-up</strong>
+          <p class="solution-desc">The welcome screen showed real player wins and contextualised HPR earnings in local currency — giving new users social proof before any commitment. User testing showed this meaningfully reduced initial scepticism.</p>
+        </div>
+        <div class="solution-image">
+          <div class="cs-image">
+            <img src="Assets/Visuals/Featured/Reward system upfront.png" alt="Visible winnings before sign-up" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Solution 2 -->
+      <div class="solution-item">
         <span class="process-num">02</span>
-        <div><strong style="font-weight: 500; color: var(--white);">Goal-setting as a commitment device</strong><br>Instead of asking for immediate top-up, onboarding now asked players to set a daily earning target. This reframed the platform as a performance tool and created a psychological anchor for return behaviour.</div>
-      </li>
-      <li>
+        <div class="solution-text">
+          <strong style="font-weight: 500; color: var(--ink);">Goal-setting as a commitment device</strong>
+          <p class="solution-desc">Instead of asking for immediate top-up, onboarding now asked players to set a daily earning target. This reframed the platform as a performance tool and created a psychological anchor for return behaviour.</p>
+        </div>
+        <div class="solution-image">
+          <div class="img-placeholder short">Goal-setting onboarding step — daily earning target</div>
+        </div>
+      </div>
+
+      <!-- Solution 3 -->
+      <div class="solution-item">
         <span class="process-num">03</span>
-        <div><strong style="font-weight: 500; color: var(--white);">Gameplay before monetisation</strong><br>Players were directed to their first free game before any reward or top-up prompt. The four games with the highest play rates were surfaced first. Experience of value preceded the ask.</div>
-      </li>
-      <li>
+        <div class="solution-text">
+          <strong style="font-weight: 500; color: var(--ink);">Gameplay before monetisation</strong>
+          <p class="solution-desc">Players were directed to their first free game before any reward or top-up prompt. The four games with the highest play rates were surfaced first. Experience of value preceded the ask.</p>
+        </div>
+        <div class="solution-image">
+          <div class="cs-image">
+            <img src="Assets/Visuals/Featured/Tournment details.png" alt="Gameplay before monetisation" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Solution 4 -->
+      <div class="solution-item">
         <span class="process-num">04</span>
-        <div><strong style="font-weight: 500; color: var(--white);">Streak system for daily retention</strong><br>Inspired by Duolingo's streak mechanics, a lightweight daily play streak introduced soft commitment without financial pressure. "I'm committed" CTA wording reinforced player identity.</div>
-      </li>
-      <li>
+        <div class="solution-text">
+          <strong style="font-weight: 500; color: var(--ink);">Streak system for daily retention</strong>
+          <p class="solution-desc">Inspired by Duolingo's streak mechanics, a lightweight daily play streak introduced soft commitment without financial pressure. "I'm committed" CTA wording reinforced player identity.</p>
+        </div>
+        <div class="solution-image">
+          <div class="cs-image">
+            <img src="Assets/Visuals/Featured/Play again showing the reward for that position.png" alt="Streak system for daily retention" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Solution 5 -->
+      <div class="solution-item">
         <span class="process-num">05</span>
-        <div><strong style="font-weight: 500; color: var(--white);">Contextual education over upfront friction</strong><br>HPR explanation was moved inline to moments of hesitation, not front-loaded. A dedicated "Not sure yet?" FAQ page addressed top-up concerns without blocking the main conversion path.</div>
-      </li>
-      <li>
+        <div class="solution-text">
+          <strong style="font-weight: 500; color: var(--ink);">Contextual education over upfront friction</strong>
+          <p class="solution-desc">HPR explanation was moved inline to moments of hesitation, not front-loaded. A dedicated "Not sure yet?" FAQ page addressed top-up concerns without blocking the main conversion path.</p>
+        </div>
+        <div class="solution-image">
+          <div class="cs-image">
+            <img src="Assets/Visuals/Featured/Reward breakdown modal.png" alt="Contextual education" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Solution 6 -->
+      <div class="solution-item">
         <span class="process-num">06</span>
-        <div><strong style="font-weight: 500; color: var(--white);">Referral step relocated</strong><br>Data showed the referral code step causing momentum loss during sign-up. It was moved post-onboarding, removing a friction point at the most sensitive stage of the flow.</div>
-      </li>
-    </ul>
-
-    <div class="img-placeholder tall" style="margin-top: 2rem;">Redesigned onboarding flow — welcome, goal-setting, gameplay</div>
-
-    <div class="img-row">
-      <div class="img-placeholder medium">Streak system — commitment and daily return</div>
-      <div class="img-placeholder medium">Bonus claim flow — social proof and top-up</div>
+        <div class="solution-text">
+          <strong style="font-weight: 500; color: var(--ink);">Referral step relocated</strong>
+          <p class="solution-desc">Data showed the referral code step causing momentum loss during sign-up. It was moved post-onboarding, removing a friction point at the most sensitive stage of the flow.</p>
+        </div>
+        <div class="solution-image">
+          <div class="img-placeholder short">Referral step relocated post-onboarding</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -733,19 +537,19 @@
     <h2>What I learned</h2>
 
     <div class="reflection-grid">
-      <div class="reflection-item">
+      <div class="reflection-item" style="background: var(--teal-light)">
         <div class="reflection-label">Trust before monetisation</div>
         <div class="reflection-text">Introducing value before the ask — gameplay before top-up, social proof before sign-up — was the single most impactful structural change. Users convert when they believe first.</div>
       </div>
-      <div class="reflection-item">
+      <div class="reflection-item" style="background: var(--teal-light)">
         <div class="reflection-label">Compliance as UX</div>
         <div class="reflection-text">KYC and age verification are often treated as legal checkboxes. Approaching them as designed flows — with guidance, progress states, and recovery paths — meaningfully reduced both cost and friction.</div>
       </div>
-      <div class="reflection-item">
+      <div class="reflection-item" style="background: var(--teal-light)">
         <div class="reflection-label">Retention is a design problem</div>
         <div class="reflection-text">Streaks, daily goals, and tournament loops weren't features bolted on — they were the product. Retention needs to be designed into the core experience, not added after conversion.</div>
       </div>
-      <div class="reflection-item">
+      <div class="reflection-item" style="background: var(--teal-light)">
         <div class="reflection-label">Systems multiply impact</div>
         <div class="reflection-text">The design system and PRD process I built didn't just improve this launch — they changed how the whole team works. Investing in the foundation pays compounding returns.</div>
       </div>
@@ -754,13 +558,24 @@
 </section>
 
 <!-- NEXT -->
-<div class="container">
-  <a href="/work-penciled.html" class="next-project">
+<div class="next-project">
+  <div class="next-label">Next project</div>
+  <a class="next-card" href="work-penciled.html">
     <div>
-      <div class="next-label">Next project</div>
-      <div class="next-title">Penciled (YC W24) — AI scheduling for healthcare clinics</div>
+      <div class="next-card-title">Penciled (YC W24)</div>
+      <div class="next-card-sub">
+        Designing proactive scheduling for healthcare clinics · HealthTech · AI
+      </div>
     </div>
-    <div class="next-arrow">→</div>
+    <svg
+      class="next-arrow"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+    >
+      <path d="M3 13L13 3M13 3H5M13 3V11" />
+    </svg>
   </a>
 </div>
 

@@ -4127,7 +4127,7 @@ blockquote {
   }
 
   .container {
-    padding: 0;
+    padding: 0 1.25rem;
   }
 
   .stats-row {
