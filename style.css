@@ -1874,7 +1874,7 @@ nav {
   padding: 8px 4px 16px;
   margin-right: 28px;
   border-bottom: 1.5px solid transparent;
-  margin-bottom: -1px;
+  margin-bottom: 1px;
   transition:
     color 0.15s,
     border-color 0.15s;
