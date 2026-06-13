@@ -13,12 +13,12 @@
   :root {
     --black: #0a0a0a;
     --white: #f5f4f0;
-    --muted: #6b6b6b;
+    --muted: #8e8e8e;
     --border: rgba(255,255,255,0.1);
     --purple: #7c5cbf;
     --serif: 'EB Garamond', Georgia, serif;
     --sans: 'DM Sans', system-ui, sans-serif;
-    --max: 900px;
+    --max: 760px;
   }
 
   html { background: var(--black); color: var(--white); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
@@ -32,7 +32,7 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.25rem 2rem;
+    padding: 1.25rem max(2rem, calc((100% - var(--max)) / 2 + 2rem));
     border-bottom: 0.5px solid var(--border);
     background: rgba(10,10,10,0.85);
     backdrop-filter: blur(12px);
@@ -98,7 +98,7 @@
   }
   .meta-item:last-child { border-right: none; }
 
-  .meta-label { font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+  .meta-label { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
   .meta-value { font-size: 0.875rem; }
 
   /* STATS ROW */
@@ -130,13 +130,22 @@
   /* SECTIONS */
   section {
     padding: 4.5rem 0;
+  }
+
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 2rem 4.5rem;
     border-bottom: 0.5px solid var(--border);
   }
 
-  .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+  section:last-of-type .container {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
 
   .section-tag {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
@@ -188,7 +197,7 @@
 
   .insight-arrow { color: var(--muted); font-size: 0.75rem; margin-bottom: 0.5rem; }
   .insight-title { font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem; }
-  .insight-body { font-size: 0.825rem; color: var(--muted); line-height: 1.55; }
+  .insight-body { font-size: 0.875rem; color: var(--muted); line-height: 1.55; }
 
   /* SOLUTION FLOW */
   .solution-flow {
@@ -250,7 +259,7 @@
   }
 
   .principle-title { font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem; }
-  .principle-body { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+  .principle-body { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
 
   /* QUOTE */
   blockquote {
@@ -309,7 +318,7 @@
   .reflection-item:nth-child(2n) { border-right: none; }
   .reflection-item:nth-last-child(-n+2) { border-bottom: none; }
 
-  .reflection-label { font-size: 0.7rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+  .reflection-label { font-size: 0.75rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
   .reflection-text { font-size: 0.875rem; color: rgba(245,244,240,0.8); line-height: 1.6; }
 
   /* NEXT */
@@ -328,7 +337,7 @@
 
   /* FOOTER */
   footer {
-    padding: 2rem;
+    padding: 2rem max(2rem, calc((100% - var(--max)) / 2 + 2rem));
     border-top: 0.5px solid var(--border);
     display: flex;
     align-items: center;
@@ -371,7 +380,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     color: var(--muted);
     padding: 7rem 2rem 0;
     max-width: var(--max);
@@ -756,10 +765,10 @@
 </div>
 
 <footer>
-  <span>© 2026 Emmanuel Odoemelam, GMT +1</span>
+  <span class="footer-copy">© 2026 Emmanuel Odoemelam, GMT +1</span>
   <div class="footer-links">
-    <a href="https://x.com/manuelsnr" target="_blank">X</a>
     <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/emmanuelodoemelam" target="_blank">Github</a>
     <a href="https://dribbble.com/emmanuel_odoemelam" target="_blank">Dribbble</a>
   </div>
 </footer>

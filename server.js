@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const server = http.createServer((req, res) => {
-  let filePath = "." + req.url;
+  let filePath = "." + decodeURIComponent(req.url.split("?")[0]);
 
   // Route handling for clean URLs
   if (req.url === "/" || req.url === "") {
@@ -30,7 +30,9 @@ const server = http.createServer((req, res) => {
     ".css": "text/css",
     ".json": "application/json",
     ".png": "image/png",
-    ".jpg": "image/jpg",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".webp": "image/webp",
     ".gif": "image/gif",
     ".svg": "image/svg+xml",
     ".wav": "audio/wav",
