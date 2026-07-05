@@ -2791,7 +2791,8 @@ nav {
   }
 
   .intro-photo {
-    width: 140px;
+    width: 220px;
+    border-radius: 12px;
   }
 
   .assistant-wrapper {
@@ -4411,7 +4412,7 @@ blockquote {
   transform: translate(-50%, -100%) translateY(-4px);
   z-index: 10000;
   white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .github-tooltip.visible {
@@ -4552,7 +4553,7 @@ blockquote {
     gap: 24px;
     text-align: left;
   }
-  
+
   .adplist-content {
     max-width: 100%;
     display: flex;
@@ -4563,7 +4564,7 @@ blockquote {
   .adplist-title {
     font-size: 1.4rem;
   }
-  
+
   .adplist-image {
     width: 100%;
     justify-content: center;
