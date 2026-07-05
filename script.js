@@ -14,13 +14,13 @@ function addDragSupport(
 ) {
   let isDragging = false;
   let startX = 0;
+  let startY = 0;
   let currentX = 0;
   let initialTransform = 0;
+  let isVerticalScroll = false;
 
   function getTransformX() {
-    const transform =
-      element.style.transform ||
-      (usePercentage ? "translateX(0%)" : "translateX(0px)");
+    const transform = element.style.transform || (usePercentage ? "translateX(0%)" : "translateX(0px)");
     if (usePercentage) {
       const match = transform.match(/translateX\((.+?)%\)/);
       return match ? parseFloat(match[1]) : 0;
@@ -31,99 +31,108 @@ function addDragSupport(
   }
 
   function handleStart(e) {
-    // Only allow touch events (mobile), not mouse events (desktop)
-    if (e.type === "mousedown") return;
-
     isDragging = true;
-    startX = e.touches[0].clientX;
+    isVerticalScroll = false;
+    startX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
+    startY = e.type.includes("mouse") ? e.clientY : e.touches[0].clientY;
     currentX = startX;
     initialTransform = getTransformX();
 
     element.style.transition = "none";
 
-    e.preventDefault();
+    // Don't preventDefault for touchstart so we don't break vertical scrolling
+    if (e.type.includes("mouse")) {
+      e.preventDefault();
+    }
   }
 
   function handleMove(e) {
-    if (!isDragging || e.type === "mousemove") return;
+    if (!isDragging) return;
 
-    currentX = e.touches[0].clientX;
-    const deltaX = currentX - startX;
+    const x = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
+    const y = e.type.includes("mouse") ? e.clientY : e.touches[0].clientY;
+    
+    const deltaX = x - startX;
+    const deltaY = Math.abs(y - startY);
+
+    if (e.type.includes("touch") && !isVerticalScroll) {
+      // If user scrolls vertically more than horizontally, cancel drag
+      if (deltaY > Math.abs(deltaX) && Math.abs(deltaX) < 10) {
+        isVerticalScroll = true;
+        isDragging = false;
+        element.style.transition = "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
+        if (usePercentage) {
+          element.style.transform = `translateX(${initialTransform}%)`;
+        } else {
+          element.style.transform = `translateX(${initialTransform}px)`;
+        }
+        return;
+      } else if (Math.abs(deltaX) > 5) {
+        // Prevent default only if clearly swiping horizontally
+        e.preventDefault();
+      }
+    } else if (e.type.includes("mouse")) {
+      e.preventDefault();
+    }
+
+    currentX = x;
     const currentIndex = getCurrentIndex();
     const maxIndex = getMaxIndex();
 
-    // For non-looping carousels, prevent dragging at boundaries
+    // Prevent dragging out of bounds
     if (!allowLoop) {
-      // Prevent dragging left when at first position (index 0)
-      if (currentIndex === 0 && deltaX > 0) {
-        return;
-      }
-
-      // Prevent dragging right when at last position
-      if (currentIndex >= maxIndex && deltaX < 0) {
-        return;
-      }
+      if (currentIndex === 0 && deltaX > 0) return;
+      if (currentIndex >= maxIndex && deltaX < 0) return;
     }
 
     if (usePercentage) {
-      // Convert pixel movement to percentage for testimonial carousel
       const containerWidth = element.parentElement.offsetWidth;
       const percentageDelta = (deltaX / containerWidth) * 100;
       element.style.transform = `translateX(${initialTransform + percentageDelta}%)`;
     } else {
       element.style.transform = `translateX(${initialTransform + deltaX}px)`;
     }
-
-    e.preventDefault();
   }
 
   function handleEnd() {
     if (!isDragging) return;
-
     isDragging = false;
+    
     const deltaX = currentX - startX;
     const currentIndex = getCurrentIndex();
     const maxIndex = getMaxIndex();
 
     element.style.transition = "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
 
-    if (Math.abs(deltaX) > threshold) {
-      // For looping carousels, always allow navigation
+    if (Math.abs(deltaX) > threshold && !isVerticalScroll) {
       if (allowLoop) {
-        if (deltaX > 0) {
-          onDrag("prev");
-        } else {
-          onDrag("next");
-        }
+        if (deltaX > 0) onDrag("prev");
+        else onDrag("next");
       } else {
-        // Check boundaries before triggering navigation for non-looping carousels
         if (deltaX > 0 && currentIndex > 0) {
           onDrag("prev");
         } else if (deltaX < 0 && currentIndex < maxIndex) {
           onDrag("next");
         } else {
-          // Snap back to current position if at boundary
-          if (usePercentage) {
-            element.style.transform = `translateX(${initialTransform}%)`;
-          } else {
-            element.style.transform = `translateX(${initialTransform}px)`;
-          }
+          if (usePercentage) element.style.transform = `translateX(${initialTransform}%)`;
+          else element.style.transform = `translateX(${initialTransform}px)`;
         }
       }
     } else {
-      // Snap back to current position
-      if (usePercentage) {
-        element.style.transform = `translateX(${initialTransform}%)`;
-      } else {
-        element.style.transform = `translateX(${initialTransform}px)`;
-      }
+      if (usePercentage) element.style.transform = `translateX(${initialTransform}%)`;
+      else element.style.transform = `translateX(${initialTransform}px)`;
     }
   }
 
-  // Only add touch events (mobile), no mouse events (desktop)
+  // Touch Events
   element.addEventListener("touchstart", handleStart, { passive: false });
   element.addEventListener("touchmove", handleMove, { passive: false });
   element.addEventListener("touchend", handleEnd);
+  
+  // Mouse Events
+  element.addEventListener("mousedown", handleStart);
+  window.addEventListener("mousemove", handleMove);
+  window.addEventListener("mouseup", handleEnd);
 
   // Prevent drag on images and links
   element.addEventListener("dragstart", (e) => e.preventDefault());
@@ -725,17 +734,23 @@ function initVisionCarousel() {
   if (items.length === 0) return;
 
   let currentIndex = 0;
-  const columnWidth = 320 + 24; // item width + gap
+  let maxIndex = 0;
   const itemsPerColumn = 3;
   const totalColumns = Math.ceil(items.length / itemsPerColumn);
-  const visibleColumns = Math.floor(
-    carousel.parentElement.offsetWidth / columnWidth,
-  );
-  const maxIndex = Math.max(0, totalColumns - visibleColumns);
 
   function updateCarousel() {
-    const isMobile = window.innerWidth <= 640;
-    const currentColumnWidth = isMobile ? 280 + 16 : columnWidth;
+    const isMobile = window.innerWidth <= 768;
+    const gap = isMobile ? 16 : 24;
+    const itemWidth = items[0].offsetWidth;
+    const currentColumnWidth = itemWidth + gap;
+    
+    // Calculate maxIndex dynamically based on actual width
+    const visibleColumns = Math.max(1, Math.floor(carousel.parentElement.offsetWidth / currentColumnWidth));
+    maxIndex = Math.max(0, totalColumns - visibleColumns);
+    
+    // Ensure currentIndex doesn't exceed maxIndex after resize
+    if (currentIndex > maxIndex) currentIndex = maxIndex;
+
     const translateX = currentIndex * -currentColumnWidth;
     carousel.style.transform = `translateX(${translateX}px)`;
 
@@ -776,19 +791,12 @@ function initVisionCarousel() {
   );
 
   // Handle window resize
+  let resizeTimeout;
   window.addEventListener("resize", () => {
-    const isMobile = window.innerWidth <= 640;
-    const currentColumnWidth = isMobile ? 280 + 16 : columnWidth;
-    const newVisibleColumns = Math.floor(
-      carousel.parentElement.offsetWidth / currentColumnWidth,
-    );
-    const newMaxIndex = Math.max(0, totalColumns - newVisibleColumns);
-
-    if (currentIndex > newMaxIndex) {
-      currentIndex = newMaxIndex;
-    }
-
-    updateCarousel();
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      updateCarousel();
+    }, 250);
   });
 
   // Initial update

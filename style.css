@@ -3464,13 +3464,13 @@ footer {
   }
 
   .vision-list {
-    grid-template-columns: repeat(4, 280px);
+    grid-template-columns: repeat(4, 82vw);
     gap: 12px 16px;
     padding: 0 var(--side);
   }
 
   .vision-item {
-    width: 280px;
+    width: 82vw;
     min-height: 80px;
     padding: 16px;
   }
