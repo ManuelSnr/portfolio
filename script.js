@@ -258,6 +258,37 @@ function initVisionChecklist() {
   const checkboxes = document.querySelectorAll(".vision-check");
   if (checkboxes.length === 0) return;
 
+  function playConfetti(element) {
+    if (typeof lottie === "undefined") return;
+
+    // Create a container for the confetti
+    const container = document.createElement("div");
+    container.style.position = "absolute";
+    // Increase size so the burst looks good relative to the checkbox
+    container.style.width = "120px";
+    container.style.height = "120px";
+    container.style.top = "50%";
+    container.style.left = "50%";
+    container.style.transform = "translate(-50%, -50%)";
+    container.style.pointerEvents = "none";
+    container.style.zIndex = "10";
+    
+    element.appendChild(container);
+    
+    const animation = lottie.loadAnimation({
+      container: container,
+      renderer: "svg",
+      loop: false,
+      autoplay: true,
+      path: "Assets/General/Confetti.json",
+    });
+    
+    animation.addEventListener("complete", () => {
+      animation.destroy();
+      container.remove();
+    });
+  }
+
   checkboxes.forEach((box) => {
     box.addEventListener("click", () => {
       const item = box.closest(".vision-item");
@@ -268,6 +299,7 @@ function initVisionChecklist() {
       } else {
         box.classList.add("done");
         item.classList.add("done-item");
+        playConfetti(box);
       }
     });
   });
