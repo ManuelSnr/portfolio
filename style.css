@@ -4250,6 +4250,25 @@ blockquote {
   --gh-box-gap: 3px;
 }
 
+.github-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.github-header .github-title {
+  margin-bottom: 0;
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+.github-profile-btn {
+  font-size: 13px;
+  padding: 8px 16px;
+}
+
 .github-wrapper {
   background: var(--bg);
   border: 1px solid var(--rule);
@@ -4442,6 +4461,20 @@ blockquote {
   .github-wrapper {
     padding: 16px;
   }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: inline-flex !important;
+  }
+
+  .github-profile-btn.mobile-only {
+    margin-top: 16px;
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -4519,14 +4552,28 @@ blockquote {
     flex-direction: column-reverse;
     padding: 24px;
     gap: 24px;
-    text-align: center;
+    text-align: left;
   }
   
   .adplist-content {
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .adplist-title {
+    font-size: 1.4rem;
   }
   
   .adplist-image {
+    width: 100%;
     justify-content: center;
+  }
+
+  .adplist-image img {
+    width: 100%;
+    max-height: none;
+    object-fit: cover;
   }
 }
