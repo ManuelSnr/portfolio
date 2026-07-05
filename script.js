@@ -277,6 +277,31 @@ function initTabs() {
     btn.addEventListener("click", () => {
       const target = btn.dataset.tab;
 
+      // Get scroll target before making changes
+      const tabBar = btn.closest(".tab-bar");
+      if (tabBar) {
+        const wrapper = tabBar.closest(".sticky-tab-wrapper");
+        const nav = document.querySelector("nav");
+        const navHeight = nav ? nav.getBoundingClientRect().height : 0;
+        
+        let targetTop = 0;
+        if (wrapper) {
+          targetTop = wrapper.getBoundingClientRect().top + window.scrollY;
+        } else {
+          targetTop = tabBar.getBoundingClientRect().top + window.scrollY;
+        }
+        
+        // If we are scrolled past the tab bar's original position, scroll back up instantly
+        // BEFORE swapping panels to prevent the browser from jumping to the bottom
+        if (window.scrollY > targetTop - navHeight) {
+          // Temporarily disable CSS smooth scrolling
+          document.documentElement.style.scrollBehavior = 'auto';
+          window.scrollTo(0, targetTop - navHeight);
+          // Re-enable CSS smooth scrolling
+          document.documentElement.style.scrollBehavior = '';
+        }
+      }
+
       tabs.forEach((t) => t.classList.remove("active"));
       panels.forEach((p) => p.classList.remove("active"));
 
@@ -284,29 +309,6 @@ function initTabs() {
       const targetPanel = document.getElementById("panel-" + target);
       if (targetPanel) {
         targetPanel.classList.add("active");
-        
-        // Scroll to the tab bar if we're scrolled past it
-        const tabBar = btn.closest(".tab-bar");
-        if (tabBar) {
-          const wrapper = tabBar.closest(".sticky-tab-wrapper");
-          const nav = document.querySelector("nav");
-          const navHeight = nav ? nav.getBoundingClientRect().height : 0;
-          
-          let targetTop = 0;
-          if (wrapper) {
-            targetTop = wrapper.getBoundingClientRect().top + window.scrollY;
-          } else {
-            targetTop = tabBar.getBoundingClientRect().top + window.scrollY;
-          }
-          
-          // If we are scrolled past the tab bar's original position, scroll back up
-          if (window.scrollY > targetTop - navHeight) {
-            window.scrollTo({
-              top: targetTop - navHeight,
-              behavior: "smooth"
-            });
-          }
-        }
       }
     });
   });
