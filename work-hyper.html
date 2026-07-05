@@ -1,592 +1,662 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hyper — Emmanuel Odoemelam</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css" />
-<script src="script.js"></script>
-<style>
-  :root {
-    --purple: #7c5cbf;
-  }
-
-  /* 3-column layout override for Hyper stats */
-  .stats-row {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-  @media (max-width: 700px) {
-    .stats-row {
-      grid-template-columns: 1fr !important;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hyper — Emmanuel Odoemelam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+  <style>
+    :root {
+      --purple: #7c5cbf;
     }
-  }
 
-  /* Push down and top-border stats-row under metadata */
-  .hero .stats-row {
-    margin-top: 1.5rem;
-    border-top: 0.5px solid var(--border-mid) !important;
-  }
+    /* 3-column layout override for Hyper stats */
+    .stats-row {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
 
-  /* Brand callout */
-  .callout {
-    border-left: 2px solid var(--purple) !important;
-    background: rgba(124, 92, 191, 0.06) !important;
-  }
+    @media (max-width: 700px) {
+      .stats-row {
+        grid-template-columns: 1fr !important;
+      }
+    }
 
-  /* Solutions list and items */
-  .solutions-list {
-    margin-top: 2rem;
-  }
+    /* Push down and top-border stats-row under metadata */
+    .hero .stats-row {
+      margin-top: 1.5rem;
+      border-top: 0.5px solid var(--border-mid) !important;
+    }
 
-  .solution-item {
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    gap: 1rem;
-    padding: 3rem 0;
-    border-bottom: 0.5px solid var(--border-mid);
-  }
+    /* Brand callout */
+    .callout {
+      border-left: 2px solid var(--purple) !important;
+      background: rgba(124, 92, 191, 0.06) !important;
+    }
 
-  .solution-item:last-child {
-    border-bottom: none;
-  }
+    /* Solutions list and items */
+    .solutions-list {
+      margin-top: 2rem;
+    }
 
-  .process-num {
-    font-family: var(--serif);
-    font-size: 1.25rem;
-    color: var(--muted);
-    font-style: italic;
-    line-height: 1.2;
-  }
-
-  .solution-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .solution-text strong {
-    font-size: 1.15rem;
-    color: var(--ink);
-  }
-
-  .solution-desc {
-    font-size: 0.95rem;
-    color: var(--ink-2);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .solution-image {
-    grid-column: 2;
-    margin-top: 1.5rem;
-  }
-
-  .solution-image .cs-image {
-    margin: 0; /* Override default margins */
-  }
-
-  .solution-image .img-placeholder {
-    margin: 0; /* Override default margins */
-  }
-
-  @media (max-width: 700px) {
     .solution-item {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 1rem;
+      padding: 3rem 0;
+      border-bottom: 0.5px solid var(--border-mid);
+    }
+
+    .solution-item:last-child {
+      border-bottom: none;
+    }
+
+    .process-num {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.2;
+    }
+
+    .solution-text {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      padding: 2rem 0;
+      gap: 0.5rem;
+    }
+
+    .solution-text strong {
+      font-size: 1.15rem;
+      color: var(--ink);
+    }
+
+    .solution-desc {
+      font-size: 0.95rem;
+      color: var(--ink-2);
+      line-height: 1.6;
+      margin: 0;
     }
 
     .solution-image {
-      margin-top: 0.5rem;
+      grid-column: 2;
+      margin-top: 1.5rem;
     }
-  }
 
-  /* 2x2 layout override for Hyper insight-grid */
-  .insight-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+    .solution-image .cs-image {
+      margin: 0;
+      /* Override default margins */
+    }
 
-  .insight-item {
-    border-right: 0.5px solid var(--border) !important;
-    border-bottom: 0.5px solid var(--border) !important;
-  }
+    .solution-image .img-placeholder {
+      margin: 0;
+      /* Override default margins */
+    }
 
-  /* Clear right border on the 2nd column items */
-  .insight-item:nth-child(2n) {
-    border-right: none !important;
-  }
+    @media (max-width: 700px) {
+      .solution-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 2rem 0;
+      }
 
-  /* Clear bottom border on the last row (last 2 items) */
-  .insight-item:nth-last-child(-n+2) {
-    border-bottom: none !important;
-  }
+      .solution-image {
+        margin-top: 0.5rem;
+      }
+    }
 
-  @media (max-width: 700px) {
+    /* 2x2 layout override for Hyper insight-grid */
     .insight-grid {
-      grid-template-columns: 1fr !important;
+      grid-template-columns: repeat(2, 1fr) !important;
     }
+
     .insight-item {
-      border-right: none !important;
+      border-right: 0.5px solid var(--border) !important;
       border-bottom: 0.5px solid var(--border) !important;
     }
-    .insight-item:last-child {
+
+    /* Clear right border on the 2nd column items */
+    .insight-item:nth-child(2n) {
+      border-right: none !important;
+    }
+
+    /* Clear bottom border on the last row (last 2 items) */
+    .insight-item:nth-last-child(-n+2) {
       border-bottom: none !important;
     }
-  }
-</style>
+
+    @media (max-width: 700px) {
+      .insight-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .insight-item {
+        border-right: none !important;
+        border-bottom: 0.5px solid var(--border) !important;
+      }
+
+      .insight-item:last-child {
+        border-bottom: none !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<nav>
-  <a href="/" class="nav-brand">
-    <img src="Assets/General/avi.jpg" alt="Emmanuel Odoemelam" class="nav-profile-img" />
-    <div class="nav-brand-text">
-      <span class="nav-name">Emmanuel Odoemelam</span>
-      <span class="nav-subtext"></span>
-    </div>
-  </a>
-  <button class="hamburger" aria-label="Menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-  <ul class="nav-links">
-    <li><a href="work.html" class="active">Work</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="lab.html">Lab</a></li>
-  </ul>
-</nav>
-
-<div class="mobile-drawer">
-  <div class="drawer-content">
-    <div class="drawer-header">
-      <h2 class="drawer-title">Menu</h2>
-      <button class="drawer-close" aria-label="Close menu">&times;</button>
-    </div>
-    <ul class="drawer-links">
-      <li><a href="/">Home</a></li>
+  <nav>
+    <a href="/" class="nav-brand">
+      <img src="Assets/General/avi.jpg" alt="Emmanuel Odoemelam" class="nav-profile-img" />
+      <div class="nav-brand-text">
+        <span class="nav-name">Emmanuel Odoemelam</span>
+        <span class="nav-subtext"></span>
+      </div>
+    </a>
+    <button class="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
       <li><a href="work.html" class="active">Work</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="lab.html">Lab</a></li>
     </ul>
-    <div class="drawer-footer">
-      <p class="drawer-footer-text">
-        © 2026 Emmanuel Odoemelam<br />GMT +1
-      </p>
-    </div>
-  </div>
-</div>
-<div class="drawer-overlay"></div>
+  </nav>
 
-<div class="back-wrap">
-  <a href="/work.html" class="back-link">← Back to works</a>
-</div>
-
-<div class="hero">
-  <span class="hero-tag">Gaming · Mobile · 2024 – Present</span>
-  <h1>Hyper — <em>Designing a trust-first social gaming platform for the US market</em></h1>
-  <p class="hero-lead">Led end-to-end design of Hyper's v2 experience for Metaverse Magna — redesigning onboarding, monetisation, compliance flows, and the design system to support a US market expansion and iOS App Store launch.</p>
-
-  <div class="case-meta">
-    <div class="meta-item">
-      <div class="meta-label">Role</div>
-      <div class="meta-value">Senior Product Designer</div>
-    </div>
-    <div class="meta-item">
-      <div class="meta-label">Company</div>
-      <div class="meta-value">Metaverse Magna</div>
-    </div>
-    <div class="meta-item">
-      <div class="meta-label">Platform</div>
-      <div class="meta-value">iOS · Android</div>
-    </div>
-    <div class="meta-item">
-      <div class="meta-label">Timeline</div>
-      <div class="meta-value">2024 – Present</div>
-    </div>
-    <div class="meta-item">
-      <div class="meta-label">Team</div>
-      <div class="meta-value">1 PM · 2 Designers · 3 Engineers · 2 Execs</div>
-    </div>
-  </div>
-
-  <div class="stats-row">
-    <div class="stat-item">
-      <div class="stat-number">60%</div>
-      <div class="stat-label">First-time deposit rate</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">34%</div>
-      <div class="stat-label">D7 retention rate</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">★4.5</div>
-      <div class="stat-label">App Store rating</div>
-    </div>
-  </div>
-</div>
-
-<!-- OVERVIEW -->
-<section>
-  <div class="container">
-    <span class="section-tag">Overview</span>
-    <h2>A real-money gaming platform that needed to <em>earn trust fast</em></h2>
-    <p>Hyper is a skill-based casual gaming platform where users compete in 1v1 duels, enter tournaments, and challenge friends — with in-game currency that carries real monetary value. Despite MVM raising $3.2M in funding, the product faced a critical problem: an APK-only distribution model that excluded iOS users entirely, created legitimacy concerns before users ever experienced the product, and generated a D7 retention rate below 11%.</p>
-    <p>My remit was broad — redesign the v2 platform to support an iOS App Store launch, US market expansion, and a compliant real-money gaming experience that users would actually trust.</p>
-
-    <div class="img-placeholder tall">Cover image — Hyper v2 platform overview</div>
-  </div>
-</section>
-
-<!-- PROBLEM -->
-<section>
-  <div class="container">
-    <span class="section-tag">Problem</span>
-    <h2>A fragmented experience built on <em>broken trust</em></h2>
-    <p>The APK-only experience created friction at every critical moment. Downloading a file flagged as potentially harmful by Android, moving through an inconsistent sign-up flow, then landing in a dashboard with no clear next step — each of these was a trust failure. Data showed that users who made it through were almost exclusively referred by friends.</p>
-
-    <div class="callout">
-      <p>"The website was Hyper's primary acquisition channel, but downloading the APK introduced multiple trust and onboarding barriers before users could even experience the product."</p>
-    </div>
-
-    <p>Three structural problems compounded each other:</p>
-
-    <div class="insight-grid">
-      <div class="insight-item">
-        <div class="insight-arrow">↗</div>
-        <div class="insight-title">Not scalable</div>
-        <div class="insight-body">APK-only distribution excluded iOS entirely and limited Android reach due to gambling-related Play Store restrictions.</div>
+  <div class="mobile-drawer">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h2 class="drawer-title">Menu</h2>
+        <button class="drawer-close" aria-label="Close menu">&times;</button>
       </div>
-      <div class="insight-item">
-        <div class="insight-arrow">↗</div>
-        <div class="insight-title">Not sustainable</div>
-        <div class="insight-body">Pre-value friction weakened onboarding completion. Only 10% of users who completed sign-up purchased HPR — Hyper's in-game currency.</div>
-      </div>
-      <div class="insight-item">
-        <div class="insight-arrow">↗</div>
-        <div class="insight-title">Not compliant</div>
-        <div class="insight-body">Expanding into the US market introduced stricter expectations around legitimacy, platform trust, and real-money gaming compliance.</div>
-      </div>
-      <div class="insight-item">
-        <div class="insight-arrow">↗</div>
-        <div class="insight-title">Retention was broken</div>
-        <div class="insight-body">Less than 11% of users became activated players — defined as someone who plays 8 games in 7 days — with no clear retention loops post-onboarding.</div>
-      </div>
-    </div>
-
-    <div class="img-row" style="margin-top: 2rem;">
-      <div class="img-placeholder medium">Before — APK download friction</div>
-      <div class="img-placeholder medium">Before — onboarding flow</div>
-    </div>
-  </div>
-</section>
-
-<!-- RESEARCH -->
-<section>
-  <div class="container">
-    <span class="section-tag">Research</span>
-    <h2>Breaking down the experience to <em>find the real problem</em></h2>
-    <p>I started with a full onboarding journey teardown using UXCam and Hotjar analytics, mapped against qualitative survey data from users. The goal was to find exactly where trust broke down and why.</p>
-
-    <div class="solution-flow">
-      <div class="solution-row">
-        <div class="solution-label">Journey teardown</div>
-        <div class="solution-content">Identified trust gaps, friction points, and drop-offs screen by screen. Annotated every confusing interaction and ambiguous button behaviour across the full onboarding flow.</div>
-      </div>
-      <div class="solution-row">
-        <div class="solution-label">User surveys</div>
-        <div class="solution-content">Collected qualitative insights from users to understand hesitation around downloads and top-ups. Users described the platform as feeling like a "Ponzi scheme" before referrals or visible payout proof changed their perception.</div>
-      </div>
-      <div class="solution-row">
-        <div class="solution-label">Behavioural data</div>
-        <div class="solution-content">Users with HPR already in their wallet were significantly more likely to return and continue playing. Referral code steps increased drop-off. Post-onboarding relied on self-discovery with no guiding system.</div>
-      </div>
-      <div class="solution-row">
-        <div class="solution-label">Insights synthesis</div>
-        <div class="solution-content">Combined data sources to identify three core patterns: trust must be earned before monetisation is introduced; the referral step was anti-momentum; and the platform lacked any progression system to bring users back.</div>
-      </div>
-    </div>
-
-    <div class="img-placeholder tall" style="margin-top: 2rem;">Customer journey map — drop-off analysis</div>
-  </div>
-</section>
-
-<!-- PRINCIPLES -->
-<section>
-  <div class="container">
-    <span class="section-tag">Design principles</span>
-    <h2>Three principles to guide <em>every decision</em></h2>
-
-    <div class="principles">
-      <div class="principle-item">
-        <div class="principle-icon">01</div>
-        <div class="principle-title">Reward effort</div>
-        <div class="principle-body">Reinforce user actions with visible progress and meaningful rewards that encourage continued engagement. Every action should feel like it counts.</div>
-      </div>
-      <div class="principle-item">
-        <div class="principle-icon">02</div>
-        <div class="principle-title">Build trust, form habits</div>
-        <div class="principle-body">Trust is earned through clear next steps and transparent systems. Habits form when players have a reason to return that isn't just monetary.</div>
-      </div>
-      <div class="principle-item">
-        <div class="principle-icon">03</div>
-        <div class="principle-title">Design for clarity and momentum</div>
-        <div class="principle-body">Every screen should answer three questions: what do I do next, why does it matter, and how close am I to progress.</div>
+      <ul class="drawer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="work.html" class="active">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="lab.html">Lab</a></li>
+      </ul>
+      <div class="drawer-footer">
+        <p class="drawer-footer-text">
+          © 2026 Emmanuel Odoemelam<br />GMT +1
+        </p>
       </div>
     </div>
   </div>
-</section>
+  <div class="drawer-overlay"></div>
 
-<!-- SOLUTIONS -->
-<section>
-  <div class="container">
-    <span class="section-tag">Solutions</span>
-    <h2>Turning insights into <em>flows that convert</em></h2>
-    <p>The redesign rebuilt the platform around intent, progression, and engagement — rather than rushing users toward monetisation. Each solution mapped directly to a research finding.</p>
-
-    <div class="solutions-list">
-      <!-- Solution 1 -->
-      <div class="solution-item">
-        <span class="process-num">01</span>
-        <div class="solution-text">
-          <strong style="font-weight: 500; color: var(--ink);">Visible winnings before sign-up</strong>
-          <p class="solution-desc">The welcome screen showed real player wins and contextualised HPR earnings in local currency — giving new users social proof before any commitment. User testing showed this meaningfully reduced initial scepticism.</p>
-        </div>
-        <div class="solution-image">
-          <div class="cs-image">
-            <img src="Assets/Visuals/Featured/Reward system upfront.png" alt="Visible winnings before sign-up" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Solution 2 -->
-      <div class="solution-item">
-        <span class="process-num">02</span>
-        <div class="solution-text">
-          <strong style="font-weight: 500; color: var(--ink);">Goal-setting as a commitment device</strong>
-          <p class="solution-desc">Instead of asking for immediate top-up, onboarding now asked players to set a daily earning target. This reframed the platform as a performance tool and created a psychological anchor for return behaviour.</p>
-        </div>
-        <div class="solution-image">
-          <div class="img-placeholder short">Goal-setting onboarding step — daily earning target</div>
-        </div>
-      </div>
-
-      <!-- Solution 3 -->
-      <div class="solution-item">
-        <span class="process-num">03</span>
-        <div class="solution-text">
-          <strong style="font-weight: 500; color: var(--ink);">Gameplay before monetisation</strong>
-          <p class="solution-desc">Players were directed to their first free game before any reward or top-up prompt. The four games with the highest play rates were surfaced first. Experience of value preceded the ask.</p>
-        </div>
-        <div class="solution-image">
-          <div class="cs-image">
-            <img src="Assets/Visuals/Featured/Tournment details.png" alt="Gameplay before monetisation" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Solution 4 -->
-      <div class="solution-item">
-        <span class="process-num">04</span>
-        <div class="solution-text">
-          <strong style="font-weight: 500; color: var(--ink);">Streak system for daily retention</strong>
-          <p class="solution-desc">Inspired by Duolingo's streak mechanics, a lightweight daily play streak introduced soft commitment without financial pressure. "I'm committed" CTA wording reinforced player identity.</p>
-        </div>
-        <div class="solution-image">
-          <div class="cs-image">
-            <img src="Assets/Visuals/Featured/Play again showing the reward for that position.png" alt="Streak system for daily retention" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Solution 5 -->
-      <div class="solution-item">
-        <span class="process-num">05</span>
-        <div class="solution-text">
-          <strong style="font-weight: 500; color: var(--ink);">Contextual education over upfront friction</strong>
-          <p class="solution-desc">HPR explanation was moved inline to moments of hesitation, not front-loaded. A dedicated "Not sure yet?" FAQ page addressed top-up concerns without blocking the main conversion path.</p>
-        </div>
-        <div class="solution-image">
-          <div class="cs-image">
-            <img src="Assets/Visuals/Featured/Reward breakdown modal.png" alt="Contextual education" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Solution 6 -->
-      <div class="solution-item">
-        <span class="process-num">06</span>
-        <div class="solution-text">
-          <strong style="font-weight: 500; color: var(--ink);">Referral step relocated</strong>
-          <p class="solution-desc">Data showed the referral code step causing momentum loss during sign-up. It was moved post-onboarding, removing a friction point at the most sensitive stage of the flow.</p>
-        </div>
-        <div class="solution-image">
-          <div class="img-placeholder short">Referral step relocated post-onboarding</div>
-        </div>
-      </div>
-    </div>
+  <div class="back-wrap">
+    <a href="/work.html" class="back-link">← Back to works</a>
   </div>
-</section>
 
-<!-- COMPLIANCE -->
-<section>
-  <div class="container">
-    <span class="section-tag">Compliance UX</span>
-    <h2>Protecting the platform <em>without breaking momentum</em></h2>
-    <p>Expanding into the US market required careful compliance design. Real-money gaming is not permitted in all US states, and KYC verification was generating significant cost and user frustration through failed attempts.</p>
+  <div class="hero">
+    <span class="hero-tag">Gaming · Mobile · 2024 – Present</span>
+    <h1>Hyper — <em>Designing a trust-first social gaming platform for the US market</em></h1>
+    <p class="hero-lead">Led end-to-end design of Hyper's v2 experience for Metaverse Magna — redesigning onboarding,
+      monetisation, compliance flows, and the design system to support a US market expansion and iOS App Store launch.
+    </p>
 
-    <div class="insight-grid">
-      <div class="insight-item">
-        <div class="insight-arrow">↗</div>
-        <div class="insight-title">Location-gated access</div>
-        <div class="insight-body">Age and location checks were introduced before enabling top-ups. Users in restricted states could still access solo games and free friend battles.</div>
+    <div class="case-meta">
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Senior Product Designer</div>
       </div>
-      <div class="insight-item">
-        <div class="insight-arrow">↗</div>
-        <div class="insight-title">KYC guidance before submission</div>
-        <div class="insight-body">Most failed verifications were caused by poor lighting, cropped IDs, or unclear photos. Pre-submission guidance reduced these failures. Two free attempts were introduced to manage cost.</div>
+      <div class="meta-item">
+        <div class="meta-label">Company</div>
+        <div class="meta-value">Metaverse Magna</div>
       </div>
-      <div class="insight-item">
-        <div class="insight-arrow">↗</div>
-        <div class="insight-title">Duplicate KYC reduction</div>
-        <div class="insight-body">Duplicate account creation was tied to account recovery attempts. An early recovery path ("Do you have a verified Hyper account?") reduced redundant verifications.</div>
+      <div class="meta-item">
+        <div class="meta-label">Platform</div>
+        <div class="meta-value">iOS · Android</div>
       </div>
-      <div class="insight-item">
-        <div class="insight-arrow">↗</div>
-        <div class="insight-title">Wait-state management</div>
-        <div class="insight-body">Average verification time was 3 minutes. A countdown progress indicator was added so users could either wait or safely navigate home without abandoning the process.</div>
+      <div class="meta-item">
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value">2024 – Present</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Team</div>
+        <div class="meta-value">1 PM · 2 Designers · 3 Engineers · 2 Execs</div>
       </div>
     </div>
 
-    <div class="img-placeholder tall" style="margin-top: 2rem;">KYC flow — ID selection, photo guidance, verification progress</div>
-  </div>
-</section>
-
-<!-- BEYOND ONBOARDING -->
-<section>
-  <div class="container">
-    <span class="section-tag">Retention loops</span>
-    <h2>Closing the loop — <em>giving players reasons to return</em></h2>
-    <p>Onboarding was never the finish line. After players completed the initial flow, the experience needed systems that would pull them back. Three loops were designed to work together.</p>
-
-    <div class="solution-flow">
-      <div class="solution-row">
-        <div class="solution-label">Discovery feed</div>
-        <div class="solution-content">A swipe-based game discovery feed helped surface games quickly and sustain attention, modelled on short-form content behaviour. Game trailers were shown only for the selected game to optimise performance.</div>
-      </div>
-      <div class="solution-row">
-        <div class="solution-label">Daily goals</div>
-        <div class="solution-content">Dashboard-level daily goal tracking gave players visible progress toward their self-set earning target, anchoring return behaviour to personal intent rather than external incentives.</div>
-      </div>
-      <div class="solution-row">
-        <div class="solution-label">Live tournaments</div>
-        <div class="solution-content">Large multiplayer tournaments ensured users had HPR in their balance from winnings, creating natural repeat-play cycles. Live tournament banners surfaced time-sensitivity to drive engagement.</div>
-      </div>
-    </div>
-
-    <div class="img-placeholder tall" style="margin-top: 2rem;">Post-onboarding experience — dashboard, daily goal, live tournaments</div>
-  </div>
-</section>
-
-<!-- DESIGN SYSTEM -->
-<section>
-  <div class="container">
-    <span class="section-tag">Design system</span>
-    <h2>Structure before pixels — <em>building the foundation</em></h2>
-    <p>Before shipping screens, I built a Figma design system that gave the team a shared language for the first time. Typography scale (Instrument Sans for UI, Founder Grotesk for emphasis), a full colour system including grey contrast ratios, button hierarchy with bonus-state variants, and detailed handoff documentation with numbered UI breakdowns for every screen.</p>
-    <p>The system helped the team move faster and keep the experience consistent across platforms and sprints.</p>
-
-    <div class="img-placeholder tall" style="margin-top: 2rem;">Design system — type scale, colour tokens, component library, handoff docs</div>
-  </div>
-</section>
-
-<!-- RESULTS -->
-<section>
-  <div class="container">
-    <span class="section-tag">Results</span>
-    <h2>The redesign <em>delivered across all three targets</em></h2>
-    <p>The redesign shifted focus from immediate monetisation to long-term engagement — improving both conversion and retention. Metrics moved substantially across every goal set at the start of the project.</p>
-
-    <div class="stats-row" style="margin-top: 2rem; border: 0.5px solid var(--border);">
+    <div class="stats-row">
       <div class="stat-item">
         <div class="stat-number">60%</div>
-        <div class="stat-label">First-time deposit rate<br><span style="color: var(--muted); font-size: 0.75rem;">Up from ~10% pre-redesign</span></div>
+        <div class="stat-label">First-time deposit rate</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">34%</div>
-        <div class="stat-label">D7 retention rate<br><span style="color: var(--muted); font-size: 0.75rem;">Up from &lt;11% pre-redesign</span></div>
+        <div class="stat-label">D7 retention rate</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">★4.5</div>
-        <div class="stat-label">App Store rating<br><span style="color: var(--muted); font-size: 0.75rem;">On iOS launch</span></div>
-      </div>
-    </div>
-
-    <blockquote>"The challenge wasn't just getting users to sign up — it was designing an onboarding experience that could sustain engagement beyond the first session."</blockquote>
-  </div>
-</section>
-
-<!-- REFLECTION -->
-<section>
-  <div class="container">
-    <span class="section-tag">Reflection</span>
-    <h2>What I learned</h2>
-
-    <div class="reflection-grid">
-      <div class="reflection-item" style="background: var(--teal-light)">
-        <div class="reflection-label">Trust before monetisation</div>
-        <div class="reflection-text">Introducing value before the ask — gameplay before top-up, social proof before sign-up — was the single most impactful structural change. Users convert when they believe first.</div>
-      </div>
-      <div class="reflection-item" style="background: var(--teal-light)">
-        <div class="reflection-label">Compliance as UX</div>
-        <div class="reflection-text">KYC and age verification are often treated as legal checkboxes. Approaching them as designed flows — with guidance, progress states, and recovery paths — meaningfully reduced both cost and friction.</div>
-      </div>
-      <div class="reflection-item" style="background: var(--teal-light)">
-        <div class="reflection-label">Retention is a design problem</div>
-        <div class="reflection-text">Streaks, daily goals, and tournament loops weren't features bolted on — they were the product. Retention needs to be designed into the core experience, not added after conversion.</div>
-      </div>
-      <div class="reflection-item" style="background: var(--teal-light)">
-        <div class="reflection-label">Systems multiply impact</div>
-        <div class="reflection-text">The design system and PRD process I built didn't just improve this launch — they changed how the whole team works. Investing in the foundation pays compounding returns.</div>
+        <div class="stat-label">App Store rating</div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- NEXT -->
-<div class="next-project">
-  <div class="next-label">Next project</div>
-  <a class="next-card" href="work-penciled.html">
-    <div>
-      <div class="next-card-title">Penciled (YC W24)</div>
-      <div class="next-card-sub">
-        Designing proactive scheduling for healthcare clinics · HealthTech · AI
+  <!-- OVERVIEW -->
+  <section>
+    <div class="container">
+      <span class="section-tag">Overview</span>
+      <h2>A real-money gaming platform that needed to <em>earn trust fast</em></h2>
+      <p>Hyper is a skill-based casual gaming platform where users compete in 1v1 duels, enter tournaments, and
+        challenge friends — with in-game currency that carries real monetary value. Despite MVM raising $3.2M in
+        funding, the product faced a critical problem: an APK-only distribution model that excluded iOS users entirely,
+        created legitimacy concerns before users ever experienced the product, and generated a D7 retention rate below
+        11%.</p>
+      <p>My remit was broad — redesign the v2 platform to support an iOS App Store launch, US market expansion, and a
+        compliant real-money gaming experience that users would actually trust.</p>
+
+      <div class="img-placeholder tall">Cover image — Hyper v2 platform overview</div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section>
+    <div class="container">
+      <span class="section-tag">Problem</span>
+      <h2>A fragmented experience built on <em>broken trust</em></h2>
+      <p>The APK-only experience created friction at every critical moment. Downloading a file flagged as potentially
+        harmful by Android, moving through an inconsistent sign-up flow, then landing in a dashboard with no clear next
+        step — each of these was a trust failure. Data showed that users who made it through were almost exclusively
+        referred by friends.</p>
+
+      <div class="callout">
+        <p>"The website was Hyper's primary acquisition channel, but downloading the APK introduced multiple trust and
+          onboarding barriers before users could even experience the product."</p>
+      </div>
+
+      <p>Three structural problems compounded each other:</p>
+
+      <div class="insight-grid">
+        <div class="insight-item">
+          <div class="insight-arrow">↗</div>
+          <div class="insight-title">Not scalable</div>
+          <div class="insight-body">APK-only distribution excluded iOS entirely and limited Android reach due to
+            gambling-related Play Store restrictions.</div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-arrow">↗</div>
+          <div class="insight-title">Not sustainable</div>
+          <div class="insight-body">Pre-value friction weakened onboarding completion. Only 10% of users who completed
+            sign-up purchased HPR — Hyper's in-game currency.</div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-arrow">↗</div>
+          <div class="insight-title">Not compliant</div>
+          <div class="insight-body">Expanding into the US market introduced stricter expectations around legitimacy,
+            platform trust, and real-money gaming compliance.</div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-arrow">↗</div>
+          <div class="insight-title">Retention was broken</div>
+          <div class="insight-body">Less than 11% of users became activated players — defined as someone who plays 8
+            games in 7 days — with no clear retention loops post-onboarding.</div>
+        </div>
+      </div>
+
+      <div class="img-row" style="margin-top: 2rem;">
+        <div class="img-placeholder medium">Before — APK download friction</div>
+        <div class="img-placeholder medium">Before — onboarding flow</div>
       </div>
     </div>
-    <svg
-      class="next-arrow"
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1.5"
-    >
-      <path d="M3 13L13 3M13 3H5M13 3V11" />
-    </svg>
-  </a>
-</div>
+  </section>
 
-<footer>
-  <span class="footer-copy">© 2026 Emmanuel Odoemelam, GMT +1</span>
-  <div class="footer-links">
-    <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank">LinkedIn</a>
-    <a href="https://github.com/emmanuelodoemelam" target="_blank">Github</a>
-    <a href="https://dribbble.com/emmanuel_odoemelam" target="_blank">Dribbble</a>
+  <!-- RESEARCH -->
+  <section>
+    <div class="container">
+      <span class="section-tag">Research</span>
+      <h2>Breaking down the experience to <em>find the real problem</em></h2>
+      <p>I started with a full onboarding journey teardown using UXCam and Hotjar analytics, mapped against qualitative
+        survey data from users. The goal was to find exactly where trust broke down and why.</p>
+
+      <div class="solution-flow">
+        <div class="solution-row">
+          <div class="solution-label">Journey teardown</div>
+          <div class="solution-content">Identified trust gaps, friction points, and drop-offs screen by screen.
+            Annotated every confusing interaction and ambiguous button behaviour across the full onboarding flow.</div>
+        </div>
+        <div class="solution-row">
+          <div class="solution-label">User surveys</div>
+          <div class="solution-content">Collected qualitative insights from users to understand hesitation around
+            downloads and top-ups. Users described the platform as feeling like a "Ponzi scheme" before referrals or
+            visible payout proof changed their perception.</div>
+        </div>
+        <div class="solution-row">
+          <div class="solution-label">Behavioural data</div>
+          <div class="solution-content">Users with HPR already in their wallet were significantly more likely to return
+            and continue playing. Referral code steps increased drop-off. Post-onboarding relied on self-discovery with
+            no guiding system.</div>
+        </div>
+        <div class="solution-row">
+          <div class="solution-label">Insights synthesis</div>
+          <div class="solution-content">Combined data sources to identify three core patterns: trust must be earned
+            before monetisation is introduced; the referral step was anti-momentum; and the platform lacked any
+            progression system to bring users back.</div>
+        </div>
+      </div>
+
+      <div class="img-placeholder tall" style="margin-top: 2rem;">Customer journey map — drop-off analysis</div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section>
+    <div class="container">
+      <span class="section-tag">Design principles</span>
+      <h2>Three principles to guide <em>every decision</em></h2>
+
+      <div class="principles">
+        <div class="principle-item">
+          <div class="principle-icon">01</div>
+          <div class="principle-title">Reward effort</div>
+          <div class="principle-body">Reinforce user actions with visible progress and meaningful rewards that encourage
+            continued engagement. Every action should feel like it counts.</div>
+        </div>
+        <div class="principle-item">
+          <div class="principle-icon">02</div>
+          <div class="principle-title">Build trust, form habits</div>
+          <div class="principle-body">Trust is earned through clear next steps and transparent systems. Habits form when
+            players have a reason to return that isn't just monetary.</div>
+        </div>
+        <div class="principle-item">
+          <div class="principle-icon">03</div>
+          <div class="principle-title">Design for clarity and momentum</div>
+          <div class="principle-body">Every screen should answer three questions: what do I do next, why does it matter,
+            and how close am I to progress.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTIONS -->
+  <section>
+    <div class="container">
+      <span class="section-tag">Solutions</span>
+      <h2>Turning insights into <em>flows that convert</em></h2>
+      <p>The redesign rebuilt the platform around intent, progression, and engagement — rather than rushing users toward
+        monetisation. Each solution mapped directly to a research finding.</p>
+
+      <div class="solutions-list">
+        <!-- Solution 1 -->
+        <div class="solution-item">
+          <span class="process-num">01</span>
+          <div class="solution-text">
+            <strong style="font-weight: 500; color: var(--ink);">Visible winnings before sign-up</strong>
+            <p class="solution-desc">The welcome screen showed real player wins and contextualised HPR earnings in local
+              currency — giving new users social proof before any commitment. User testing showed this meaningfully
+              reduced initial scepticism.</p>
+          </div>
+          <div class="solution-image">
+            <div class="cs-image">
+              <img src="Assets/Visuals/Featured/Reward system upfront.png" alt="Visible winnings before sign-up" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Solution 2 -->
+        <div class="solution-item">
+          <span class="process-num">02</span>
+          <div class="solution-text">
+            <strong style="font-weight: 500; color: var(--ink);">Goal-setting as a commitment device</strong>
+            <p class="solution-desc">Instead of asking for immediate top-up, onboarding now asked players to set a daily
+              earning target. This reframed the platform as a performance tool and created a psychological anchor for
+              return behaviour.</p>
+          </div>
+          <div class="solution-image">
+            <div class="img-placeholder short">Goal-setting onboarding step — daily earning target</div>
+          </div>
+        </div>
+
+        <!-- Solution 3 -->
+        <div class="solution-item">
+          <span class="process-num">03</span>
+          <div class="solution-text">
+            <strong style="font-weight: 500; color: var(--ink);">Gameplay before monetisation</strong>
+            <p class="solution-desc">Players were directed to their first free game before any reward or top-up prompt.
+              The four games with the highest play rates were surfaced first. Experience of value preceded the ask.</p>
+          </div>
+          <div class="solution-image">
+            <div class="cs-image">
+              <img src="Assets/Visuals/Featured/Tournment details.png" alt="Gameplay before monetisation" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Solution 4 -->
+        <div class="solution-item">
+          <span class="process-num">04</span>
+          <div class="solution-text">
+            <strong style="font-weight: 500; color: var(--ink);">Streak system for daily retention</strong>
+            <p class="solution-desc">Inspired by Duolingo's streak mechanics, a lightweight daily play streak introduced
+              soft commitment without financial pressure. "I'm committed" CTA wording reinforced player identity.</p>
+          </div>
+          <div class="solution-image">
+            <div class="cs-image">
+              <img src="Assets/Visuals/Featured/Play again showing the reward for that position.png"
+                alt="Streak system for daily retention" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Solution 5 -->
+        <div class="solution-item">
+          <span class="process-num">05</span>
+          <div class="solution-text">
+            <strong style="font-weight: 500; color: var(--ink);">Contextual education over upfront friction</strong>
+            <p class="solution-desc">HPR explanation was moved inline to moments of hesitation, not front-loaded. A
+              dedicated "Not sure yet?" FAQ page addressed top-up concerns without blocking the main conversion path.
+            </p>
+          </div>
+          <div class="solution-image">
+            <div class="cs-image">
+              <img src="Assets/Visuals/Featured/Reward breakdown modal.png" alt="Contextual education" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Solution 6 -->
+        <div class="solution-item">
+          <span class="process-num">06</span>
+          <div class="solution-text">
+            <strong style="font-weight: 500; color: var(--ink);">Referral step relocated</strong>
+            <p class="solution-desc">Data showed the referral code step causing momentum loss during sign-up. It was
+              moved post-onboarding, removing a friction point at the most sensitive stage of the flow.</p>
+          </div>
+          <div class="solution-image">
+            <div class="img-placeholder short">Referral step relocated post-onboarding</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPLIANCE -->
+  <section>
+    <div class="container">
+      <span class="section-tag">Compliance UX</span>
+      <h2>Protecting the platform <em>without breaking momentum</em></h2>
+      <p>Expanding into the US market required careful compliance design. Real-money gaming is not permitted in all US
+        states, and KYC verification was generating significant cost and user frustration through failed attempts.</p>
+
+      <div class="insight-grid">
+        <div class="insight-item">
+          <div class="insight-arrow">↗</div>
+          <div class="insight-title">Location-gated access</div>
+          <div class="insight-body">Age and location checks were introduced before enabling top-ups. Users in restricted
+            states could still access solo games and free friend battles.</div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-arrow">↗</div>
+          <div class="insight-title">KYC guidance before submission</div>
+          <div class="insight-body">Most failed verifications were caused by poor lighting, cropped IDs, or unclear
+            photos. Pre-submission guidance reduced these failures. Two free attempts were introduced to manage cost.
+          </div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-arrow">↗</div>
+          <div class="insight-title">Duplicate KYC reduction</div>
+          <div class="insight-body">Duplicate account creation was tied to account recovery attempts. An early recovery
+            path ("Do you have a verified Hyper account?") reduced redundant verifications.</div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-arrow">↗</div>
+          <div class="insight-title">Wait-state management</div>
+          <div class="insight-body">Average verification time was 3 minutes. A countdown progress indicator was added so
+            users could either wait or safely navigate home without abandoning the process.</div>
+        </div>
+      </div>
+
+      <div class="img-placeholder tall" style="margin-top: 2rem;">KYC flow — ID selection, photo guidance, verification
+        progress</div>
+    </div>
+  </section>
+
+  <!-- BEYOND ONBOARDING -->
+  <section>
+    <div class="container">
+      <span class="section-tag">Retention loops</span>
+      <h2>Closing the loop — <em>giving players reasons to return</em></h2>
+      <p>Onboarding was never the finish line. After players completed the initial flow, the experience needed systems
+        that would pull them back. Three loops were designed to work together.</p>
+
+      <div class="solution-flow">
+        <div class="solution-row">
+          <div class="solution-label">Discovery feed</div>
+          <div class="solution-content">A swipe-based game discovery feed helped surface games quickly and sustain
+            attention, modelled on short-form content behaviour. Game trailers were shown only for the selected game to
+            optimise performance.</div>
+        </div>
+        <div class="solution-row">
+          <div class="solution-label">Daily goals</div>
+          <div class="solution-content">Dashboard-level daily goal tracking gave players visible progress toward their
+            self-set earning target, anchoring return behaviour to personal intent rather than external incentives.
+          </div>
+        </div>
+        <div class="solution-row">
+          <div class="solution-label">Live tournaments</div>
+          <div class="solution-content">Large multiplayer tournaments ensured users had HPR in their balance from
+            winnings, creating natural repeat-play cycles. Live tournament banners surfaced time-sensitivity to drive
+            engagement.</div>
+        </div>
+      </div>
+
+      <div class="img-placeholder tall" style="margin-top: 2rem;">Post-onboarding experience — dashboard, daily goal,
+        live tournaments</div>
+    </div>
+  </section>
+
+  <!-- DESIGN SYSTEM -->
+  <section>
+    <div class="container">
+      <span class="section-tag">Design system</span>
+      <h2>Structure before pixels — <em>building the foundation</em></h2>
+      <p>Before shipping screens, I built a Figma design system that gave the team a shared language for the first time.
+        Typography scale (Instrument Sans for UI, Founder Grotesk for emphasis), a full colour system including grey
+        contrast ratios, button hierarchy with bonus-state variants, and detailed handoff documentation with numbered UI
+        breakdowns for every screen.</p>
+      <p>The system helped the team move faster and keep the experience consistent across platforms and sprints.</p>
+
+      <div class="img-placeholder tall" style="margin-top: 2rem;">Design system — type scale, colour tokens, component
+        library, handoff docs</div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section>
+    <div class="container">
+      <span class="section-tag">Results</span>
+      <h2>The redesign <em>delivered across all three targets</em></h2>
+      <p>The redesign shifted focus from immediate monetisation to long-term engagement — improving both conversion and
+        retention. Metrics moved substantially across every goal set at the start of the project.</p>
+
+      <div class="stats-row" style="margin-top: 2rem; border: 0.5px solid var(--border);">
+        <div class="stat-item">
+          <div class="stat-number">60%</div>
+          <div class="stat-label">First-time deposit rate<br><span style="color: var(--muted); font-size: 0.75rem;">Up
+              from ~10% pre-redesign</span></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">34%</div>
+          <div class="stat-label">D7 retention rate<br><span style="color: var(--muted); font-size: 0.75rem;">Up from
+              &lt;11% pre-redesign</span></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">★4.5</div>
+          <div class="stat-label">App Store rating<br><span style="color: var(--muted); font-size: 0.75rem;">On iOS
+              launch</span></div>
+        </div>
+      </div>
+
+      <blockquote>"The challenge wasn't just getting users to sign up — it was designing an onboarding experience that
+        could sustain engagement beyond the first session."</blockquote>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section>
+    <div class="container">
+      <span class="section-tag">Reflection</span>
+      <h2>What I learned</h2>
+
+      <div class="reflection-grid">
+        <div class="reflection-item" style="background: var(--teal-light)">
+          <div class="reflection-label">Trust before monetisation</div>
+          <div class="reflection-text">Introducing value before the ask — gameplay before top-up, social proof before
+            sign-up — was the single most impactful structural change. Users convert when they believe first.</div>
+        </div>
+        <div class="reflection-item" style="background: var(--teal-light)">
+          <div class="reflection-label">Compliance as UX</div>
+          <div class="reflection-text">KYC and age verification are often treated as legal checkboxes. Approaching them
+            as designed flows — with guidance, progress states, and recovery paths — meaningfully reduced both cost and
+            friction.</div>
+        </div>
+        <div class="reflection-item" style="background: var(--teal-light)">
+          <div class="reflection-label">Retention is a design problem</div>
+          <div class="reflection-text">Streaks, daily goals, and tournament loops weren't features bolted on — they were
+            the product. Retention needs to be designed into the core experience, not added after conversion.</div>
+        </div>
+        <div class="reflection-item" style="background: var(--teal-light)">
+          <div class="reflection-label">Systems multiply impact</div>
+          <div class="reflection-text">The design system and PRD process I built didn't just improve this launch — they
+            changed how the whole team works. Investing in the foundation pays compounding returns.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <div class="next-project">
+    <div class="next-label">Next project</div>
+    <a class="next-card" href="work-penciled.html">
+      <div>
+        <div class="next-card-title">Penciled (YC W24)</div>
+        <div class="next-card-sub">
+          Designing proactive scheduling for healthcare clinics · HealthTech · AI
+        </div>
+      </div>
+      <svg class="next-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 13L13 3M13 3H5M13 3V11" />
+      </svg>
+    </a>
   </div>
-</footer>
+
+  <footer>
+    <span class="footer-copy">© 2026 Emmanuel Odoemelam, GMT +1</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/emmanuelodoemelam" target="_blank">GitHub</a>
+      <a href="https://dribbble.com/emmanuel_odoemelam" target="_blank">Dribbble</a>
+    </div>
+  </footer>
 
 </body>
+
 </html>

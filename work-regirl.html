@@ -1,435 +1,380 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hyper — Emmanuel Odoemelam</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" class="nav-brand">
-        <img
-          src="Assets/General/avi.jpg"
-          alt="Emmanuel Odoemelam"
-          class="nav-profile-img"
-        />
-        <div class="nav-brand-text">
-          <span class="nav-name">Emmanuel Odoemelam</span>
-          <span class="nav-subtext"></span>
-        </div>
-      </a>
-      <button class="hamburger" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-links">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyper — Emmanuel Odoemelam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <nav>
+    <a href="/" class="nav-brand">
+      <img src="Assets/General/avi.jpg" alt="Emmanuel Odoemelam" class="nav-profile-img" />
+      <div class="nav-brand-text">
+        <span class="nav-name">Emmanuel Odoemelam</span>
+        <span class="nav-subtext"></span>
+      </div>
+    </a>
+    <button class="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="lab.html">Lab</a></li>
+    </ul>
+  </nav>
+
+  <div class="mobile-drawer">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h2 class="drawer-title">Menu</h2>
+        <button class="drawer-close" aria-label="Close menu">&times;</button>
+      </div>
+      <ul class="drawer-links">
+        <li><a href="/">Home</a></li>
         <li><a href="work.html" class="active">Work</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="lab.html">Lab</a></li>
       </ul>
-    </nav>
+      <div class="drawer-footer">
+        <p class="drawer-footer-text">
+          © 2025 Emmanuel Odoemelam<br />Lagos, Nigeria
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-overlay"></div>
 
-    <div class="mobile-drawer">
-      <div class="drawer-content">
-        <div class="drawer-header">
-          <h2 class="drawer-title">Menu</h2>
-          <button class="drawer-close" aria-label="Close menu">&times;</button>
+  <!-- Case Hero -->
+  <div class="case-hero fade">
+    <!-- BACK LINK -->
+    <a href="work.html" class="back-link">
+      <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M11 6.5H2M2 6.5L6 2M2 6.5L6 11" />
+      </svg>
+      <span>Back to works</span>
+    </a>
+
+    <div class="case-eyebrow">Gaming · Mobile · 2024 – Present</div>
+    <h1 class="case-title">
+      Hyper — <em>Designing a social gaming platform for the US market</em>
+    </h1>
+    <p class="case-tagline">
+      Led end-to-end design of the v2 platform for Metaverse Magna, enabling a
+      successful iOS App Store launch, US market expansion, and a dramatic
+      reduction in KYC friction and support costs.
+    </p>
+    <div class="case-meta">
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Senior Product Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Company</div>
+        <div class="meta-value">Metaverse Magna</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Platform</div>
+        <div class="meta-value">iOS · Android</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value">2024 – Present</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Team</div>
+        <div class="meta-value">1 PM · 4 Engineers</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cover image -->
+  <div class="case-cover fade">
+    <!-- <img src="hyper-cover-wide.jpg" alt="Hyper app screens" /> -->
+    <div class="cover-ph">
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8">
+        <rect x="5" y="2" width="14" height="20" rx="2" />
+        <circle cx="12" cy="17" r="1.2" />
+        <path d="M9 6h6M9 9h4" />
+      </svg>
+      <span>Cover image — add hyper-cover-wide.jpg</span>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="case-body">
+    <!-- OVERVIEW -->
+    <div class="cs-section fade">
+      <div class="cs-label">Overview</div>
+      <h2 class="cs-heading">
+        A real-money gaming platform that needed to earn trust fast
+      </h2>
+      <div class="cs-text">
+        <p>
+          Hyper is a skill-based 1v1 duel and tournament platform where
+          players compete using in-game currency with real monetary value.
+          When I joined, the product needed a full v2 redesign to support a US
+          market launch on the iOS App Store — and the existing KYC and payout
+          flows were generating a high volume of support tickets and costly
+          manual verification.
+        </p>
+        <p>
+          My remit was broad: redesign the core app experience, own the
+          design-to-engineering handoff, and fix the compliance flows that
+          were bleeding time and money.
+        </p>
+      </div>
+
+      <div class="cs-outcomes">
+        <div class="cs-outcome">
+          <div class="cs-out-num">8K+</div>
+          <div class="cs-out-label">iOS downloads on US launch</div>
         </div>
-        <ul class="drawer-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="work.html" class="active">Work</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="lab.html">Lab</a></li>
-        </ul>
-        <div class="drawer-footer">
-          <p class="drawer-footer-text">
-            © 2025 Emmanuel Odoemelam<br />Lagos, Nigeria
-          </p>
+        <div class="cs-outcome">
+          <div class="cs-out-num">60%</div>
+          <div class="cs-out-label">Reduction in support tickets</div>
+        </div>
+        <div class="cs-outcome">
+          <div class="cs-out-num">$1.7K</div>
+          <div class="cs-out-label">Monthly verification cost saved</div>
         </div>
       </div>
     </div>
-    <div class="drawer-overlay"></div>
 
-    <!-- Case Hero -->
-    <div class="case-hero fade">
-      <!-- BACK LINK -->
-      <a href="work.html" class="back-link">
-        <svg
-          viewBox="0 0 13 13"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-        >
-          <path d="M11 6.5H2M2 6.5L6 2M2 6.5L6 11" />
-        </svg>
-        <span>Back to works</span>
-      </a>
+    <hr class="cs-divider" />
 
-      <div class="case-eyebrow">Gaming · Mobile · 2024 – Present</div>
-      <h1 class="case-title">
-        Hyper — <em>Designing a social gaming platform for the US market</em>
-      </h1>
-      <p class="case-tagline">
-        Led end-to-end design of the v2 platform for Metaverse Magna, enabling a
-        successful iOS App Store launch, US market expansion, and a dramatic
-        reduction in KYC friction and support costs.
-      </p>
-      <div class="case-meta">
-        <div class="meta-item">
-          <div class="meta-label">Role</div>
-          <div class="meta-value">Senior Product Designer</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Company</div>
-          <div class="meta-value">Metaverse Magna</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Platform</div>
-          <div class="meta-value">iOS · Android</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Timeline</div>
-          <div class="meta-value">2024 – Present</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Team</div>
-          <div class="meta-value">1 PM · 4 Engineers</div>
-        </div>
+    <!-- PROBLEM -->
+    <div class="cs-section fade">
+      <div class="cs-label">Problem</div>
+      <h2 class="cs-heading">Trust gaps at every critical moment</h2>
+      <div class="cs-text">
+        <p>
+          Users were dropping off at three points: onboarding (unclear value
+          proposition), KYC verification (confusing instructions and opaque
+          status), and cash-out (lack of confidence in the process). Each
+          failure had a direct cost — either in lost users or in manual
+          support intervention.
+        </p>
+        <p>
+          The existing design had grown organically and lacked a coherent
+          system. There were inconsistent components, no documented patterns,
+          and no clear handoff process between design and engineering — making
+          every iteration slow.
+        </p>
       </div>
+      <ul class="cs-list">
+        <li>High drop-off at KYC verification step</li>
+        <li>
+          Support team overwhelmed with "why is my withdrawal pending?"
+          tickets
+        </li>
+        <li>No design system — inconsistent UI patterns across the app</li>
+        <li>
+          No PRD process — misaligned expectations between design and
+          engineering
+        </li>
+      </ul>
     </div>
 
-    <!-- Cover image -->
-    <div class="case-cover fade">
-      <!-- <img src="hyper-cover-wide.jpg" alt="Hyper app screens" /> -->
-      <div class="cover-ph">
-        <svg
-          width="56"
-          height="56"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="0.8"
-        >
-          <rect x="5" y="2" width="14" height="20" rx="2" />
-          <circle cx="12" cy="17" r="1.2" />
-          <path d="M9 6h6M9 9h4" />
-        </svg>
-        <span>Cover image — add hyper-cover-wide.jpg</span>
-      </div>
-    </div>
-
-    <!-- Body -->
-    <div class="case-body">
-      <!-- OVERVIEW -->
-      <div class="cs-section fade">
-        <div class="cs-label">Overview</div>
-        <h2 class="cs-heading">
-          A real-money gaming platform that needed to earn trust fast
-        </h2>
-        <div class="cs-text">
-          <p>
-            Hyper is a skill-based 1v1 duel and tournament platform where
-            players compete using in-game currency with real monetary value.
-            When I joined, the product needed a full v2 redesign to support a US
-            market launch on the iOS App Store — and the existing KYC and payout
-            flows were generating a high volume of support tickets and costly
-            manual verification.
-          </p>
-          <p>
-            My remit was broad: redesign the core app experience, own the
-            design-to-engineering handoff, and fix the compliance flows that
-            were bleeding time and money.
-          </p>
-        </div>
-
-        <div class="cs-outcomes">
-          <div class="cs-outcome">
-            <div class="cs-out-num">8K+</div>
-            <div class="cs-out-label">iOS downloads on US launch</div>
-          </div>
-          <div class="cs-outcome">
-            <div class="cs-out-num">60%</div>
-            <div class="cs-out-label">Reduction in support tickets</div>
-          </div>
-          <div class="cs-outcome">
-            <div class="cs-out-num">$1.7K</div>
-            <div class="cs-out-label">Monthly verification cost saved</div>
-          </div>
-        </div>
-      </div>
-
-      <hr class="cs-divider" />
-
-      <!-- PROBLEM -->
-      <div class="cs-section fade">
-        <div class="cs-label">Problem</div>
-        <h2 class="cs-heading">Trust gaps at every critical moment</h2>
-        <div class="cs-text">
-          <p>
-            Users were dropping off at three points: onboarding (unclear value
-            proposition), KYC verification (confusing instructions and opaque
-            status), and cash-out (lack of confidence in the process). Each
-            failure had a direct cost — either in lost users or in manual
-            support intervention.
-          </p>
-          <p>
-            The existing design had grown organically and lacked a coherent
-            system. There were inconsistent components, no documented patterns,
-            and no clear handoff process between design and engineering — making
-            every iteration slow.
-          </p>
-        </div>
-        <ul class="cs-list">
-          <li>High drop-off at KYC verification step</li>
-          <li>
-            Support team overwhelmed with "why is my withdrawal pending?"
-            tickets
-          </li>
-          <li>No design system — inconsistent UI patterns across the app</li>
-          <li>
-            No PRD process — misaligned expectations between design and
-            engineering
-          </li>
-        </ul>
-      </div>
-
-      <!-- Image pair -->
-      <div class="cs-image-pair fade">
-        <div class="cs-image">
-          <!-- <img src="hyper-before-1.jpg" alt="Before state — KYC flow" /> -->
-          <div class="cs-image-ph">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-            </svg>
-            <span>Before — KYC flow</span>
-          </div>
-        </div>
-        <div class="cs-image">
-          <!-- <img src="hyper-before-2.jpg" alt="Before state — payout flow" /> -->
-          <div class="cs-image-ph">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-            </svg>
-            <span>Before — payout flow</span>
-          </div>
-        </div>
-      </div>
-      <p class="cs-caption fade">
-        Before: inconsistent KYC and payout screens with no clear progress state
-        or error handling.
-      </p>
-
-      <hr class="cs-divider" />
-
-      <!-- APPROACH -->
-      <div class="cs-section fade">
-        <div class="cs-label">Approach</div>
-        <h2 class="cs-heading">System-first, <em>then screens</em></h2>
-        <div class="cs-text">
-          <p>
-            Before touching the UI, I audited every existing screen and mapped
-            the full user journey — identifying every trust gap, every unclear
-            state, and every place users were likely to stall. I ran a short
-            workshop with the PM and founders to align on priorities.
-          </p>
-          <p>
-            I then built a foundational design system — colour tokens,
-            typography scale, component library — that would make every future
-            iteration faster and more consistent. This became the basis for the
-            first company PRD, giving engineering a clear, structured handoff
-            document for the first time.
-          </p>
-        </div>
-        <ul class="cs-list">
-          <li>
-            Audited all existing screens and mapped end-to-end user journey
-          </li>
-          <li>Ran prioritisation workshop with PM and founders</li>
-          <li>
-            Built the company's first Figma design system and component library
-          </li>
-          <li>
-            Authored the first PRD — covering flows, states, edge cases, and
-            handoff specs
-          </li>
-          <li>
-            Redesigned onboarding, game flow, KYC, and cash-out in parallel
-            sprints
-          </li>
-        </ul>
-      </div>
-
-      <!-- Single image -->
-      <div class="cs-image fade">
-        <!-- <img src="hyper-design-system.jpg" alt="Hyper design system" /> -->
+    <!-- Image pair -->
+    <div class="cs-image-pair fade">
+      <div class="cs-image">
+        <!-- <img src="hyper-before-1.jpg" alt="Before state — KYC flow" /> -->
         <div class="cs-image-ph">
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="0.9"
-          >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
             <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
           </svg>
-          <span>Design system overview</span>
+          <span>Before — KYC flow</span>
         </div>
       </div>
-      <p class="cs-caption fade">
-        The Hyper design system — dark mode, purple CTAs, and a component
-        library built to scale with the team.
-      </p>
-
-      <hr class="cs-divider" />
-
-      <!-- KYC -->
-      <div class="cs-section fade">
-        <div class="cs-label">Key Work — Compliance UX</div>
-        <h2 class="cs-heading">
-          Making KYC feel less like a checkpoint, <em>more like a handshake</em>
-        </h2>
-        <div class="cs-text">
-          <p>
-            The biggest lever was the KYC and cash-out flow redesign. Users were
-            confused about what was needed, why it was needed, and what
-            "pending" meant. I redesigned the flow with three principles:
-            clarity at every step (what you need to do and why), visible
-            progress (where you are in the process), and immediate feedback
-            (what happens next).
-          </p>
-          <p>
-            I also added a proactive education layer — short inline explanations
-            of why verification is required — which reduced "why do you need my
-            ID?" support tickets significantly.
-          </p>
-        </div>
-      </div>
-
-      <div class="cs-image-pair fade">
-        <div class="cs-image">
-          <!-- <img src="hyper-kyc-1.jpg" alt="KYC redesign" /> -->
-          <div class="cs-image-ph">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1"
-            >
-              <rect x="5" y="2" width="14" height="20" rx="2" />
-            </svg>
-            <span>KYC — step 1</span>
-          </div>
-        </div>
-        <div class="cs-image">
-          <!-- <img src="hyper-kyc-2.jpg" alt="KYC status screen" /> -->
-          <div class="cs-image-ph">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1"
-            >
-              <rect x="5" y="2" width="14" height="20" rx="2" />
-            </svg>
-            <span>KYC — status</span>
-          </div>
-        </div>
-      </div>
-      <p class="cs-caption fade">
-        Redesigned KYC: clear step indicators, inline context, and explicit
-        status states eliminated the ambiguity that drove support tickets.
-      </p>
-
-      <hr class="cs-divider" />
-
-      <!-- REFLECTION -->
-      <div class="cs-section fade">
-        <div class="cs-label">Reflection</div>
-        <h2 class="cs-heading">What I learned</h2>
-        <div class="cs-text">
-          <p>
-            This project reinforced how much leverage a designer has when they
-            work on the system, not just the screen. The PRD and design system I
-            built didn't just make this launch better — they changed how the
-            whole team works.
-          </p>
-          <p>
-            Designing for real-money mechanics also deepened my understanding of
-            trust UX: users aren't just evaluating whether a product is usable,
-            they're evaluating whether they can trust it with their money. Every
-            loading state, every status message, every micro-copy choice is a
-            trust signal.
-          </p>
-        </div>
-
-        <div class="cs-quote">
-          <p>
-            "Every loading state, every status message, every micro-copy choice
-            is a trust signal."
-          </p>
+      <div class="cs-image">
+        <!-- <img src="hyper-before-2.jpg" alt="Before state — payout flow" /> -->
+        <div class="cs-image-ph">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+          </svg>
+          <span>Before — payout flow</span>
         </div>
       </div>
     </div>
-    <!-- /case-body -->
+    <p class="cs-caption fade">
+      Before: inconsistent KYC and payout screens with no clear progress state
+      or error handling.
+    </p>
 
-    <!-- Next project -->
-    <div class="next-project fade">
-      <div class="next-label">Next project</div>
-      <a class="next-card" href="work-penciled.html">
-        <div>
-          <div class="next-card-title">Penciled (YC W24)</div>
-          <div class="next-card-sub">
-            AI scheduling for healthcare clinics · HealthTech
-          </div>
-        </div>
-        <svg
-          class="next-arrow"
-          viewBox="0 0 16 16"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-        >
-          <path d="M3 13L13 3M13 3H5M13 3V11" />
+    <hr class="cs-divider" />
+
+    <!-- APPROACH -->
+    <div class="cs-section fade">
+      <div class="cs-label">Approach</div>
+      <h2 class="cs-heading">System-first, <em>then screens</em></h2>
+      <div class="cs-text">
+        <p>
+          Before touching the UI, I audited every existing screen and mapped
+          the full user journey — identifying every trust gap, every unclear
+          state, and every place users were likely to stall. I ran a short
+          workshop with the PM and founders to align on priorities.
+        </p>
+        <p>
+          I then built a foundational design system — colour tokens,
+          typography scale, component library — that would make every future
+          iteration faster and more consistent. This became the basis for the
+          first company PRD, giving engineering a clear, structured handoff
+          document for the first time.
+        </p>
+      </div>
+      <ul class="cs-list">
+        <li>
+          Audited all existing screens and mapped end-to-end user journey
+        </li>
+        <li>Ran prioritisation workshop with PM and founders</li>
+        <li>
+          Built the company's first Figma design system and component library
+        </li>
+        <li>
+          Authored the first PRD — covering flows, states, edge cases, and
+          handoff specs
+        </li>
+        <li>
+          Redesigned onboarding, game flow, KYC, and cash-out in parallel
+          sprints
+        </li>
+      </ul>
+    </div>
+
+    <!-- Single image -->
+    <div class="cs-image fade">
+      <!-- <img src="hyper-design-system.jpg" alt="Hyper design system" /> -->
+      <div class="cs-image-ph">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.9">
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <path d="M3 9h18M9 21V9" />
         </svg>
-      </a>
+        <span>Design system overview</span>
+      </div>
+    </div>
+    <p class="cs-caption fade">
+      The Hyper design system — dark mode, purple CTAs, and a component
+      library built to scale with the team.
+    </p>
+
+    <hr class="cs-divider" />
+
+    <!-- KYC -->
+    <div class="cs-section fade">
+      <div class="cs-label">Key Work — Compliance UX</div>
+      <h2 class="cs-heading">
+        Making KYC feel less like a checkpoint, <em>more like a handshake</em>
+      </h2>
+      <div class="cs-text">
+        <p>
+          The biggest lever was the KYC and cash-out flow redesign. Users were
+          confused about what was needed, why it was needed, and what
+          "pending" meant. I redesigned the flow with three principles:
+          clarity at every step (what you need to do and why), visible
+          progress (where you are in the process), and immediate feedback
+          (what happens next).
+        </p>
+        <p>
+          I also added a proactive education layer — short inline explanations
+          of why verification is required — which reduced "why do you need my
+          ID?" support tickets significantly.
+        </p>
+      </div>
     </div>
 
-    <footer>
-      <span class="footer-copy">© 2026 Emmanuel Odoemelam, GMT +1</span>
-      <div class="footer-links">
-        <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank">LinkedIn</a>
-        <a href="https://github.com/emmanuelodoemelam" target="_blank">Github</a>
-        <a href="https://dribbble.com/emmanuel_odoemelam" target="_blank">Dribbble</a>
+    <div class="cs-image-pair fade">
+      <div class="cs-image">
+        <!-- <img src="hyper-kyc-1.jpg" alt="KYC redesign" /> -->
+        <div class="cs-image-ph">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="5" y="2" width="14" height="20" rx="2" />
+          </svg>
+          <span>KYC — step 1</span>
+        </div>
       </div>
-    </footer>
-  </body>
+      <div class="cs-image">
+        <!-- <img src="hyper-kyc-2.jpg" alt="KYC status screen" /> -->
+        <div class="cs-image-ph">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="5" y="2" width="14" height="20" rx="2" />
+          </svg>
+          <span>KYC — status</span>
+        </div>
+      </div>
+    </div>
+    <p class="cs-caption fade">
+      Redesigned KYC: clear step indicators, inline context, and explicit
+      status states eliminated the ambiguity that drove support tickets.
+    </p>
+
+    <hr class="cs-divider" />
+
+    <!-- REFLECTION -->
+    <div class="cs-section fade">
+      <div class="cs-label">Reflection</div>
+      <h2 class="cs-heading">What I learned</h2>
+      <div class="cs-text">
+        <p>
+          This project reinforced how much leverage a designer has when they
+          work on the system, not just the screen. The PRD and design system I
+          built didn't just make this launch better — they changed how the
+          whole team works.
+        </p>
+        <p>
+          Designing for real-money mechanics also deepened my understanding of
+          trust UX: users aren't just evaluating whether a product is usable,
+          they're evaluating whether they can trust it with their money. Every
+          loading state, every status message, every micro-copy choice is a
+          trust signal.
+        </p>
+      </div>
+
+      <div class="cs-quote">
+        <p>
+          "Every loading state, every status message, every micro-copy choice
+          is a trust signal."
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- /case-body -->
+
+  <!-- Next project -->
+  <div class="next-project fade">
+    <div class="next-label">Next project</div>
+    <a class="next-card" href="work-penciled.html">
+      <div>
+        <div class="next-card-title">Penciled (YC W24)</div>
+        <div class="next-card-sub">
+          AI scheduling for healthcare clinics · HealthTech
+        </div>
+      </div>
+      <svg class="next-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 13L13 3M13 3H5M13 3V11" />
+      </svg>
+    </a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2026 Emmanuel Odoemelam, GMT +1</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/emmanuelodoemelam" target="_blank">GitHub</a>
+      <a href="https://dribbble.com/emmanuel_odoemelam" target="_blank">Dribbble</a>
+    </div>
+  </footer>
+</body>
+
 </html>

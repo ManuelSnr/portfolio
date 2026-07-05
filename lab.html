@@ -1,91 +1,88 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lab — Emmanuel Odoemelam</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <!-- NAV -->
-    <nav>
-      <a href="/" class="nav-brand">
-        <img
-          src="Assets/General/avi.jpg"
-          alt="Emmanuel Odoemelam"
-          class="nav-profile-img"
-        />
-        <div class="nav-brand-text">
-          <span class="nav-name">Emmanuel Odoemelam</span>
-          <span class="nav-subtext"></span>
-        </div>
-      </a>
-      <button class="hamburger" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-links">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab — Emmanuel Odoemelam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-brand">
+      <img src="Assets/General/avi.jpg" alt="Emmanuel Odoemelam" class="nav-profile-img" />
+      <div class="nav-brand-text">
+        <span class="nav-name">Emmanuel Odoemelam</span>
+        <span class="nav-subtext"></span>
+      </div>
+    </a>
+    <button class="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/work">Work</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/lab" class="active">Lab</a></li>
+    </ul>
+  </nav>
+
+  <div class="mobile-drawer">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h2 class="drawer-title">Menu</h2>
+        <button class="drawer-close" aria-label="Close menu">&times;</button>
+      </div>
+      <ul class="drawer-links">
+        <li><a href="/">Home</a></li>
         <li><a href="/work">Work</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/lab" class="active">Lab</a></li>
       </ul>
-    </nav>
-
-    <div class="mobile-drawer">
-      <div class="drawer-content">
-        <div class="drawer-header">
-          <h2 class="drawer-title">Menu</h2>
-          <button class="drawer-close" aria-label="Close menu">&times;</button>
-        </div>
-        <ul class="drawer-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/work">Work</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/lab" class="active">Lab</a></li>
-        </ul>
-        <div class="drawer-footer">
-          <p class="drawer-footer-text">
-            © 2025 Emmanuel Odoemelam<br />Lagos, Nigeria
-          </p>
-        </div>
+      <div class="drawer-footer">
+        <p class="drawer-footer-text">
+          © 2025 Emmanuel Odoemelam<br />Lagos, Nigeria
+        </p>
       </div>
     </div>
-    <div class="drawer-overlay"></div>
+  </div>
+  <div class="drawer-overlay"></div>
 
-    <!-- PAGE HEADER -->
-    <div class="page-header fade">
-      <h1 class="page-heading">The Lab<em>.</em></h1>
-      <p class="page-sub">
-        Visual explorations, shipped products, and things I've made for the love
-        of making.
-      </p>
-    </div>
+  <!-- PAGE HEADER -->
+  <div class="page-header fade">
+    <h1 class="page-heading">The Lab<em>.</em></h1>
+    <p class="page-sub">
+      Visual explorations, shipped products, and things I've made for the love
+      of making.
+    </p>
+  </div>
 
-    <!-- TAB BAR -->
-    <div class="tab-bar fade">
-      <button class="tab-btn active" data-tab="visual">
-        Visual Design
-        <span class="tab-count">12</span>
-      </button>
-      <button class="tab-btn" data-tab="products">
-        Products
-        <span class="tab-count">4</span>
-      </button>
-    </div>
+  <!-- TAB BAR -->
+  <div class="tab-bar fade">
+    <button class="tab-btn active" data-tab="visual">
+      Visual Design
+      <span class="tab-count">12</span>
+    </button>
+    <button class="tab-btn" data-tab="products">
+      Products
+      <span class="tab-count">4</span>
+    </button>
+  </div>
 
-    <!-- ═══════════════════════════════════════
+  <!-- ═══════════════════════════════════════
        TAB 1 — VISUAL DESIGN
   ════════════════════════════════════════ -->
-    <div class="tab-panel active" id="panel-visual">
-      <!--
+  <div class="tab-panel active" id="panel-visual">
+    <!--
       HOW TO ADD YOUR IMAGES / VIDEOS:
       Each .visual-item is one tile. You can mix images and videos freely.
 
@@ -106,455 +103,325 @@
         </div>
     -->
 
-      <div class="visual-grid">
-        <!-- Row A left: tall -->
-        <div class="visual-item">
-          <video
-            autoplay
-            muted
-            loop
-            playsinline
-            src="/Assets/General/reel_portfolio.mp4"
-          ></video>
-          <div class="play-badge">
-            <svg viewBox="0 0 10 10" fill="currentColor">
-              <polygon points="2,1 9,5 2,9" />
-            </svg>
-          </div>
-          <div class="visual-overlay">…</div>
-          <div class="visual-overlay">
-            <span class="visual-label">Hyper Onboarding</span>
-            <span class="visual-type">Figma · AE</span>
-          </div>
+    <div class="visual-grid">
+      <!-- Row A left: tall -->
+      <div class="visual-item">
+        <video autoplay muted loop playsinline src="/Assets/General/reel_portfolio.mp4"></video>
+        <div class="play-badge">
+          <svg viewBox="0 0 10 10" fill="currentColor">
+            <polygon points="2,1 9,5 2,9" />
+          </svg>
         </div>
-
-        <!-- Row A right: two stacked -->
-        <div class="visual-item">
-          <div class="visual-placeholder sq">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span>UI Shot</span>
-          </div>
-          <div class="visual-overlay">
-            <span class="visual-label">Theya Dashboard</span>
-            <span class="visual-type">Mobile · UI</span>
-          </div>
+        <div class="visual-overlay">…</div>
+        <div class="visual-overlay">
+          <span class="visual-label">Hyper Onboarding</span>
+          <span class="visual-type">Figma · AE</span>
         </div>
+      </div>
 
-        <div class="visual-item">
-          <div class="visual-placeholder sq">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-            >
-              <circle cx="12" cy="12" r="8" />
-              <polygon points="10,8 16,12 10,16" />
-            </svg>
-            <span>Motion</span>
-          </div>
-          <div class="visual-overlay">
-            <span class="visual-label">Hyper Game State</span>
-            <span class="visual-type">Animation</span>
-          </div>
-          <div class="play-badge">
-            <svg viewBox="0 0 10 10" fill="currentColor">
-              <polygon points="2,1 9,5 2,9" />
-            </svg>
-          </div>
+      <!-- Row A right: two stacked -->
+      <div class="visual-item">
+        <div class="visual-placeholder sq">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span>UI Shot</span>
         </div>
-
-        <!-- Left: wide -->
-        <div class="visual-item">
-          <div class="visual-placeholder wide">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span>UI Shot</span>
-          </div>
-          <div class="visual-overlay">
-            <span class="visual-label">Penciled Scheduling</span>
-            <span class="visual-type">Web · UI</span>
-          </div>
+        <div class="visual-overlay">
+          <span class="visual-label">Theya Dashboard</span>
+          <span class="visual-type">Mobile · UI</span>
         </div>
+      </div>
 
-        <!-- Right: tall -->
-        <div class="visual-item">
-          <div class="visual-placeholder tall">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span>UI Shot</span>
-          </div>
-          <div class="visual-overlay">
-            <span class="visual-label">Theya Wallet Flow</span>
-            <span class="visual-type">Mobile · UI</span>
-          </div>
+      <div class="visual-item">
+        <div class="visual-placeholder sq">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="8" />
+            <polygon points="10,8 16,12 10,16" />
+          </svg>
+          <span>Motion</span>
         </div>
-
-        <!-- Left: sq -->
-        <div class="visual-item">
-          <div class="visual-placeholder sq">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span>UI Shot</span>
-          </div>
-          <div class="visual-overlay">
-            <span class="visual-label">Hyper Game Thumbnail</span>
-            <span class="visual-type">Visual · Brand</span>
-          </div>
+        <div class="visual-overlay">
+          <span class="visual-label">Hyper Game State</span>
+          <span class="visual-type">Animation</span>
         </div>
-
-        <div class="visual-item">
-          <div class="visual-placeholder wide">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span>UI Shot</span>
-          </div>
-          <div class="visual-overlay">
-            <span class="visual-label">Hyper Leaderboard</span>
-            <span class="visual-type">Mobile · UI</span>
-          </div>
+        <div class="play-badge">
+          <svg viewBox="0 0 10 10" fill="currentColor">
+            <polygon points="2,1 9,5 2,9" />
+          </svg>
         </div>
+      </div>
 
-        <div class="visual-item">
-          <div class="visual-placeholder sq">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span>UI Shot</span>
-          </div>
-          <div class="visual-overlay">
-            <span class="visual-label">LuvlyFans Creator Dashboard</span>
-            <span class="visual-type">Web · UI</span>
-          </div>
+      <!-- Left: wide -->
+      <div class="visual-item">
+        <div class="visual-placeholder wide">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span>UI Shot</span>
         </div>
-
-        <div class="visual-item">
-          <div class="visual-placeholder sq">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-            >
-              <circle cx="12" cy="12" r="8" />
-              <polygon points="10,8 16,12 10,16" />
-            </svg>
-            <span>Motion</span>
-          </div>
-          <div class="visual-overlay">
-            <span class="visual-label">Hyper Paywall Animation</span>
-            <span class="visual-type">Animation</span>
-          </div>
-          <div class="play-badge">
-            <svg viewBox="0 0 10 10" fill="currentColor">
-              <polygon points="2,1 9,5 2,9" />
-            </svg>
-          </div>
+        <div class="visual-overlay">
+          <span class="visual-label">Penciled Scheduling</span>
+          <span class="visual-type">Web · UI</span>
         </div>
+      </div>
 
-        <div class="visual-item">
-          <div class="visual-placeholder wide">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span>UI Shot</span>
-          </div>
-          <div class="visual-overlay">
-            <span class="visual-label">KIDport Brand Identity</span>
-            <span class="visual-type">Brand · Identity</span>
-          </div>
+      <!-- Right: tall -->
+      <div class="visual-item">
+        <div class="visual-placeholder tall">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span>UI Shot</span>
         </div>
-
-        <div class="visual-item">
-          <div class="visual-placeholder tall">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span>UI Shot</span>
-          </div>
-          <div class="visual-overlay">
-            <span class="visual-label">TaraCares MIMOSA</span>
-            <span class="visual-type">Mobile · UI</span>
-          </div>
+        <div class="visual-overlay">
+          <span class="visual-label">Theya Wallet Flow</span>
+          <span class="visual-type">Mobile · UI</span>
         </div>
+      </div>
 
-        <div class="visual-item">
-          <div class="visual-placeholder sq">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span>UI Shot</span>
-          </div>
-          <div class="visual-overlay">
-            <span class="visual-label">Layup In-App Guide Builder</span>
-            <span class="visual-type">Web · UI</span>
-          </div>
+      <!-- Left: sq -->
+      <div class="visual-item">
+        <div class="visual-placeholder sq">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span>UI Shot</span>
+        </div>
+        <div class="visual-overlay">
+          <span class="visual-label">Hyper Game Thumbnail</span>
+          <span class="visual-type">Visual · Brand</span>
+        </div>
+      </div>
+
+      <div class="visual-item">
+        <div class="visual-placeholder wide">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span>UI Shot</span>
+        </div>
+        <div class="visual-overlay">
+          <span class="visual-label">Hyper Leaderboard</span>
+          <span class="visual-type">Mobile · UI</span>
+        </div>
+      </div>
+
+      <div class="visual-item">
+        <div class="visual-placeholder sq">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span>UI Shot</span>
+        </div>
+        <div class="visual-overlay">
+          <span class="visual-label">LuvlyFans Creator Dashboard</span>
+          <span class="visual-type">Web · UI</span>
+        </div>
+      </div>
+
+      <div class="visual-item">
+        <div class="visual-placeholder sq">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="8" />
+            <polygon points="10,8 16,12 10,16" />
+          </svg>
+          <span>Motion</span>
+        </div>
+        <div class="visual-overlay">
+          <span class="visual-label">Hyper Paywall Animation</span>
+          <span class="visual-type">Animation</span>
+        </div>
+        <div class="play-badge">
+          <svg viewBox="0 0 10 10" fill="currentColor">
+            <polygon points="2,1 9,5 2,9" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="visual-item">
+        <div class="visual-placeholder wide">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span>UI Shot</span>
+        </div>
+        <div class="visual-overlay">
+          <span class="visual-label">KIDport Brand Identity</span>
+          <span class="visual-type">Brand · Identity</span>
+        </div>
+      </div>
+
+      <div class="visual-item">
+        <div class="visual-placeholder tall">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span>UI Shot</span>
+        </div>
+        <div class="visual-overlay">
+          <span class="visual-label">TaraCares MIMOSA</span>
+          <span class="visual-type">Mobile · UI</span>
+        </div>
+      </div>
+
+      <div class="visual-item">
+        <div class="visual-placeholder sq">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span>UI Shot</span>
+        </div>
+        <div class="visual-overlay">
+          <span class="visual-label">Layup In-App Guide Builder</span>
+          <span class="visual-type">Web · UI</span>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ═══════════════════════════════════════
+  <!-- ═══════════════════════════════════════
        TAB 2 — PRODUCTS BUILT
   ════════════════════════════════════════ -->
-    <div class="tab-panel" id="panel-products">
-      <div class="products-grid">
-        <!-- Hyper -->
-        <div class="product-card">
-          <div class="product-hero">
-            <!--
+  <div class="tab-panel" id="panel-products">
+    <div class="products-grid">
+      <!-- Hyper -->
+      <div class="product-card">
+        <div class="product-hero">
+          <!--
             Replace with:
             <img src="hyper-hero.jpg" alt="Hyper" />
           -->
-            <div class="hero-placeholder">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1"
-              >
-                <rect x="5" y="2" width="14" height="20" rx="2" />
-                <circle cx="12" cy="17" r="1" />
-              </svg>
-              <span>Hero Image</span>
-            </div>
-            <span class="status-tag status-live">Live</span>
+          <div class="hero-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="5" y="2" width="14" height="20" rx="2" />
+              <circle cx="12" cy="17" r="1" />
+            </svg>
+            <span>Hero Image</span>
           </div>
-          <div class="product-body">
-            <div class="product-eyebrow">Gaming · Mobile</div>
-            <div class="product-name">Hyper</div>
-            <div class="product-desc">
-              Skill-based 1v1 duel and tournament gaming platform. Players
-              compete using in-game currency with real monetary value. 8,000+
-              iOS downloads.
-            </div>
-            <a class="product-cta" href="https://hypergames.gg" target="_blank">
-              View product
-              <svg
-                viewBox="0 0 12 12"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path d="M2 10L10 2M10 2H4M10 2v6" />
-              </svg>
-            </a>
-          </div>
+          <span class="status-tag status-live">Live</span>
         </div>
-
-        <!-- LuvlyFans -->
-        <div class="product-card">
-          <div class="product-hero">
-            <div class="hero-placeholder">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1"
-              >
-                <circle cx="12" cy="8" r="4" />
-                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-              </svg>
-              <span>Hero Image</span>
-            </div>
-            <span class="status-tag status-live">Live</span>
+        <div class="product-body">
+          <div class="product-eyebrow">Gaming · Mobile</div>
+          <div class="product-name">Hyper</div>
+          <div class="product-desc">
+            Skill-based 1v1 duel and tournament gaming platform. Players
+            compete using in-game currency with real monetary value. 8,000+
+            iOS downloads.
           </div>
-          <div class="product-body">
-            <div class="product-eyebrow">Creator Economy · Web</div>
-            <div class="product-name">LuvlyFans</div>
-            <div class="product-desc">
-              UK-based creator monetization platform with 85%/80% creator
-              revenue split. Supports CCBill, Paxum, and crypto payouts.
-            </div>
-            <a class="product-cta" href="#" target="_blank">
-              View product
-              <svg
-                viewBox="0 0 12 12"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path d="M2 10L10 2M10 2H4M10 2v6" />
-              </svg>
-            </a>
-          </div>
+          <a class="product-cta" href="https://hypergames.gg" target="_blank">
+            View product
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 10L10 2M10 2H4M10 2v6" />
+            </svg>
+          </a>
         </div>
+      </div>
 
-        <!-- HyperMetaverse -->
-        <div class="product-card">
-          <div class="product-hero">
-            <div class="hero-placeholder">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              <span>Hero Image</span>
-            </div>
-            <span class="status-tag status-wip">In Progress</span>
+      <!-- LuvlyFans -->
+      <div class="product-card">
+        <div class="product-hero">
+          <div class="hero-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+            <span>Hero Image</span>
           </div>
-          <div class="product-body">
-            <div class="product-eyebrow">Gaming · Publisher Site</div>
-            <div class="product-name">HyperMetaverse</div>
-            <div class="product-desc">
-              Hypercasual games publisher landing page. SayGames-inspired
-              layout, lime green on near-black, Paytone One typeface.
-            </div>
-            <a class="product-cta" href="#" target="_blank">
-              View site
-              <svg
-                viewBox="0 0 12 12"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path d="M2 10L10 2M10 2H4M10 2v6" />
-              </svg>
-            </a>
-          </div>
+          <span class="status-tag status-live">Live</span>
         </div>
+        <div class="product-body">
+          <div class="product-eyebrow">Creator Economy · Web</div>
+          <div class="product-name">LuvlyFans</div>
+          <div class="product-desc">
+            UK-based creator monetization platform with 85%/80% creator
+            revenue split. Supports CCBill, Paxum, and crypto payouts.
+          </div>
+          <a class="product-cta" href="#" target="_blank">
+            View product
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 10L10 2M10 2H4M10 2v6" />
+            </svg>
+          </a>
+        </div>
+      </div>
 
-        <!-- KIDport -->
-        <div class="product-card">
-          <div class="product-hero">
-            <div class="hero-placeholder">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1"
-              >
-                <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" />
-              </svg>
-              <span>Hero Image</span>
-            </div>
-            <span class="status-tag status-concept">Brand</span>
+      <!-- HyperMetaverse -->
+      <div class="product-card">
+        <div class="product-hero">
+          <div class="hero-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
+            <span>Hero Image</span>
           </div>
-          <div class="product-body">
-            <div class="product-eyebrow">ChildTech · Brand</div>
-            <div class="product-name">KIDport</div>
-            <div class="product-desc">
-              Childcare analytics company brand identity. Clean, trustworthy
-              visual language for a B2B analytics platform serving childcare
-              providers.
-            </div>
-            <a class="product-cta" href="#" target="_blank">
-              View brand
-              <svg
-                viewBox="0 0 12 12"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path d="M2 10L10 2M10 2H4M10 2v6" />
-              </svg>
-            </a>
+          <span class="status-tag status-wip">In Progress</span>
+        </div>
+        <div class="product-body">
+          <div class="product-eyebrow">Gaming · Publisher Site</div>
+          <div class="product-name">HyperMetaverse</div>
+          <div class="product-desc">
+            Hypercasual games publisher landing page. SayGames-inspired
+            layout, lime green on near-black, Paytone One typeface.
           </div>
+          <a class="product-cta" href="#" target="_blank">
+            View site
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 10L10 2M10 2H4M10 2v6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- KIDport -->
+      <div class="product-card">
+        <div class="product-hero">
+          <div class="hero-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" />
+            </svg>
+            <span>Hero Image</span>
+          </div>
+          <span class="status-tag status-concept">Brand</span>
+        </div>
+        <div class="product-body">
+          <div class="product-eyebrow">ChildTech · Brand</div>
+          <div class="product-name">KIDport</div>
+          <div class="product-desc">
+            Childcare analytics company brand identity. Clean, trustworthy
+            visual language for a B2B analytics platform serving childcare
+            providers.
+          </div>
+          <a class="product-cta" href="#" target="_blank">
+            View brand
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 10L10 2M10 2H4M10 2v6" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- FOOTER -->
-    <footer>
-      <span class="footer-copy">© 2026 Emmanuel Odoemelam, GMT +1</span>
-      <div class="footer-links">
-        <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank">LinkedIn</a>
-        <a href="https://github.com/emmanuelodoemelam" target="_blank">Github</a>
-        <a href="https://dribbble.com/emmanuel_odoemelam" target="_blank">Dribbble</a>
-      </div>
-    </footer>
-  </body>
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">© 2026 Emmanuel Odoemelam, GMT +1</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/emmanuelodoemelam" target="_blank">GitHub</a>
+      <a href="https://dribbble.com/emmanuel_odoemelam" target="_blank">Dribbble</a>
+    </div>
+  </footer>
+</body>
+
 </html>
