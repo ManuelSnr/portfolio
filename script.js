@@ -830,6 +830,14 @@ document.addEventListener("DOMContentLoaded", function () {
 function initGithubCalendar() {
   const grids = document.querySelectorAll(".github-grid");
   if (grids.length > 0) {
+    // Create tooltip element
+    let tooltip = document.querySelector(".github-tooltip");
+    if (!tooltip) {
+      tooltip = document.createElement("div");
+      tooltip.className = "github-tooltip";
+      document.body.appendChild(tooltip);
+    }
+
     async function renderCustomGithubCalendar(username) {
       try {
         const res = await fetch(`https://github-contributions-api.deno.dev/${username}.json`);
@@ -884,7 +892,18 @@ function initGithubCalendar() {
             const countText = day.contributionCount === 0 ? "No" : day.contributionCount;
             const dateObj = new Date(day.date + "T00:00:00");
             const dateString = dateObj.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-            box.title = `${countText} contribution${day.contributionCount === 1 ? '' : 's'} on ${dateString}`;
+            
+            // Custom Tooltip events
+            box.addEventListener("mouseenter", () => {
+              tooltip.innerHTML = `<strong>${countText} contribution${day.contributionCount === 1 ? '' : 's'}</strong> on ${dateString}`;
+              tooltip.classList.add("visible");
+              const rect = box.getBoundingClientRect();
+              tooltip.style.left = rect.left + rect.width / 2 + window.scrollX + "px";
+              tooltip.style.top = rect.top + window.scrollY + "px";
+            });
+            box.addEventListener("mouseleave", () => {
+              tooltip.classList.remove("visible");
+            });
             
             const colIndex = Math.floor(index / 7);
             box.style.animationDelay = `${colIndex * 0.02}s`;
