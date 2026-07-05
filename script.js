@@ -863,11 +863,7 @@ function initGithubCalendar() {
           if (monthsContainer) monthsContainer.appendChild(monthCell);
         });
 
-        // Right-align the very last month label so it doesn't get clipped by overflow: hidden
-        if (lastInnerSpan) {
-          lastInnerSpan.style.left = "auto";
-          lastInnerSpan.style.right = "0";
-        }
+        // Removed manual right alignment since overflow is handled in CSS
 
         const days = data.contributions.flat();
         

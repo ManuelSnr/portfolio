@@ -4278,6 +4278,7 @@ blockquote {
   flex-direction: column;
   overflow-x: hidden;
   width: 100%;
+  padding-right: 15px;
 }
 
 .github-months {
@@ -4329,8 +4330,10 @@ blockquote {
   grid-auto-columns: var(--gh-box-size);
   gap: var(--gh-box-gap);
   width: 100%;
-  overflow-x: hidden; /* Hide excess columns on small screens instead of scrolling */
-  justify-content: flex-end; /* Keep the most recent days visible */
+  overflow-x: hidden;
+  /* Hide excess columns on small screens instead of scrolling */
+  justify-content: flex-end;
+  /* Keep the most recent days visible */
 }
 
 .github-box {
@@ -4344,8 +4347,15 @@ blockquote {
 
 /* Entry Animation */
 @keyframes calendarPop {
-  0% { opacity: 0; transform: scale(0.3); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .github-grid .github-box {
@@ -4383,6 +4393,7 @@ blockquote {
     --gh-box-size: 8px;
     --gh-box-gap: 2px;
   }
+
   .github-wrapper {
     padding: 16px;
   }
