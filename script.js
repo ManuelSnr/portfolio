@@ -283,14 +283,14 @@ function initTabs() {
         const wrapper = tabBar.closest(".sticky-tab-wrapper");
         const nav = document.querySelector("nav");
         const navHeight = nav ? nav.getBoundingClientRect().height : 0;
-        
+
         let targetTop = 0;
         if (wrapper) {
           targetTop = wrapper.getBoundingClientRect().top + window.scrollY;
         } else {
           targetTop = tabBar.getBoundingClientRect().top + window.scrollY;
         }
-        
+
         // If we are scrolled past the tab bar's original position, scroll back up instantly
         // BEFORE swapping panels to prevent the browser from jumping to the bottom
         if (window.scrollY > targetTop - navHeight) {
@@ -828,74 +828,76 @@ document.addEventListener("DOMContentLoaded", function () {
 // GITHUB CALENDAR
 // ═══════════════════════════════════════════════════════════════
 function initGithubCalendar() {
-  const grid = document.getElementById("github-grid");
-  if (grid) {
+  const grids = document.querySelectorAll(".github-grid");
+  if (grids.length > 0) {
     async function renderCustomGithubCalendar(username) {
-      const title = document.getElementById("github-title");
-      if (!grid) return;
-
       try {
         const res = await fetch(`https://github-contributions-api.deno.dev/${username}.json`);
         if (!res.ok) throw new Error("Failed to fetch contributions");
         const data = await res.json();
-        
-        grid.innerHTML = ""; // Clear loading state
-        if (title) title.textContent = `${data.totalContributions} contributions in the last year`;
 
-        const monthsContainer = document.getElementById("github-months");
-        if (monthsContainer) monthsContainer.innerHTML = "";
-
-        let lastMonth = -1;
-        let lastInnerSpan = null;
-        data.contributions.forEach((col) => {
-          if (col.length === 0) return;
-          const firstDay = new Date(col[0].date + "T00:00:00");
-          const month = firstDay.getMonth();
-          
-          const monthCell = document.createElement("span");
-          if (month !== lastMonth) {
-            const innerSpan = document.createElement("span");
-            innerSpan.textContent = firstDay.toLocaleDateString("en-US", { month: "short" });
-            monthCell.appendChild(innerSpan);
-            lastInnerSpan = innerSpan;
-            lastMonth = month;
-          }
-          if (monthsContainer) monthsContainer.appendChild(monthCell);
+        // Update titles if they exist
+        const titles = document.querySelectorAll(".github-title");
+        titles.forEach(title => {
+          title.textContent = `${data.totalContributions} contributions in the last year`;
         });
-
-        // Removed manual right alignment since overflow is handled in CSS
 
         const days = data.contributions.flat();
-        
-        days.forEach((day, index) => {
-          const box = document.createElement("div");
-          box.className = "github-box";
+
+        grids.forEach(grid => {
+          grid.innerHTML = ""; // Clear loading state
           
-          let level = 0;
-          if (day.contributionLevel === "FIRST_QUARTILE") level = 1;
-          if (day.contributionLevel === "SECOND_QUARTILE") level = 2;
-          if (day.contributionLevel === "THIRD_QUARTILE") level = 3;
-          if (day.contributionLevel === "FOURTH_QUARTILE") level = 4;
+          const wrapper = grid.closest(".github-wrapper");
+          const monthsContainer = wrapper ? wrapper.querySelector(".github-months") : null;
           
-          box.style.backgroundColor = `var(--gh-${level})`;
-          
-          // Tooltip
-          const countText = day.contributionCount === 0 ? "No" : day.contributionCount;
-          const dateObj = new Date(day.date + "T00:00:00"); // Parse correctly to avoid timezone shift
-          const dateString = dateObj.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-          box.title = `${countText} contribution${day.contributionCount === 1 ? '' : 's'} on ${dateString}`;
-          
-          // Calculate column index for staggered animation delay
-          const colIndex = Math.floor(index / 7);
-          // Add a slight wave delay from left to right (max ~1s)
-          box.style.animationDelay = `${colIndex * 0.02}s`;
-          
-          grid.appendChild(box);
+          if (monthsContainer) monthsContainer.innerHTML = "";
+
+          let lastMonth = -1;
+          data.contributions.forEach((col) => {
+            if (col.length === 0) return;
+            const firstDay = new Date(col[0].date + "T00:00:00");
+            const month = firstDay.getMonth();
+            
+            const monthCell = document.createElement("span");
+            if (month !== lastMonth) {
+              const innerSpan = document.createElement("span");
+              innerSpan.textContent = firstDay.toLocaleDateString("en-US", { month: "short" });
+              monthCell.appendChild(innerSpan);
+              lastMonth = month;
+            }
+            if (monthsContainer) monthsContainer.appendChild(monthCell);
+          });
+
+          // Render boxes
+          days.forEach((day, index) => {
+            const box = document.createElement("div");
+            box.className = "github-box";
+            
+            let level = 0;
+            if (day.contributionLevel === "FIRST_QUARTILE") level = 1;
+            if (day.contributionLevel === "SECOND_QUARTILE") level = 2;
+            if (day.contributionLevel === "THIRD_QUARTILE") level = 3;
+            if (day.contributionLevel === "FOURTH_QUARTILE") level = 4;
+            
+            box.style.backgroundColor = `var(--gh-${level})`;
+            
+            const countText = day.contributionCount === 0 ? "No" : day.contributionCount;
+            const dateObj = new Date(day.date + "T00:00:00");
+            const dateString = dateObj.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+            box.title = `${countText} contribution${day.contributionCount === 1 ? '' : 's'} on ${dateString}`;
+            
+            const colIndex = Math.floor(index / 7);
+            box.style.animationDelay = `${colIndex * 0.02}s`;
+            
+            grid.appendChild(box);
+          });
         });
-        
+
       } catch (err) {
         console.error("Error loading custom GitHub calendar:", err);
-        grid.innerHTML = '<div class="github-loading">Could not load contributions graph.</div>';
+        grids.forEach(grid => {
+          grid.innerHTML = '<div class="github-loading">Could not load contributions graph.</div>';
+        });
       }
     }
 
