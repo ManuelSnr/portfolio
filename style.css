@@ -1845,13 +1845,32 @@ nav {
   border: 1px solid var(--rule);
 }
 
-/* ── TAB BAR (Lab page) ── */
+/* ── TAB BAR ── */
 .tab-bar {
   max-width: var(--max);
-  margin: 32px auto 0;
+  margin: 32px auto -2px;
   padding: 0 var(--side);
   display: flex;
   gap: 0;
+}
+
+.sticky-tab-wrapper .sticky-header {
+  position: sticky;
+  top: 120px;
+  z-index: 990;
+  background-color: var(--bg);
+  padding-top: 32px;
+  padding-bottom: 16px;
+}
+
+.sticky-tab-wrapper .tab-bar {
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .sticky-tab-wrapper .sticky-header {
+    top: 88px;
+  }
 }
 
 /* Tab bar border for lab page only */

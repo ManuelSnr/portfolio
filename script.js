@@ -284,6 +284,29 @@ function initTabs() {
       const targetPanel = document.getElementById("panel-" + target);
       if (targetPanel) {
         targetPanel.classList.add("active");
+        
+        // Scroll to the tab bar if we're scrolled past it
+        const tabBar = btn.closest(".tab-bar");
+        if (tabBar) {
+          const wrapper = tabBar.closest(".sticky-tab-wrapper");
+          const nav = document.querySelector("nav");
+          const navHeight = nav ? nav.getBoundingClientRect().height : 0;
+          
+          let targetTop = 0;
+          if (wrapper) {
+            targetTop = wrapper.getBoundingClientRect().top + window.scrollY;
+          } else {
+            targetTop = tabBar.getBoundingClientRect().top + window.scrollY;
+          }
+          
+          // If we are scrolled past the tab bar's original position, scroll back up
+          if (window.scrollY > targetTop - navHeight) {
+            window.scrollTo({
+              top: targetTop - navHeight,
+              behavior: "smooth"
+            });
+          }
+        }
       }
     });
   });
