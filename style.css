@@ -4443,3 +4443,90 @@ blockquote {
     padding: 16px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   ADPLIST BANNER
+   ═══════════════════════════════════════════════════════════════ */
+.adplist-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: 40px;
+  gap: 40px;
+}
+
+.adplist-content {
+  flex: 1;
+  max-width: 400px;
+}
+
+.adplist-title {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.adplist-subtext {
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.adplist-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  background: transparent;
+  border: 1.5px solid var(--ink);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.adplist-ghost-btn:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.adplist-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.adplist-image img {
+  max-width: 100%;
+  max-height: 200px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .adplist-card {
+    flex-direction: column-reverse;
+    padding: 24px;
+    gap: 24px;
+    text-align: center;
+  }
+  
+  .adplist-content {
+    max-width: 100%;
+  }
+  
+  .adplist-image {
+    justify-content: center;
+  }
+}
