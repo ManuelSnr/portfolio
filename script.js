@@ -933,17 +933,25 @@ function initGithubCalendar() {
             const dateObj = new Date(day.date + "T00:00:00");
             const dateString = dateObj.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
             
-            // Custom Tooltip events
-            box.addEventListener("mouseenter", () => {
-              tooltip.innerHTML = `<strong>${countText} contribution${day.contributionCount === 1 ? '' : 's'}</strong> on ${dateString}`;
-              tooltip.classList.add("visible");
-              const rect = box.getBoundingClientRect();
-              tooltip.style.left = rect.left + rect.width / 2 + window.scrollX + "px";
-              tooltip.style.top = rect.top + window.scrollY + "px";
-            });
-            box.addEventListener("mouseleave", () => {
-              tooltip.classList.remove("visible");
-            });
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            if (dateObj > today) {
+              box.style.visibility = "hidden";
+              box.style.pointerEvents = "none";
+            } else {
+              // Custom Tooltip events
+              box.addEventListener("mouseenter", () => {
+                tooltip.innerHTML = `<strong>${countText} contribution${day.contributionCount === 1 ? '' : 's'}</strong> on ${dateString}`;
+                tooltip.classList.add("visible");
+                const rect = box.getBoundingClientRect();
+                tooltip.style.left = rect.left + rect.width / 2 + window.scrollX + "px";
+                tooltip.style.top = rect.top + window.scrollY + "px";
+              });
+              box.addEventListener("mouseleave", () => {
+                tooltip.classList.remove("visible");
+              });
+            }
             
             const colIndex = Math.floor(index / 7);
             box.style.animationDelay = `${colIndex * 0.02}s`;
