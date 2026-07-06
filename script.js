@@ -289,6 +289,31 @@ function initVisionChecklist() {
     });
   }
 
+  function playPopSound() {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (!audioCtx) return;
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.05);
+      
+      gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+      gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.01);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 0.1);
+    } catch (e) {
+      console.warn("AudioContext not supported", e);
+    }
+  }
+
   checkboxes.forEach((box) => {
     box.addEventListener("click", () => {
       const item = box.closest(".vision-item");
@@ -300,6 +325,7 @@ function initVisionChecklist() {
         box.classList.add("done");
         item.classList.add("done-item");
         playConfetti(box);
+        playPopSound();
       }
     });
   });
