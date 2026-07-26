@@ -4,425 +4,481 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lab — Emmanuel Odoemelam</title>
+  <title>Lab • Emmanuel Odoemelam</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js"></script>
+  <link rel="stylesheet" href="lab-style.css" />
+  <script src="lab-script.js" defer></script>
   <link rel="icon" type="image/jpeg" href="Assets/General/avi.jpg" />
 </head>
 
-<body>
-  <!-- NAV -->
-  <nav>
-    <a href="/" class="nav-brand">
-      <img src="Assets/General/avi.jpg" alt="Emmanuel Odoemelam" class="nav-profile-img" />
-      <div class="nav-brand-text">
-        <span class="nav-name">Emmanuel Odoemelam</span>
-        <span class="nav-subtext"></span>
-      </div>
-    </a>
-    <button class="hamburger" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <ul class="nav-links">
-      <li><a href="/work">Work</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/lab" class="active">Lab</a></li>
-    </ul>
-  </nav>
+<body class="lab-body">
 
-  <div class="mobile-drawer">
-    <div class="drawer-content">
-      <div class="drawer-header">
-        <h2 class="drawer-title">Menu</h2>
-        <button class="drawer-close" aria-label="Close menu">&times;</button>
+  <!-- UI Overlays -->
+  <div class="lab-ui">
+    <a href="/" class="lab-back-btn" aria-label="Back to Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      <span>Home</span>
+    </a>
+
+    <div class="lab-toggle-container">
+      <button class="lab-toggle-btn active random" id="layout-toggle">
+        <span class="toggle-text arranged">Survey</span>
+        <span class="toggle-text random">Explore</span>
+      </button>
+    </div>
+
+    <!-- Minimap (Only visible in Random mode) -->
+    <div class="minimap-container active" id="minimap">
+      <div class="minimap-dots" id="minimap-dots"></div>
+      <div class="minimap-user" id="minimap-user"></div>
+    </div>
+
+    <div class="drag-instructions random">Click & Drag to explore</div>
+  </div>
+
+  <div class="vignette-overlay"></div>
+
+  <!-- Modal -->
+  <div id="lab-modal" class="lab-modal">
+    <div class="lab-modal-backdrop" id="modal-backdrop"></div>
+    <div class="lab-modal-content">
+      <button class="lab-modal-close" id="modal-close" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="lab-modal-media-wrapper"
+        style="position: relative; width: 100%; height: calc(90vh - 100px); display: flex; align-items: center; justify-content: center;">
+        <div class="lab-spinner" id="modal-spinner"></div>
+        <div class="lab-modal-media-container" id="modal-media-container"
+          style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;"></div>
       </div>
-      <ul class="drawer-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/work">Work</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/lab" class="active">Lab</a></li>
-      </ul>
-      <div class="drawer-footer">
-        <p class="drawer-footer-text">
-          © 2025 Emmanuel Odoemelam<br />Lagos, Nigeria
-        </p>
+      <div class="lab-modal-info">
+        <span class="modal-label" id="modal-label"></span>
+        <span class="modal-type" id="modal-type"></span>
       </div>
     </div>
   </div>
-  <div class="drawer-overlay"></div>
 
-  <!-- PAGE HEADER -->
-  <div class="page-header fade">
-    <h1 class="page-heading">The Lab<em>.</em></h1>
-    <p class="page-sub">
-      Visual explorations, shipped products, and things I've made for the love
-      of making.
-    </p>
-  </div>
+  <!-- The Draggable Canvas -->
+  <div id="canvas-wrapper">
+    <div id="drag-canvas">
 
-  <!-- TAB BAR -->
-  <div class="tab-bar fade">
-    <button class="tab-btn active" data-tab="visual">
-      Visual Design
-      <span class="tab-count">12</span>
-    </button>
-    <button class="tab-btn" data-tab="products">
-      Products
-      <span class="tab-count">4</span>
-    </button>
-  </div>
-
-  <!-- ═══════════════════════════════════════
-       TAB 1 — VISUAL DESIGN
-  ════════════════════════════════════════ -->
-  <div class="tab-panel active" id="panel-visual">
-    <!--
-      HOW TO ADD YOUR IMAGES / VIDEOS:
-      Each .visual-item is one tile. You can mix images and videos freely.
-
-      For an image:
-        <div class="visual-item">
-          <img class="visual-media" src="your-file.jpg" alt="Description" />
-          <div class="visual-overlay">
-            <span class="visual-label">Your label</span>
-            <span class="visual-type">UI · Mobile</span>
-          </div>
-        </div>
-
-      For a video (autoplays muted, loops):
-        <div class="visual-item">
-          <video autoplay muted loop playsinline src="your-file.mp4"></video>
-          <div class="play-badge">…</div>
-          <div class="visual-overlay">…</div>
-        </div>
-    -->
-
-    <div class="visual-grid">
-      <!-- Row A left: tall -->
-      <div class="visual-item">
-        <video autoplay muted loop playsinline src="/Assets/General/reel_portfolio.mp4"></video>
-        <div class="play-badge">
-          <svg viewBox="0 0 10 10" fill="currentColor">
-            <polygon points="2,1 9,5 2,9" />
-          </svg>
-        </div>
-        <div class="visual-overlay">…</div>
-        <div class="visual-overlay">
-          <span class="visual-label">Hyper Onboarding</span>
-          <span class="visual-type">Figma · AE</span>
+      <!-- Item 1 -->
+      <div class="canvas-item">
+        <video class="visual-media" autoplay loop muted playsinline>
+          <source src="Assets/Visuals/Featured/Regirl website.mp4" type="video/mp4" />
+        </video>
+        <div class="canvas-overlay">
+          <span class="visual-label">Regirl</span>
+          <span class="visual-type">Web · E-commerce</span>
         </div>
       </div>
 
-      <!-- Row A right: two stacked -->
-      <div class="visual-item">
-        <div class="visual-placeholder sq">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-          </svg>
-          <span>UI Shot</span>
-        </div>
-        <div class="visual-overlay">
-          <span class="visual-label">Theya Dashboard</span>
-          <span class="visual-type">Mobile · UI</span>
+      <!-- Item 2 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Hyper.webp" alt="Hyper — Gaming Platform"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Hyper</span>
+          <span class="visual-type">UI · Gaming</span>
         </div>
       </div>
 
-      <div class="visual-item">
-        <div class="visual-placeholder sq">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <circle cx="12" cy="12" r="8" />
-            <polygon points="10,8 16,12 10,16" />
-          </svg>
-          <span>Motion</span>
-        </div>
-        <div class="visual-overlay">
-          <span class="visual-label">Hyper Game State</span>
-          <span class="visual-type">Animation</span>
-        </div>
-        <div class="play-badge">
-          <svg viewBox="0 0 10 10" fill="currentColor">
-            <polygon points="2,1 9,5 2,9" />
-          </svg>
+      <!-- Item 3 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Tournment details.png" alt="Tournament Details Screen"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Tournament Details</span>
+          <span class="visual-type">UI · Mobile</span>
         </div>
       </div>
 
-      <!-- Left: wide -->
-      <div class="visual-item">
-        <div class="visual-placeholder wide">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-          </svg>
-          <span>UI Shot</span>
-        </div>
-        <div class="visual-overlay">
-          <span class="visual-label">Penciled Scheduling</span>
-          <span class="visual-type">Web · UI</span>
+      <!-- Item 4 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/KYC gate.png" alt="KYC Gate Flow" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">KYC Gate</span>
+          <span class="visual-type">UI · Mobile</span>
         </div>
       </div>
 
-      <!-- Right: tall -->
-      <div class="visual-item">
-        <div class="visual-placeholder tall">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-          </svg>
-          <span>UI Shot</span>
-        </div>
-        <div class="visual-overlay">
-          <span class="visual-label">Theya Wallet Flow</span>
-          <span class="visual-type">Mobile · UI</span>
+      <!-- Item 5 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Reward system upfront.png" alt="Reward System"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Reward System</span>
+          <span class="visual-type">UI · Mobile</span>
         </div>
       </div>
 
-      <!-- Left: sq -->
-      <div class="visual-item">
-        <div class="visual-placeholder sq">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-          </svg>
-          <span>UI Shot</span>
-        </div>
-        <div class="visual-overlay">
-          <span class="visual-label">Hyper Game Thumbnail</span>
-          <span class="visual-type">Visual · Brand</span>
+      <!-- Item 6 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Reward breakdown modal.png" alt="Reward Breakdown Modal"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Reward Breakdown</span>
+          <span class="visual-type">UI · Mobile</span>
         </div>
       </div>
 
-      <div class="visual-item">
-        <div class="visual-placeholder wide">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-          </svg>
-          <span>UI Shot</span>
-        </div>
-        <div class="visual-overlay">
-          <span class="visual-label">Hyper Leaderboard</span>
-          <span class="visual-type">Mobile · UI</span>
+      <!-- Item 7 -->
+      <div class="canvas-item">
+        <video class="visual-media" autoplay loop muted playsinline>
+          <source src="Assets/Visuals/Featured/reel_portfolio.mp4" type="video/mp4" />
+        </video>
+        <div class="canvas-overlay">
+          <span class="visual-label">Portfolio Reel</span>
+          <span class="visual-type">Motion · Showreel</span>
         </div>
       </div>
 
-      <div class="visual-item">
-        <div class="visual-placeholder sq">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-          </svg>
-          <span>UI Shot</span>
-        </div>
-        <div class="visual-overlay">
-          <span class="visual-label">LuvlyFans Creator Dashboard</span>
-          <span class="visual-type">Web · UI</span>
+      <!-- Item 8 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Play again showing the reward for that position.png"
+          alt="Play Again Reward Screen" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Play Again Rewards</span>
+          <span class="visual-type">UI · Mobile</span>
         </div>
       </div>
 
-      <div class="visual-item">
-        <div class="visual-placeholder sq">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <circle cx="12" cy="12" r="8" />
-            <polygon points="10,8 16,12 10,16" />
-          </svg>
-          <span>Motion</span>
-        </div>
-        <div class="visual-overlay">
-          <span class="visual-label">Hyper Paywall Animation</span>
-          <span class="visual-type">Animation</span>
-        </div>
-        <div class="play-badge">
-          <svg viewBox="0 0 10 10" fill="currentColor">
-            <polygon points="2,1 9,5 2,9" />
-          </svg>
-        </div>
-      </div>
-
-      <div class="visual-item">
-        <div class="visual-placeholder wide">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-          </svg>
-          <span>UI Shot</span>
-        </div>
-        <div class="visual-overlay">
-          <span class="visual-label">KIDport Brand Identity</span>
+      <!-- Item 9 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Chordio.webp" alt="Chordio" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Chordio</span>
           <span class="visual-type">Brand · Identity</span>
         </div>
       </div>
 
-      <div class="visual-item">
-        <div class="visual-placeholder tall">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-          </svg>
-          <span>UI Shot</span>
-        </div>
-        <div class="visual-overlay">
-          <span class="visual-label">TaraCares MIMOSA</span>
-          <span class="visual-type">Mobile · UI</span>
+      <!-- Item 10 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/PHOTO-2026-02-21-12-21-53 3.jpg" alt="Design Process"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Behind the Scenes</span>
+          <span class="visual-type">Photography</span>
         </div>
       </div>
 
-      <div class="visual-item">
-        <div class="visual-placeholder sq">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-          </svg>
-          <span>UI Shot</span>
-        </div>
-        <div class="visual-overlay">
-          <span class="visual-label">Layup In-App Guide Builder</span>
-          <span class="visual-type">Web · UI</span>
+      <!-- Duplicated Items for massive cylinder scale -->
+
+      <!-- Item 11 -->
+      <div class="canvas-item">
+        <video class="visual-media" autoplay loop muted playsinline>
+          <source src="Assets/Visuals/Featured/Regirl website.mp4" type="video/mp4" />
+        </video>
+        <div class="canvas-overlay">
+          <span class="visual-label">Regirl</span>
+          <span class="visual-type">Web · E-commerce</span>
         </div>
       </div>
+
+      <!-- Item 12 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Hyper.webp" alt="Hyper — Gaming Platform"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Hyper</span>
+          <span class="visual-type">UI · Gaming</span>
+        </div>
+      </div>
+
+      <!-- Item 13 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Tournment details.png" alt="Tournament Details Screen"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Tournament Details</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 14 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/KYC gate.png" alt="KYC Gate Flow" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">KYC Gate</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 15 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Reward system upfront.png" alt="Reward System"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Reward System</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 16 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Reward breakdown modal.png" alt="Reward Breakdown Modal"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Reward Breakdown</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 17 -->
+      <div class="canvas-item">
+        <video class="visual-media" autoplay loop muted playsinline>
+          <source src="Assets/Visuals/Featured/reel_portfolio.mp4" type="video/mp4" />
+        </video>
+        <div class="canvas-overlay">
+          <span class="visual-label">Portfolio Reel</span>
+          <span class="visual-type">Motion · Showreel</span>
+        </div>
+      </div>
+
+      <!-- Item 18 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Play again showing the reward for that position.png"
+          alt="Play Again Reward Screen" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Play Again Rewards</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 19 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Chordio.webp" alt="Chordio" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Chordio</span>
+          <span class="visual-type">Brand · Identity</span>
+        </div>
+      </div>
+
+      <!-- Item 20 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/PHOTO-2026-02-21-12-21-53 3.jpg" alt="Design Process"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Behind the Scenes</span>
+          <span class="visual-type">Photography</span>
+        </div>
+      </div>
+
+
+
+      <!-- Item 1 -->
+      <div class="canvas-item">
+        <video class="visual-media" autoplay loop muted playsinline>
+          <source src="Assets/Visuals/Featured/Regirl website.mp4" type="video/mp4" />
+        </video>
+        <div class="canvas-overlay">
+          <span class="visual-label">Regirl</span>
+          <span class="visual-type">Web · E-commerce</span>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Hyper.webp" alt="Hyper — Gaming Platform"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Hyper</span>
+          <span class="visual-type">UI · Gaming</span>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Tournment details.png" alt="Tournament Details Screen"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Tournament Details</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/KYC gate.png" alt="KYC Gate Flow" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">KYC Gate</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Reward system upfront.png" alt="Reward System"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Reward System</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Reward breakdown modal.png" alt="Reward Breakdown Modal"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Reward Breakdown</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 7 -->
+      <div class="canvas-item">
+        <video class="visual-media" autoplay loop muted playsinline>
+          <source src="Assets/Visuals/Featured/reel_portfolio.mp4" type="video/mp4" />
+        </video>
+        <div class="canvas-overlay">
+          <span class="visual-label">Portfolio Reel</span>
+          <span class="visual-type">Motion · Showreel</span>
+        </div>
+      </div>
+
+      <!-- Item 8 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Play again showing the reward for that position.png"
+          alt="Play Again Reward Screen" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Play Again Rewards</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 9 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Chordio.webp" alt="Chordio" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Chordio</span>
+          <span class="visual-type">Brand · Identity</span>
+        </div>
+      </div>
+
+      <!-- Item 10 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/PHOTO-2026-02-21-12-21-53 3.jpg" alt="Design Process"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Behind the Scenes</span>
+          <span class="visual-type">Photography</span>
+        </div>
+      </div>
+
+      <!-- Duplicated Items for massive cylinder scale -->
+
+      <!-- Item 11 -->
+      <div class="canvas-item">
+        <video class="visual-media" autoplay loop muted playsinline>
+          <source src="Assets/Visuals/Featured/Regirl website.mp4" type="video/mp4" />
+        </video>
+        <div class="canvas-overlay">
+          <span class="visual-label">Regirl</span>
+          <span class="visual-type">Web · E-commerce</span>
+        </div>
+      </div>
+
+      <!-- Item 12 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Hyper.webp" alt="Hyper — Gaming Platform"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Hyper</span>
+          <span class="visual-type">UI · Gaming</span>
+        </div>
+      </div>
+
+      <!-- Item 13 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Tournment details.png" alt="Tournament Details Screen"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Tournament Details</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 14 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/KYC gate.png" alt="KYC Gate Flow" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">KYC Gate</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 15 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Reward system upfront.png" alt="Reward System"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Reward System</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 16 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Reward breakdown modal.png" alt="Reward Breakdown Modal"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Reward Breakdown</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 17 -->
+      <div class="canvas-item">
+        <video class="visual-media" autoplay loop muted playsinline>
+          <source src="Assets/Visuals/Featured/reel_portfolio.mp4" type="video/mp4" />
+        </video>
+        <div class="canvas-overlay">
+          <span class="visual-label">Portfolio Reel</span>
+          <span class="visual-type">Motion · Showreel</span>
+        </div>
+      </div>
+
+      <!-- Item 18 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/Play again showing the reward for that position.png"
+          alt="Play Again Reward Screen" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Play Again Rewards</span>
+          <span class="visual-type">UI · Mobile</span>
+        </div>
+      </div>
+
+      <!-- Item 19 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Chordio.webp" alt="Chordio" loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Chordio</span>
+          <span class="visual-type">Brand · Identity</span>
+        </div>
+      </div>
+
+      <!-- Item 20 -->
+      <div class="canvas-item">
+        <img class="visual-media" src="Assets/Visuals/Featured/PHOTO-2026-02-21-12-21-53 3.jpg" alt="Design Process"
+          loading="lazy" />
+        <div class="canvas-overlay">
+          <span class="visual-label">Behind the Scenes</span>
+          <span class="visual-type">Photography</span>
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <!-- ═══════════════════════════════════════
-       TAB 2 — PRODUCTS BUILT
-  ════════════════════════════════════════ -->
-  <div class="tab-panel" id="panel-products">
-    <div class="products-grid">
-      <!-- Hyper -->
-      <div class="product-card">
-        <div class="product-hero">
-          <!--
-            Replace with:
-            <img src="hyper-hero.jpg" alt="Hyper" />
-          -->
-          <div class="hero-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <rect x="5" y="2" width="14" height="20" rx="2" />
-              <circle cx="12" cy="17" r="1" />
-            </svg>
-            <span>Hero Image</span>
-          </div>
-          <span class="status-tag status-live">Live</span>
-        </div>
-        <div class="product-body">
-          <div class="product-eyebrow">Gaming · Mobile</div>
-          <div class="product-name">Hyper</div>
-          <div class="product-desc">
-            Skill-based 1v1 duel and tournament gaming platform. Players
-            compete using in-game currency with real monetary value. 8,000+
-            iOS downloads.
-          </div>
-          <a class="product-cta" href="https://hypergames.gg" target="_blank">
-            View product
-            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M2 10L10 2M10 2H4M10 2v6" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- LuvlyFans -->
-      <div class="product-card">
-        <div class="product-hero">
-          <div class="hero-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-            </svg>
-            <span>Hero Image</span>
-          </div>
-          <span class="status-tag status-live">Live</span>
-        </div>
-        <div class="product-body">
-          <div class="product-eyebrow">Creator Economy · Web</div>
-          <div class="product-name">LuvlyFans</div>
-          <div class="product-desc">
-            UK-based creator monetization platform with 85%/80% creator
-            revenue split. Supports CCBill, Paxum, and crypto payouts.
-          </div>
-          <a class="product-cta" href="#" target="_blank">
-            View product
-            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M2 10L10 2M10 2H4M10 2v6" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- HyperMetaverse -->
-      <div class="product-card">
-        <div class="product-hero">
-          <div class="hero-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span>Hero Image</span>
-          </div>
-          <span class="status-tag status-wip">In Progress</span>
-        </div>
-        <div class="product-body">
-          <div class="product-eyebrow">Gaming · Publisher Site</div>
-          <div class="product-name">HyperMetaverse</div>
-          <div class="product-desc">
-            Hypercasual games publisher landing page. SayGames-inspired
-            layout, lime green on near-black, Paytone One typeface.
-          </div>
-          <a class="product-cta" href="#" target="_blank">
-            View site
-            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M2 10L10 2M10 2H4M10 2v6" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- KIDport -->
-      <div class="product-card">
-        <div class="product-hero">
-          <div class="hero-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" />
-            </svg>
-            <span>Hero Image</span>
-          </div>
-          <span class="status-tag status-concept">Brand</span>
-        </div>
-        <div class="product-body">
-          <div class="product-eyebrow">ChildTech · Brand</div>
-          <div class="product-name">KIDport</div>
-          <div class="product-desc">
-            Childcare analytics company brand identity. Clean, trustworthy
-            visual language for a B2B analytics platform serving childcare
-            providers.
-          </div>
-          <a class="product-cta" href="#" target="_blank">
-            View brand
-            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M2 10L10 2M10 2H4M10 2v6" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-copy">© 2026 Emmanuel Odoemelam, GMT +1</span>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/emmanuel-odoemelam/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/ManuelSnr/" target="_blank">GitHub</a>
-      <a href="https://dribbble.com/emmanuel_odoemelam" target="_blank">Dribbble</a>
-    </div>
-  </footer>
 </body>
 
 </html>

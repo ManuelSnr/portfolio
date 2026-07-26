@@ -62,17 +62,31 @@
       <span class="status-dot"></span>
       Open to new opportunities
       <span class="status-divider"></span>
-      <a href="mailto:odoemelamuemmanuel@gmail.com" class="status-email">Email</a> x <a
-        href="https://github.com/ManuelSnr" target="_blank" class="status-email">GitHub</a>
+      <a href="mailto:odoemelamuemmanuel@gmail.com" class="status-email">Email</a> <!-- x <a
+        href="https://github.com/ManuelSnr" target="_blank" class="status-email">GitHub</a> -->
     </div>
     <h1 class="hero-heading">
-      Senior Product Designer,
-      <em>partnering with ambitious teams to build</em> products people trust.
+      Senior Product Designer, <em>turning ideas into products people trust.</em>
     </h1>
     <p class="hero-body">
-      I design and launch 0→1 products for startups and enterprise teams across fintech, AI, healthcare,
-      gaming, and Web3. Currently leading product design at <a href="https://hyper.mvm.gg/arcade" target="_blank">Hyper
-        Games</a>.
+      6 years of experience building 0→1 products that drive real revenue across ProcureTech, gaming, AI, healthcare,
+      and fintech. Currently leading and growing the design team at
+      <span class="company-pill" data-company="mvm">
+        <img src="Assets/Logos/hyper.png" alt="MVM Logo" class="company-pill-logo" />
+        <span class="company-pill-name">MVM</span>
+        <span class="company-pill-detail">
+          <span class="pill-detail-body">MVM is a skill-gaming provider powering RNG-free, real-money competition for
+            casinos
+            & sportsbooks. I lead design across the company's full product stack, from the B2B platform to
+            consumer-facing apps, Hyper & Sigma Games, and trade show presence.</span>
+          <span class="pill-social-links">
+            <a href="https://mvm.gg/" target="_blank" class="pill-social-link"><img src="Assets/General/internet.svg"
+                alt="Website" class="pill-social-icon" /></a>
+            <a href="https://www.linkedin.com/company/metaverse-magna/" target="_blank" class="pill-social-link"><img
+                src="Assets/General/linkedin.svg" alt="LinkedIn" class="pill-social-icon" /></a>
+          </span>
+        </span>
+      </span>, owning our B2B platform and consumer products.
     </p>
     <div class="hero-links">
       <a class="btn btn-dark" href="https://calendly.com/manuelsnr-design/coffee-chat" target="_blank">Book a
@@ -211,7 +225,7 @@
           </div>
         </div>
         <a href="lab.html" class="see-all-link" style="margin-top: 2rem; display: inline-block">
-          View more <sup>12</sup>
+          View more
         </a>
       </div>
     </div>
@@ -392,27 +406,39 @@
         </div>
         <div class="products-grid">
           <!-- Product 1 -->
-          <a href="lab.html" class="product-card" target="_blank">
+          <a href="#" class="product-card" data-product-id="regirl">
             <img src="Assets/Projects/Regirl/Content/Cover Image.webp" alt="Product 1" class="product-bg" />
             <span class="product-tag">End-to-end</span>
           </a>
 
           <!-- Product 2 -->
-          <a href="lab.html" class="product-card" target="_blank">
+          <a href="#" class="product-card" data-product-id="theya">
             <img src="Assets/Projects/Theya/Content/Cover image.webp" alt="Product 2" class="product-bg" />
             <span class="product-tag">Website Dev</span>
           </a>
 
           <!-- Product 3 -->
-          <a href="lab.html" class="product-card" target="_blank">
+          <a href="#" class="product-card" data-product-id="hyper">
             <img src="Assets/General/reel-thumbnail.jpg" alt="Product 3" class="product-bg" />
             <span class="product-tag">Website Dev</span>
           </a>
 
           <!-- Product 4 -->
-          <a href="lab.html" class="product-card" target="_blank">
+          <a href="#" class="product-card" data-product-id="resource">
             <img src="Assets/General/resource-3.jpg" alt="Product 4" class="product-bg" />
             <span class="product-tag">Website Dev</span>
+          </a>
+
+          <!-- Product 5 -->
+          <a href="#" class="product-card" data-product-id="product5">
+            <img src="Assets/General/resource-3.jpg" alt="Product 5" class="product-bg" />
+            <span class="product-tag">Design System</span>
+          </a>
+
+          <!-- Product 6 -->
+          <a href="#" class="product-card" data-product-id="product6">
+            <img src="Assets/Projects/Regirl/Content/Cover Image.webp" alt="Product 6" class="product-bg" />
+            <span class="product-tag">App Design</span>
           </a>
         </div>
         <!--  <a href="lab.html" class="see-all-link" style="margin-top: 2rem; display: inline-block">
@@ -430,9 +456,9 @@
     <div class="section-label">Impact by Numbers</div>
     <div class="impact-grid">
       <div class="impact-cell">
-        <div class="impact-num">$1.2M+</div>
+        <div class="impact-num">★4.7</div>
         <div class="impact-label">
-          Revenue following product overhaul at Theya
+          App Store Rating for Theya with over 15k vaults created.
         </div>
       </div>
       <div class="impact-cell">
@@ -827,6 +853,56 @@
       <a href="https://dribbble.com/emmanuel_odoemelam" target="_blank">Dribbble</a>
     </div>
   </footer>
+  <!-- Product Modal -->
+  <div class="product-modal-backdrop" id="product-modal">
+    <div class="product-modal-container">
+      <button class="product-modal-close" id="product-modal-close" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="product-modal-carousel" id="product-modal-carousel">
+        <!-- Images injected here -->
+      </div>
+      <div class="product-modal-nav">
+        <button class="carousel-prev" id="carousel-prev" aria-label="Previous image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <div class="carousel-dots" id="carousel-dots">
+          <!-- Dots injected here -->
+        </div>
+        <button class="carousel-next" id="carousel-next" aria-label="Next image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="product-modal-info">
+        <div class="product-info-top">
+          <div class="product-info-left">
+            <h3 class="product-modal-title" id="product-modal-title">Product Title</h3>
+            <span class="product-modal-range" id="product-modal-range">Range Text</span>
+          </div>
+          <div class="product-info-right">
+            <a href="#" class="product-modal-visit" id="product-modal-visit" target="_blank">
+              Visit
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 10L10 2M10 2H4M10 2v6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="product-info-bottom">
+          <p class="product-modal-desc" id="product-modal-desc">Product description goes here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>

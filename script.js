@@ -51,7 +51,7 @@ function addDragSupport(
 
     const x = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
     const y = e.type.includes("mouse") ? e.clientY : e.touches[0].clientY;
-    
+
     const deltaX = x - startX;
     const deltaY = Math.abs(y - startY);
 
@@ -97,7 +97,7 @@ function addDragSupport(
   function handleEnd() {
     if (!isDragging) return;
     isDragging = false;
-    
+
     const deltaX = currentX - startX;
     const currentIndex = getCurrentIndex();
     const maxIndex = getMaxIndex();
@@ -128,7 +128,7 @@ function addDragSupport(
   element.addEventListener("touchstart", handleStart, { passive: false });
   element.addEventListener("touchmove", handleMove, { passive: false });
   element.addEventListener("touchend", handleEnd);
-  
+
   // Mouse Events
   element.addEventListener("mousedown", handleStart);
   window.addEventListener("mousemove", handleMove);
@@ -272,9 +272,9 @@ function initVisionChecklist() {
     container.style.transform = "translate(-50%, -50%)";
     container.style.pointerEvents = "none";
     container.style.zIndex = "10";
-    
+
     element.appendChild(container);
-    
+
     const animation = lottie.loadAnimation({
       container: container,
       renderer: "svg",
@@ -282,7 +282,7 @@ function initVisionChecklist() {
       autoplay: true,
       path: "Assets/General/Confetti.json",
     });
-    
+
     animation.addEventListener("complete", () => {
       animation.destroy();
       container.remove();
@@ -299,14 +299,14 @@ function initVisionChecklist() {
       oscillator.type = "sine";
       oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
       oscillator.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.05);
-      
+
       gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
       gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.01);
       gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-      
+
       oscillator.connect(gainNode);
       gainNode.connect(audioCtx.destination);
-      
+
       oscillator.start();
       oscillator.stop(audioCtx.currentTime + 0.1);
     } catch (e) {
@@ -358,15 +358,14 @@ function initTabs() {
           targetTop = tabBar.getBoundingClientRect().top + window.scrollY;
         }
 
-        // If we are scrolled past the tab bar's original position, scroll back up instantly
-        // BEFORE swapping panels to prevent the browser from jumping to the bottom
-        if (window.scrollY > targetTop - navHeight) {
-          // Temporarily disable CSS smooth scrolling
-          document.documentElement.style.scrollBehavior = 'auto';
-          window.scrollTo(0, targetTop - navHeight);
-          // Re-enable CSS smooth scrolling
-          document.documentElement.style.scrollBehavior = '';
-        }
+        const isMobile = window.innerWidth <= 640;
+        const stickyOffset = isMobile ? 88 : 120;
+
+        // Always smooth scroll to bring the section into focus
+        window.scrollTo({
+          top: targetTop - stickyOffset,
+          behavior: 'smooth'
+        });
       }
 
       tabs.forEach((t) => t.classList.remove("active"));
@@ -801,11 +800,11 @@ function initVisionCarousel() {
     const gap = isMobile ? 16 : 24;
     const itemWidth = items[0].offsetWidth;
     const currentColumnWidth = itemWidth + gap;
-    
+
     // Calculate maxIndex dynamically based on actual width
     const visibleColumns = Math.max(1, Math.floor(carousel.parentElement.offsetWidth / currentColumnWidth));
     maxIndex = Math.max(0, totalColumns - visibleColumns);
-    
+
     // Ensure currentIndex doesn't exceed maxIndex after resize
     if (currentIndex > maxIndex) currentIndex = maxIndex;
 
@@ -888,7 +887,140 @@ document.addEventListener("DOMContentLoaded", function () {
   initResourcesCarousel();
   initMomentsCarousel();
   initGithubCalendar();
+  initCompanyPills();
 });
+
+// ═══════════════════════════════════════════════════════════════
+// COMPANY PILL EXPAND/COLLAPSE
+// ═══════════════════════════════════════════════════════════════
+function initCompanyPills() {
+  const pills = document.querySelectorAll(".company-pill[data-company]");
+  if (pills.length === 0) return;
+
+  function closeAll() {
+    document.querySelectorAll(".company-pill.expanded").forEach((pill) => {
+      pill.classList.remove("expanded");
+      const hero = pill.closest('.hero');
+      if (hero) hero.style.zIndex = "";
+    });
+  }
+
+  pills.forEach((pill) => {
+    // Create container to hold the original space
+    const container = document.createElement('span');
+    container.className = 'company-pill-container';
+
+    // Create invisible ghost to maintain dimensions in flow
+    const ghost = document.createElement('span');
+    ghost.className = 'company-pill-ghost';
+    const logo = pill.querySelector('.company-pill-logo');
+    const name = pill.querySelector('.company-pill-name');
+    if (logo) ghost.appendChild(logo.cloneNode(true));
+    if (name) ghost.appendChild(name.cloneNode(true));
+
+    // Wrap the pill
+    pill.parentNode.insertBefore(container, pill);
+    container.appendChild(ghost);
+    container.appendChild(pill); // pill becomes absolute inside the container
+
+    function expandPill() {
+      // Lock in the exact pixel width of the collapsed state for smooth px-to-px animation on close
+      pill.style.setProperty('--collapsed-width', `${ghost.offsetWidth + 2}px`);
+
+      // Smart placement: ensure the expanded card stays within its content container or viewport
+      const rect = container.getBoundingClientRect();
+      const expandedWidth = Math.min(280, window.innerWidth - 40);
+
+      let maxRight = window.innerWidth - 20;
+      let minLeft = 20;
+
+      // Find the text container bounding it
+      const contentContainer = pill.closest('.hero-body, .intro-body');
+      if (contentContainer) {
+        const containerRect = contentContainer.getBoundingClientRect();
+        // Respect the container's right boundary, but don't exceed the viewport
+        maxRight = Math.min(containerRect.right, window.innerWidth - 20);
+        minLeft = Math.max(containerRect.left, 20);
+      }
+
+      let targetLeft = 0;
+
+      if (rect.left + expandedWidth > maxRight) {
+        // Shift left to prevent right overflow
+        const shift = (rect.left + expandedWidth) - maxRight;
+        targetLeft = -shift;
+
+        // Guarantee it doesn't overflow the left edge either
+        if (rect.left + targetLeft < minLeft) {
+          targetLeft = minLeft - rect.left;
+        }
+      }
+
+      // Lock EXACT pixel values for flawless Safari/cross-browser interpolation
+      pill.style.setProperty('--collapsed-width', `${ghost.offsetWidth + 2}px`);
+      pill.style.setProperty('--expanded-width', `${expandedWidth}px`);
+      pill.style.setProperty('--detail-width', `${Math.min(248, window.innerWidth - 72)}px`);
+      pill.style.setProperty('--expand-x', `${targetLeft}px`);
+
+      pill.classList.add("expanded");
+
+      // Ensure hero container renders above the sticky tabs while pill is open
+      const hero = pill.closest('.hero');
+      if (hero) hero.style.zIndex = "999";
+    }
+
+    function collapsePill() {
+      pill.classList.remove("expanded");
+      const hero = pill.closest('.hero');
+      if (hero) hero.style.zIndex = "";
+    }
+
+    let hoverTimeout;
+
+    pill.addEventListener("mouseenter", () => {
+      if (window.matchMedia("(hover: hover)").matches) {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(() => {
+          closeAll();
+          expandPill();
+        }, 100);
+      }
+    });
+
+    pill.addEventListener("mouseleave", () => {
+      if (window.matchMedia("(hover: hover)").matches) {
+        clearTimeout(hoverTimeout);
+        collapsePill();
+      }
+    });
+
+    pill.addEventListener("click", (e) => {
+      if (e.target.closest(".pill-social-link")) return;
+
+      if (window.matchMedia("(hover: hover)").matches) {
+        e.preventDefault();
+        return;
+      }
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      const isOpen = pill.classList.contains("expanded");
+      closeAll();
+
+      if (!isOpen) {
+        expandPill();
+      }
+    });
+  });
+
+  // Close when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".company-pill")) {
+      closeAll();
+    }
+  });
+}
 
 // ═══════════════════════════════════════════════════════════════
 // GITHUB CALENDAR
@@ -920,10 +1052,10 @@ function initGithubCalendar() {
 
         grids.forEach(grid => {
           grid.innerHTML = ""; // Clear loading state
-          
+
           const wrapper = grid.closest(".github-wrapper");
           const monthsContainer = wrapper ? wrapper.querySelector(".github-months") : null;
-          
+
           if (monthsContainer) monthsContainer.innerHTML = "";
 
           let lastMonth = -1;
@@ -931,7 +1063,7 @@ function initGithubCalendar() {
             if (col.length === 0) return;
             const firstDay = new Date(col[0].date + "T00:00:00");
             const month = firstDay.getMonth();
-            
+
             const monthCell = document.createElement("span");
             if (month !== lastMonth) {
               const innerSpan = document.createElement("span");
@@ -946,22 +1078,22 @@ function initGithubCalendar() {
           days.forEach((day, index) => {
             const box = document.createElement("div");
             box.className = "github-box";
-            
+
             let level = 0;
             if (day.contributionLevel === "FIRST_QUARTILE") level = 1;
             if (day.contributionLevel === "SECOND_QUARTILE") level = 2;
             if (day.contributionLevel === "THIRD_QUARTILE") level = 3;
             if (day.contributionLevel === "FOURTH_QUARTILE") level = 4;
-            
+
             box.style.backgroundColor = `var(--gh-${level})`;
-            
+
             const countText = day.contributionCount === 0 ? "No" : day.contributionCount;
             const dateObj = new Date(day.date + "T00:00:00");
             const dateString = dateObj.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-            
+
             const today = new Date();
             today.setHours(0, 0, 0, 0);
-            
+
             if (dateObj > today) {
               box.style.visibility = "hidden";
               box.style.pointerEvents = "none";
@@ -978,10 +1110,10 @@ function initGithubCalendar() {
                 tooltip.classList.remove("visible");
               });
             }
-            
+
             const colIndex = Math.floor(index / 7);
             box.style.animationDelay = `${colIndex * 0.02}s`;
-            
+
             grid.appendChild(box);
           });
         });
@@ -997,3 +1129,216 @@ function initGithubCalendar() {
     renderCustomGithubCalendar("ManuelSnr");
   }
 }
+
+// ═══════════════════════════════════════════════════════════════
+// PAGE TRANSITION (LAB NAVIGATION)
+// ═══════════════════════════════════════════════════════════════
+document.addEventListener("DOMContentLoaded", () => {
+  const labLinks = document.querySelectorAll('a[href*="lab.html"]');
+  labLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const url = link.href;
+
+      const overlay = document.createElement('div');
+      overlay.className = 'page-transition-overlay';
+
+      const textContainer = document.createElement('div');
+      textContainer.className = 'page-transition-text';
+      overlay.appendChild(textContainer);
+
+      document.body.appendChild(overlay);
+
+      // Force reflow
+      overlay.offsetHeight;
+
+      overlay.classList.add('active');
+
+      const phrases = [
+        "实验室",
+        "Le Labo",
+        "Ụlọ Nnyocha",
+        "The Lab"
+      ];
+
+      // Start text sequence after 1s fill-up
+      setTimeout(() => {
+        textContainer.classList.add('visible');
+        textContainer.innerText = phrases[0];
+
+        let currentPhrase = 0;
+        let dotCount = 0;
+
+        const interval = setInterval(() => {
+          if (currentPhrase < phrases.length - 1) {
+            currentPhrase++;
+            textContainer.innerText = phrases[currentPhrase];
+          } else {
+            clearInterval(interval);
+          }
+        }, 1000); // 1s per phrase
+
+      }, 1000);
+
+      // Navigate after fill (1s) + text cycle (3s for first 3 phrases + 400ms for the last) = 4400ms total
+      setTimeout(() => {
+        window.location.href = url;
+      }, 4600);
+    });
+  });
+});
+
+// PRODUCT MODAL LOGIC
+// ═══════════════════════════════════════════════════════════════
+document.addEventListener("DOMContentLoaded", () => {
+  const productsData = {
+    "regirl": {
+      title: "Regirl",
+      range: "2023 - 2024",
+      url: "https://example.com/regirl",
+      desc: "An end-to-end e-commerce experience designed for modern luxury.",
+      images: [
+        "Assets/Projects/Regirl/Content/Cover Image.webp",
+        "Assets/Projects/Regirl/Content/Cover Image.webp" // duplicate to show carousel
+      ]
+    },
+    "theya": {
+      title: "Theya",
+      range: "2023 - 2024",
+      url: "https://example.com/theya",
+      desc: "Bitcoin's simplest self-custody app.",
+      images: [
+        "Assets/Projects/Theya/Content/Cover image.webp",
+        "Assets/Projects/Theya/Content/Cover image.webp"
+      ]
+    },
+    "hyper": {
+      title: "Hyper",
+      range: "2023 - 2024",
+      url: "https://example.com/hyper",
+      desc: "A fast-paced competitive mobile gaming platform.",
+      images: [
+        "Assets/General/reel-thumbnail.jpg"
+      ]
+    },
+    "resource": {
+      title: "UX Research Template Pack",
+      range: "2024",
+      url: "https://example.com/resource",
+      desc: "Used by 250+ designers to streamline their research workflow.",
+      images: [
+        "Assets/General/resource-3.jpg"
+      ]
+    },
+    "product5": {
+      title: "Product 5",
+      range: "2023",
+      url: "https://example.com/product5",
+      desc: "Description for Product 5.",
+      images: [
+        "Assets/General/resource-3.jpg"
+      ]
+    },
+    "product6": {
+      title: "Product 6",
+      range: "2022",
+      url: "https://example.com/product6",
+      desc: "Description for Product 6.Used by 250+ designers to streamline their research workflow.Used by 250+ designers to streamline their research workflow.Used by 250+ designers to streamline their research workflow.Used by 250+ designers to streamline their research workflow.Used by 250+ designers to streamline their research workflow.Used by 250+ designers to streamline their research workflow.Used by 250+ designers to streamline their research workflow.Used by 250+ designers to streamline their research workflow.Used by 250+ designers to streamline their research workflow.Used by 250+ designers to streamline their research workflow.",
+      images: [
+        "Assets/Projects/Regirl/Content/Cover Image.webp",
+        "Assets/Projects/Theya/Content/Cover image.webp",
+        "Assets/General/reel-thumbnail.jpg",
+        "Assets/General/resource-3.jpg",
+        "Assets/Projects/Theya/Content/Cover image.webp"
+      ]
+    }
+  };
+
+  const productCards = document.querySelectorAll('.product-card');
+  const modal = document.getElementById('product-modal');
+  const closeBtn = document.getElementById('product-modal-close');
+
+  if (!modal) return;
+
+  const titleEl = document.getElementById('product-modal-title');
+  const rangeEl = document.getElementById('product-modal-range');
+  const descEl = document.getElementById('product-modal-desc');
+  const visitBtn = document.getElementById('product-modal-visit');
+  const carouselEl = document.getElementById('product-modal-carousel');
+  const dotsContainer = document.getElementById('carousel-dots');
+
+  productCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      const id = card.getAttribute('data-product-id');
+      if (id) {
+        e.preventDefault();
+        const data = productsData[id];
+        if (!data) return;
+
+        // Populate Info
+        titleEl.innerText = data.title;
+        rangeEl.innerText = data.range;
+        descEl.innerText = data.desc;
+        visitBtn.href = data.url;
+
+        // Populate Carousel
+        carouselEl.innerHTML = '';
+        carouselEl.scrollLeft = 0; // Reset scroll position
+        document.querySelector('.product-modal-info').scrollTop = 0; // Reset text scroll position
+        dotsContainer.innerHTML = '';
+
+        data.images.forEach((imgSrc, idx) => {
+          const img = document.createElement('img');
+          img.src = imgSrc;
+          carouselEl.appendChild(img);
+
+          const dot = document.createElement('div');
+          dot.className = 'carousel-dot' + (idx === 0 ? ' active' : '');
+          dot.addEventListener('click', () => {
+            carouselEl.scrollTo({
+              left: carouselEl.offsetWidth * idx,
+              behavior: 'smooth'
+            });
+          });
+          dotsContainer.appendChild(dot);
+        });
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  const closeModal = () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  closeBtn.addEventListener('click', closeModal);
+
+  // Close on backdrop click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Carousel Navigation
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+
+  prevBtn.addEventListener('click', () => {
+    carouselEl.scrollBy({ left: -carouselEl.offsetWidth, behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    carouselEl.scrollBy({ left: carouselEl.offsetWidth, behavior: 'smooth' });
+  });
+
+  // Update dots on scroll
+  carouselEl.addEventListener('scroll', () => {
+    const index = Math.round(carouselEl.scrollLeft / carouselEl.offsetWidth);
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  });
+});

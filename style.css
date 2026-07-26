@@ -102,7 +102,7 @@ nav {
 }
 
 .nav-subtext::before {
-  content: "Currently building with AI.";
+  content: "Snr Product Designer • Design Engineer.";
 }
 
 .nav-brand:hover .nav-subtext::before {
@@ -345,6 +345,7 @@ nav {
   padding: 80px var(--side) 32px;
   max-width: var(--max);
   margin: 0 auto;
+  position: relative;
 }
 
 .hero-status {
@@ -420,7 +421,7 @@ nav {
   max-width: 620px;
 }
 
-.hero-body a {
+.hero-body a:not(.company-pill) {
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 0.5px;
@@ -428,8 +429,240 @@ nav {
   transition: text-decoration-color 0.2s;
 }
 
-.hero-body a:hover {
+/* Page Transition Overlay */
+.page-transition-overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #050505;
+  z-index: 99999;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.page-transition-overlay.active {
+  transform: scaleY(1);
+}
+
+.page-transition-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-family: 'Anton SC', sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.page-transition-text.visible {
+  opacity: 1;
+}
+
+.hero-body a:not(.company-pill):hover {
   text-decoration-color: var(--ink);
+}
+
+/* ── COMPANY PILL CONTAINER & GHOST ── */
+.company-pill-container {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  margin: 2px 2px;
+}
+
+.company-pill-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px 2px 4px;
+  border-radius: 14px;
+  /* Changed from 999px to prevent transition bubbling */
+  border: 1px solid transparent;
+  visibility: hidden;
+  white-space: nowrap;
+  height: 28px;
+  box-sizing: border-box;
+}
+
+/* ── COMPANY PILL BADGES ── */
+.company-pill {
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  /* Keep detail text on second line to prevent horizontal teleporting */
+  align-items: center;
+  align-content: flex-start;
+  /* Keep first line anchored to top */
+  gap: 6px;
+  padding: 2px 10px 2px 4px;
+  border-radius: 14px;
+  /* Changed from 999px to prevent transition bubbling */
+  border: 1px solid var(--rule);
+  background: var(--bg-surface);
+  text-decoration: none !important;
+  color: var(--ink) !important;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  z-index: 10;
+  white-space: nowrap;
+  width: var(--collapsed-width, calc(100% + 2px));
+  /* Dynamic px fallback prevents snapping */
+  max-width: var(--collapsed-width, calc(100% + 2px));
+  height: 28px;
+  box-sizing: border-box;
+}
+
+.company-pill:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.company-pill.expanded {
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: var(--expand-x, 0px);
+  border-radius: 14px;
+  padding: 12px 16px;
+  width: var(--expanded-width, 280px);
+  /* Pure px variable for flawless interpolation */
+  max-width: var(--expanded-width, 280px);
+  height: auto;
+  z-index: 100;
+}
+
+/* Shimmer */
+.company-pill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.45) 50%,
+      transparent 70%);
+  background-size: 200% 100%;
+  animation: pill-shimmer 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.company-pill.expanded::after {
+  animation: none;
+  background: none;
+}
+
+@keyframes pill-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.company-pill-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--rule);
+}
+
+.company-pill-name {
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+.company-pill.expanded .company-pill-name {
+  font-weight: 500;
+}
+
+/* Detail content expands inside the absolute pill */
+.company-pill-detail {
+  /* Permanently in flow to track padding changes smoothly */
+  visibility: hidden;
+  width: var(--detail-width, 248px);
+  /* Pure px variable */
+  flex-shrink: 0;
+  /* Prevents squishing when parent width snaps */
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease,
+    margin 0.3s ease,
+    visibility 0.35s;
+  margin-top: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.company-pill.expanded .company-pill-detail {
+  visibility: visible;
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
+.pill-detail-body {
+  display: block;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  font-weight: 300;
+  margin-bottom: 0;
+  white-space: normal;
+}
+
+.pill-social-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  pointer-events: none;
+  /* Disable clicks while collapsed */
+}
+
+.company-pill.expanded .pill-social-links {
+  pointer-events: auto;
+}
+
+.pill-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pill-social-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+}
+
+.pill-social-link:hover .pill-social-icon {
+  opacity: 1;
 }
 
 .hero-links {
@@ -694,7 +927,7 @@ nav {
   font-size: 15px;
 }
 
-.intro-body a {
+.intro-body a:not(.company-pill) {
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 0.5px;
@@ -702,7 +935,7 @@ nav {
   transition: text-decoration-color 0.2s;
 }
 
-.intro-body a:hover {
+.intro-body a:not(.company-pill):hover {
   text-decoration-color: var(--ink);
 }
 
@@ -4574,5 +4807,250 @@ blockquote {
     width: 100%;
     max-height: none;
     object-fit: cover;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRODUCT MODAL
+   ═══════════════════════════════════════════════════════════════ */
+.product-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--side);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.product-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.product-modal-container {
+  background: var(--bg);
+  width: 100%;
+  max-width: var(--max);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(20px) scale(0.98);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 90vh;
+}
+
+.product-modal-backdrop.active .product-modal-container {
+  transform: translateY(0) scale(1);
+}
+
+.product-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.product-modal-close:hover {
+  background: var(--white);
+  transform: scale(1.05);
+}
+
+.product-modal-close svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--ink);
+}
+
+.product-modal-carousel {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--bg-surface);
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.product-modal-carousel::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}
+
+.product-modal-carousel img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
+
+.product-modal-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+
+.carousel-prev,
+.carousel-next {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: var(--rule);
+}
+
+.carousel-prev svg,
+.carousel-next svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--ink-2);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rule);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.carousel-dot.active {
+  background: var(--ink);
+}
+
+.product-modal-info {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+}
+
+.product-info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.product-info-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-modal-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--ink);
+}
+
+.product-modal-range {
+  font-size: 14px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.product-modal-visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.product-modal-visit:hover {
+  background: var(--ink-2);
+  transform: translateY(-1px);
+}
+
+.product-modal-visit svg {
+  width: 12px;
+  height: 12px;
+}
+
+.product-info-bottom {
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
+}
+
+.product-modal-desc {
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .product-modal-backdrop {
+    padding: 16px;
+  }
+
+  .product-modal-info {
+    padding: 24px;
+  }
+
+  .product-info-top {
+    flex-direction: column;
+  }
+
+  .product-modal-visit {
+    width: 100%;
+    justify-content: center;
   }
 }

@@ -51,7 +51,23 @@ class NavigationManager {
     }
 
     const url = this.getNavigationUrl(page);
-    window.location.href = url;
+    
+    if (page === 'lab') {
+      const overlay = document.createElement('div');
+      overlay.className = 'page-transition-overlay';
+      document.body.appendChild(overlay);
+      
+      // Force reflow
+      overlay.offsetHeight;
+      
+      overlay.classList.add('active');
+      
+      setTimeout(() => {
+        window.location.href = url;
+      }, 650);
+    } else {
+      window.location.href = url;
+    }
   }
 
   updateNavigationLinks() {
@@ -62,6 +78,11 @@ class NavigationManager {
       const page = link.getAttribute("data-nav-page");
       const url = this.getNavigationUrl(page);
       link.href = url;
+      
+      // Intercept click for transitions
+      link.addEventListener('click', (e) => {
+        this.navigate(page, e);
+      });
     });
   }
 
