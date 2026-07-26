@@ -4818,7 +4818,8 @@ blockquote {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100vh; /* fallback */
+  height: 100dvh;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -4849,7 +4850,8 @@ blockquote {
   flex-direction: column;
   transform: translateY(20px) scale(0.98);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  max-height: 90vh;
+  max-height: 90vh; /* fallback */
+  max-height: 90dvh;
 }
 
 .product-modal-backdrop.active .product-modal-container {
@@ -4892,6 +4894,7 @@ blockquote {
   position: relative;
   display: flex;
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
