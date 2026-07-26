@@ -105,7 +105,7 @@ a {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.lab-toggle-btn.random::before {
+.lab-toggle-btn:not(.random)::before {
   transform: translateX(100%);
 }
 
