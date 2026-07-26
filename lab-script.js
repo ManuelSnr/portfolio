@@ -216,8 +216,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add('is-dragging');
     targetCanvasZ = -300; // Deep push back when grabbed
 
-    startX = clientX - targetCanvasX;
-    startY = clientY - targetCanvasY;
+    const panMultiplier = window.innerWidth <= 768 ? 2.5 : 1.5;
+    startX = clientX - (targetCanvasX / panMultiplier);
+    startY = clientY - (targetCanvasY / panMultiplier);
 
     window.startClientX = clientX;
     window.startClientY = clientY;
@@ -239,8 +240,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!isDragging) return;
 
-    targetCanvasX = clientX - startX;
-    targetCanvasY = clientY - startY;
+    const panMultiplier = window.innerWidth <= 768 ? 2.5 : 1.5;
+    targetCanvasX = (clientX - startX) * panMultiplier;
+    targetCanvasY = (clientY - startY) * panMultiplier;
   };
 
   const onPointerUp = (e) => {
