@@ -134,6 +134,29 @@ function addDragSupport(
   window.addEventListener("mousemove", handleMove);
   window.addEventListener("mouseup", handleEnd);
 
+  // Wheel Events (horizontal scrolling on trackpads)
+  let wheelAccumulator = 0;
+  let wheelTimeout;
+  element.addEventListener("wheel", (e) => {
+    // Check if primarily horizontal scrolling
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault();
+      wheelAccumulator += e.deltaX;
+      
+      clearTimeout(wheelTimeout);
+      wheelTimeout = setTimeout(() => {
+        if (Math.abs(wheelAccumulator) > threshold) {
+          if (wheelAccumulator > 0) {
+            onDrag("next");
+          } else {
+            onDrag("prev");
+          }
+        }
+        wheelAccumulator = 0;
+      }, 50);
+    }
+  }, { passive: false });
+
   // Prevent drag on images and links
   element.addEventListener("dragstart", (e) => e.preventDefault());
 }
@@ -182,12 +205,14 @@ function initMobileMenu() {
     drawer.classList.add("active");
     overlay.classList.add("active");
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
   }
 
   function closeDrawer() {
     drawer.classList.remove("active");
     overlay.classList.remove("active");
     document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
   }
 
   hamburger.addEventListener("click", openDrawer);
@@ -689,13 +714,13 @@ function initMomentsCarousel() {
     nextBtn.disabled = currentIndex >= maxIndex;
   }
 
-  function goToNext() {
+  function goToNext(isAuto = false) {
     const maxIndex = getMaxIndex();
     if (currentIndex < maxIndex) {
       currentIndex++;
       updateCarousel();
-    } else {
-      // Loop back to start
+    } else if (isAuto) {
+      // Only loop back if it's the auto-slider
       currentIndex = 0;
       updateCarousel();
     }
@@ -712,7 +737,7 @@ function initMomentsCarousel() {
     stopAutoSlide();
     autoSlideInterval = setInterval(() => {
       if (!isHovering) {
-        goToNext();
+        goToNext(true);
       }
     }, autoSlideDelay);
   }
@@ -1305,6 +1330,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
       }
     });
   });
@@ -1312,6 +1338,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModal = () => {
     modal.classList.remove('active');
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   };
 
   closeBtn.addEventListener('click', closeModal);
