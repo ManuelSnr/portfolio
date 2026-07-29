@@ -1063,17 +1063,24 @@ function initGithubCalendar() {
 
     async function renderCustomGithubCalendar(username) {
       try {
-        const res = await fetch(`https://github-contributions-api.deno.dev/${username}.json`);
+        const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`);
         if (!res.ok) throw new Error("Failed to fetch contributions");
-        const data = await res.json();
+        const rawData = await res.json();
 
         // Update titles if they exist
         const titles = document.querySelectorAll(".github-title");
         titles.forEach(title => {
-          title.textContent = `${data.totalContributions} contributions in the last year`;
+          const total = rawData.total.lastYear || 0;
+          title.textContent = `${total} contributions in the last year`;
         });
 
-        const days = data.contributions.flat();
+        const days = rawData.contributions;
+        
+        // Group into columns of 7 for month calculation
+        const columns = [];
+        for (let i = 0; i < days.length; i += 7) {
+          columns.push(days.slice(i, i + 7));
+        }
 
         grids.forEach(grid => {
           grid.innerHTML = ""; // Clear loading state
@@ -1084,7 +1091,7 @@ function initGithubCalendar() {
           if (monthsContainer) monthsContainer.innerHTML = "";
 
           let lastMonth = -1;
-          data.contributions.forEach((col) => {
+          columns.forEach((col) => {
             if (col.length === 0) return;
             const firstDay = new Date(col[0].date + "T00:00:00");
             const month = firstDay.getMonth();
@@ -1104,15 +1111,9 @@ function initGithubCalendar() {
             const box = document.createElement("div");
             box.className = "github-box";
 
-            let level = 0;
-            if (day.contributionLevel === "FIRST_QUARTILE") level = 1;
-            if (day.contributionLevel === "SECOND_QUARTILE") level = 2;
-            if (day.contributionLevel === "THIRD_QUARTILE") level = 3;
-            if (day.contributionLevel === "FOURTH_QUARTILE") level = 4;
+            box.style.backgroundColor = `var(--gh-${day.level})`;
 
-            box.style.backgroundColor = `var(--gh-${level})`;
-
-            const countText = day.contributionCount === 0 ? "No" : day.contributionCount;
+            const countText = day.count === 0 ? "No" : day.count;
             const dateObj = new Date(day.date + "T00:00:00");
             const dateString = dateObj.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
@@ -1125,7 +1126,7 @@ function initGithubCalendar() {
             } else {
               // Custom Tooltip events
               box.addEventListener("mouseenter", () => {
-                tooltip.innerHTML = `<strong>${countText} contribution${day.contributionCount === 1 ? '' : 's'}</strong> on ${dateString}`;
+                tooltip.innerHTML = `<strong>${countText} contribution${day.count === 1 ? '' : 's'}</strong> on ${dateString}`;
                 tooltip.classList.add("visible");
                 const rect = box.getBoundingClientRect();
                 tooltip.style.left = rect.left + rect.width / 2 + window.scrollX + "px";
