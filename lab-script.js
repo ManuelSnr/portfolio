@@ -186,6 +186,12 @@ document.addEventListener("DOMContentLoaded", () => {
   modalClose.addEventListener('click', closeModal);
   modalBackdrop.addEventListener('click', closeModal);
 
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
   // Drag Interactions
   let draggingItem = null;
 
