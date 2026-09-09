@@ -16,6 +16,7 @@
 </head>
 
 <body>
+  <div id="intro-overlay" class="intro-overlay"></div>
   <nav>
     <a href="/" class="nav-brand">
       <img src="Assets/General/avi.jpg" alt="Emmanuel Odoemelam" class="nav-profile-img" />
@@ -57,8 +58,8 @@
   </div>
   <div class="drawer-overlay"></div>
 
-  <div class="hero fade">
-    <div class="hero-status">
+  <div class="hero">
+    <div class="hero-status fade">
       <span class="status-dot"></span>
       Open to new opportunities
       <span class="status-divider"></span>
@@ -66,29 +67,14 @@
         href="https://github.com/ManuelSnr" target="_blank" class="status-email">GitHub</a> -->
     </div>
     <h1 class="hero-heading">
-      Senior Product Designer, <em>turning ideas into products people trust.</em>
+      <span class="hero-heading-first" id="typewriter-text"></span><span class="intro-cursor">|</span> <br> <em
+        id="hero-heading-second" class="hero-heading-second">that feel remarkably simple.</em>
     </h1>
-    <p class="hero-body">
-      6 years of experience building 0→1 products that drive real revenue across ProcureTech, gaming, AI, healthcare,
-      and fintech. Currently leading and growing the design team at
-      <span class="company-pill" data-company="mvm">
-        <img src="Assets/Logos/hyper.png" alt="MVM Logo" class="company-pill-logo" />
-        <span class="company-pill-name">MVM</span>
-        <span class="company-pill-detail">
-          <span class="pill-detail-body">MVM is a skill-gaming provider powering RNG-free, real-money competition for
-            casinos
-            & sportsbooks. I lead design across the company's full product stack, from the B2B platform to
-            consumer-facing apps, Hyper & Sigma Games, and trade show presence.</span>
-          <span class="pill-social-links">
-            <a href="https://mvm.gg/" target="_blank" class="pill-social-link"><img src="Assets/General/internet.svg"
-                alt="Website" class="pill-social-icon" /></a>
-            <a href="https://www.linkedin.com/company/metaverse-magna/" target="_blank" class="pill-social-link"><img
-                src="Assets/General/linkedin.svg" alt="LinkedIn" class="pill-social-icon" /></a>
-          </span>
-        </span>
-      </span>, owning our B2B platform and consumer products.
+    <p class="hero-body fade">
+      Designer working across product, interaction, brand, and code, taking ideas from early direction to launch across
+      AI, gaming, healthcare, fintech, and B2B software.
     </p>
-    <div class="hero-links">
+    <div class="hero-links fade">
       <a class="btn btn-dark" href="https://calendly.com/manuelsnr-design/coffee-chat" target="_blank">Book a
         call</a>
       <a class="btn btn-outline" href="mailto:odoemelamuemmanuel@gmail.com">Download CV</a>
@@ -114,119 +100,86 @@
     <div class="tab-panel active" id="panel-visual">
       <div class="section fade">
         <div class="visual-grid">
-          <!-- Visual Design Card 1 — Regirl Website (Video) -->
+          <!-- Card 1 (Video) -->
           <div class="visual-item">
             <video class="visual-media" autoplay loop muted playsinline>
               <source src="Assets/Visuals/Featured/Regirl website.mp4" type="video/mp4" />
             </video>
-            <div class="visual-overlay">
-              <span class="visual-label">Regirl</span>
-              <span class="visual-type">Web · E-commerce</span>
-            </div>
-            <div class="play-badge">
-              <svg viewBox="0 0 10 12" fill="#141414">
-                <polygon points="0,0 10,6 0,12" />
-              </svg>
-            </div>
           </div>
-
-          <!-- Visual Design Card 2 — Hyper -->
+          <!-- Card 2 -->
           <div class="visual-item">
             <img class="visual-media" src="Assets/Visuals/Featured/Hyper.webp" alt="Hyper — Gaming Platform"
               loading="lazy" />
-            <div class="visual-overlay">
-              <span class="visual-label">Hyper</span>
-              <span class="visual-type">UI · Gaming</span>
-            </div>
           </div>
-
-          <!-- Visual Design Card 3 — Tournament Details -->
+          <!-- Card 3 -->
           <div class="visual-item">
             <img class="visual-media" src="Assets/Visuals/Featured/Tournment details.png"
               alt="Tournament Details Screen" loading="lazy" />
-            <div class="visual-overlay">
-              <span class="visual-label">Tournament Details</span>
-              <span class="visual-type">UI · Mobile</span>
-            </div>
           </div>
-
-          <!-- Visual Design Card 4 — KYC Gate -->
+          <!-- Card 4 -->
           <div class="visual-item">
             <img class="visual-media" src="Assets/Visuals/Featured/KYC gate.png" alt="KYC Gate Flow" loading="lazy" />
-            <div class="visual-overlay">
-              <span class="visual-label">KYC Gate</span>
-              <span class="visual-type">UI · Mobile</span>
-            </div>
           </div>
-
-          <!-- Visual Design Card 5 — Reward System -->
+          <!-- Card 5 -->
           <div class="visual-item">
             <img class="visual-media" src="Assets/Visuals/Featured/Reward system upfront.png" alt="Reward System"
               loading="lazy" />
-            <div class="visual-overlay">
-              <span class="visual-label">Reward System</span>
-              <span class="visual-type">UI · Mobile</span>
-            </div>
           </div>
-
-          <!-- Visual Design Card 6 — Reward Breakdown -->
+          <!-- Card 6 -->
           <div class="visual-item">
             <img class="visual-media" src="Assets/Visuals/Featured/Reward breakdown modal.png"
               alt="Reward Breakdown Modal" loading="lazy" />
-            <div class="visual-overlay">
-              <span class="visual-label">Reward Breakdown</span>
-              <span class="visual-type">UI · Mobile</span>
-            </div>
           </div>
-
-          <!-- Visual Design Card 7 — Portfolio Reel (Video) -->
+          <!-- Card 7 (Video) -->
           <div class="visual-item">
             <video class="visual-media" autoplay loop muted playsinline>
               <source src="Assets/Visuals/Featured/reel_portfolio.mp4" type="video/mp4" />
             </video>
-            <div class="visual-overlay">
-              <span class="visual-label">Portfolio Reel</span>
-              <span class="visual-type">Motion · Showreel</span>
-            </div>
-            <div class="play-badge">
-              <svg viewBox="0 0 10 12" fill="#141414">
-                <polygon points="0,0 10,6 0,12" />
-              </svg>
-            </div>
           </div>
-
-          <!-- Visual Design Card 8 — Play Again Reward -->
+          <!-- Card 8 -->
           <div class="visual-item">
             <img class="visual-media" src="Assets/Visuals/Featured/Play again showing the reward for that position.png"
               alt="Play Again Reward Screen" loading="lazy" />
-            <div class="visual-overlay">
-              <span class="visual-label">Play Again Rewards</span>
-              <span class="visual-type">UI · Mobile</span>
-            </div>
           </div>
-
-          <!-- Visual Design Card 9 — Chordio -->
+          <!-- Card 9 -->
           <div class="visual-item">
             <img class="visual-media" src="Assets/Visuals/Chordio.webp" alt="Chordio" loading="lazy" />
-            <div class="visual-overlay">
-              <span class="visual-label">Chordio</span>
-              <span class="visual-type">Brand · Identity</span>
-            </div>
           </div>
-
-          <!-- Visual Design Card 10 — Lifestyle Shot -->
+          <!-- Card 10 -->
           <div class="visual-item">
             <img class="visual-media" src="Assets/Visuals/Featured/PHOTO-2026-02-21-12-21-53 3.jpg" alt="Design Process"
               loading="lazy" />
-            <div class="visual-overlay">
-              <span class="visual-label">Behind the Scenes</span>
-              <span class="visual-type">Photography</span>
-            </div>
+          </div>
+          <!-- Card 11 (Duplicated) -->
+          <div class="visual-item">
+            <img class="visual-media" src="Assets/Visuals/Featured/Hyper.webp" alt="Hyper — Gaming Platform"
+              loading="lazy" />
+          </div>
+          <!-- Card 12 (Duplicated) -->
+          <div class="visual-item">
+            <img class="visual-media" src="Assets/Visuals/Featured/Tournment details.png"
+              alt="Tournament Details Screen" loading="lazy" />
+          </div>
+          <!-- Card 13 (Duplicated) -->
+          <div class="visual-item">
+            <img class="visual-media" src="Assets/Visuals/Featured/KYC gate.png" alt="KYC Gate Flow" loading="lazy" />
+          </div>
+          <!-- Card 14 (Duplicated) -->
+          <div class="visual-item">
+            <img class="visual-media" src="Assets/Visuals/Featured/Reward system upfront.png" alt="Reward System"
+              loading="lazy" />
+          </div>
+          <!-- Card 15 (Duplicated) -->
+          <div class="visual-item">
+            <img class="visual-media" src="Assets/Visuals/Featured/Reward breakdown modal.png"
+              alt="Reward Breakdown Modal" loading="lazy" />
           </div>
         </div>
-        <a href="lab.html" class="see-all-link" style="margin-top: 2rem; display: inline-block">
-          View more
-        </a>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="lab.html" class="see-all-link">
+            View more
+          </a>
+        </div>
       </div>
     </div>
 
@@ -485,19 +438,32 @@
 
     <div class="about-text">
       <p>
-        I’m Emmanuel, a Senior Product Designer based in Nigeria.
+        I’m Emmanuel, a Senior Product Designer leading design at
+        <span class="company-pill" data-company="mvm">
+          <img src="Assets/Logos/hyper.png" alt="MVM Logo" class="company-pill-logo" />
+          <span class="company-pill-name">MVM</span>
+          <span class="company-pill-detail">
+            <span class="pill-detail-body">MVM is a skill-gaming provider powering RNG-free, real-money competition for
+              casinos & sportsbooks. I lead design across our B2B platform and consumer products like Hyper and Sigma
+              Games,
+              while also directing game art and the brand experiences behind launches and partnerships.</span>
+            <span class="pill-social-links">
+              <a href="https://mvm.gg/" target="_blank" class="pill-social-link"><img src="Assets/General/internet.svg"
+                  alt="Website" class="pill-social-icon" /></a>
+              <a href="https://www.linkedin.com/company/metaverse-magna/" target="_blank" class="pill-social-link"><img
+                  src="Assets/General/linkedin.svg" alt="LinkedIn" class="pill-social-icon" /></a>
+            </span>
+          </span>
+        </span> across our consumer gaming products, B2B platform, and new market expansion.
+      </p>
+
+      <p>
+        I studied engineering, which probably explains why I’ve always been interested in how things work. I like
+        breaking problems down, understanding the parts, and figuring out how they can work better.
       </p>
       <p>
-        I studied engineering, which probably explains why I’ve always been interested in how things work. I liked
-        breaking problems down, understanding the parts, and figuring out how they could work better.
-      </p>
-      <p>
-        That mindset still shapes how I approach design. I’m drawn to the whole product lifecycle, especially the messy
-        0 to 1 stage, when the problem is still taking shape, the trade-offs are real, and design can influence far more
-        than the interface.
-      </p>
-      <p>
-        I enjoy turning that uncertainty into products that feel simple, useful, and trustworthy.
+        That mindset still shapes how I design today. I’m most at home in the messy 0→1 stage, where the product is
+        still taking shape, the trade-offs are real, and design can influence far more than the interface.
       </p>
     </div>
 
@@ -514,20 +480,19 @@
         <div class="snapshot-item">
           <div class="snapshot-label">FOCUS</div>
           <div class="snapshot-value">
-            End-to-end designer: 0→1 MVP and growth phases
+            0→1 products • Complex systems • Growth
           </div>
         </div>
         <div class="snapshot-item">
-          <div class="snapshot-label">TOOLS</div>
+          <div class="snapshot-label">TOOLKIT</div>
           <div class="snapshot-value">
-            Figma, Framer, Adobe After effects, Claude, VS Code
+            Figma • Framer • After Effects • Claude • VS Code
           </div>
         </div>
         <div class="snapshot-item">
-          <div class="snapshot-label">HATS</div>
+          <div class="snapshot-label">RANGE</div>
           <div class="snapshot-value">
-            Product designer, Framer developer, Project manager, Design
-            engineer
+            Brand • Product • Interaction • Code
           </div>
         </div>
       </div>

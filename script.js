@@ -142,7 +142,7 @@ function addDragSupport(
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
       e.preventDefault();
       wheelAccumulator += e.deltaX;
-      
+
       clearTimeout(wheelTimeout);
       wheelTimeout = setTimeout(() => {
         if (Math.abs(wheelAccumulator) > threshold) {
@@ -899,9 +899,86 @@ function initVisionCarousel() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// INTRO ANIMATION
+// ═══════════════════════════════════════════════════════════════
+function initIntroAnimation() {
+  const overlay = document.getElementById("intro-overlay");
+  const typewriterText = document.getElementById("typewriter-text");
+  const secondHeading = document.getElementById("hero-heading-second");
+  const heroHeading = document.querySelector(".hero-heading");
+  const cursor = document.querySelector(".intro-cursor");
+
+  if (!overlay || !typewriterText || !secondHeading || !heroHeading) return;
+
+  const textToType = "I design complex products";
+
+  // 1. Calculate the exact center of the screen for the first line
+  // Temporarily set the text to measure it
+  typewriterText.textContent = textToType;
+  // Temporarily hide it so it doesn't flicker
+  heroHeading.style.opacity = "0";
+
+  const rect = typewriterText.getBoundingClientRect();
+  const deltaX = (window.innerWidth / 2) - (rect.left + rect.width / 2);
+  const deltaY = (window.innerHeight / 2) - (rect.top + rect.height / 2);
+
+  // Reset text for typing
+  typewriterText.textContent = "";
+
+  // Instantly move the whole heading block so the first line sits dead center
+  heroHeading.style.transition = "none";
+  heroHeading.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+
+  // Force a browser reflow so the transform is applied immediately
+  heroHeading.offsetHeight;
+
+  // Make it visible again
+  heroHeading.style.opacity = "1";
+  document.body.style.overflow = "hidden";
+
+  let i = 0;
+  function typeWriter() {
+    if (i < textToType.length) {
+      typewriterText.textContent += textToType.charAt(i);
+      i++;
+      setTimeout(typeWriter, Math.random() * 30 + 40);
+    } else {
+      setTimeout(() => {
+        if (cursor) cursor.style.display = "none";
+
+        // 2. Smoothly move the text up to its final header position
+        heroHeading.style.transition = "transform 1.2s cubic-bezier(0.77, 0, 0.175, 1)";
+        heroHeading.style.transform = "translate(0px, 0px)";
+
+        // 3. Wait for the move to finish before fading the overlay
+        setTimeout(() => {
+          overlay.classList.add("hidden");
+          document.body.style.overflow = "";
+
+          // 4. Reveal the second half of the sentence
+          setTimeout(() => {
+            secondHeading.classList.add("visible");
+          }, 200);
+
+          // 5. Cleanup
+          setTimeout(() => {
+            overlay.remove();
+            heroHeading.style.transition = "";
+            heroHeading.style.transform = "";
+          }, 1000);
+        }, 1100); // 1.1s to let the move finish
+      }, 500); // Pause after typing
+    }
+  }
+
+  setTimeout(typeWriter, 400);
+}
+
+// ═══════════════════════════════════════════════════════════════
 // INITIALIZATION
 // ═══════════════════════════════════════════════════════════════
 document.addEventListener("DOMContentLoaded", function () {
+  initIntroAnimation();
   initFadeInObserver();
   initMobileMenu();
   initShowreel();
@@ -1075,7 +1152,7 @@ function initGithubCalendar() {
         });
 
         const days = rawData.contributions;
-        
+
         // Group into columns of 7 for month calculation
         const columns = [];
         for (let i = 0; i < days.length; i += 7) {
