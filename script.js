@@ -910,7 +910,7 @@ function initIntroAnimation() {
 
   if (!overlay || !typewriterText || !secondHeading || !heroHeading) return;
 
-  const textToType = "I design complex products";
+  const textToType = "I make complex products";
 
   // 1. Calculate the exact center of the screen for the first line
   // Temporarily set the text to measure it
