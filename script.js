@@ -927,7 +927,7 @@ function initIntroAnimation() {
 
   // Instantly move the whole heading block so the first line sits dead center
   heroHeading.style.transition = "none";
-  heroHeading.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+  heroHeading.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0px)`;
 
   // Force a browser reflow so the transform is applied immediately
   heroHeading.offsetHeight;
@@ -948,7 +948,7 @@ function initIntroAnimation() {
 
         // 2. Smoothly move the text up to its final header position
         heroHeading.style.transition = "transform 1.2s cubic-bezier(0.77, 0, 0.175, 1)";
-        heroHeading.style.transform = "translate(0px, 0px)";
+        heroHeading.style.transform = "translate3d(0px, 0px, 0px)";
 
         // 3. Wait for the move to finish before fading the overlay
         setTimeout(() => {
@@ -964,7 +964,7 @@ function initIntroAnimation() {
           setTimeout(() => {
             overlay.remove();
             heroHeading.style.transition = "";
-            heroHeading.style.transform = "";
+            heroHeading.style.zIndex = "1";
           }, 1000);
         }, 1100); // 1.1s to let the move finish
       }, 500); // Pause after typing
@@ -978,6 +978,12 @@ function initIntroAnimation() {
 // INITIALIZATION
 // ═══════════════════════════════════════════════════════════════
 document.addEventListener("DOMContentLoaded", function () {
+  // Force scroll to top on refresh
+  if (history.scrollRestoration) {
+    history.scrollRestoration = "manual";
+  }
+  window.scrollTo(0, 0);
+
   initIntroAnimation();
   initFadeInObserver();
   initMobileMenu();

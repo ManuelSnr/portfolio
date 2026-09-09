@@ -421,6 +421,8 @@ nav {
   line-height: 1.8;
   color: var(--ink-2);
   max-width: 620px;
+  position: relative;
+  z-index: 10;
 }
 
 .hero-body a:not(.company-pill) {
@@ -673,6 +675,8 @@ nav {
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
 /* ── PAGE HEADER (Work, Lab pages) ── */
