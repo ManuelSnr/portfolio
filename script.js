@@ -947,7 +947,9 @@ function initIntroAnimation() {
         if (cursor) cursor.style.display = "none";
 
         // 2. Smoothly move the text up to its final header position
-        heroHeading.style.transition = "transform 1.2s cubic-bezier(0.77, 0, 0.175, 1)";
+        heroHeading.style.transition = "transform 1.2s ease";
+        // Force reflow before applying transform to prevent frame drops
+        heroHeading.offsetHeight; 
         heroHeading.style.transform = "translate3d(0px, 0px, 0px)";
 
         // 3. Wait for the move to finish before fading the overlay
@@ -967,7 +969,7 @@ function initIntroAnimation() {
             heroHeading.style.zIndex = "1";
           }, 1000);
         }, 1100); // 1.1s to let the move finish
-      }, 500); // Pause after typing
+      }, 150); // Pause after typing
     }
   }
 

@@ -413,6 +413,8 @@ nav {
 .hero-heading em {
   font-style: italic;
   color: var(--ink-2);
+  display: inline-block;
+  margin-top: 8px;
 }
 
 .hero-body {
@@ -2916,6 +2918,10 @@ nav {
     padding: 16px var(--side) 24px;
   }
 
+  .section {
+    padding-top: 16px;
+  }
+
   .page-header {
     flex-direction: column;
     align-items: flex-start;
@@ -2926,6 +2932,12 @@ nav {
   /* Mobile: Hide "See all works" button in header */
   .section-header .see-all-link {
     display: none;
+  }
+
+  /* Make general see-all links full width on mobile */
+  .see-all-link {
+    width: 100%;
+    justify-content: center;
   }
 
   /* Mobile: Hide divider above work section */
