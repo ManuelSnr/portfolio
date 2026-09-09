@@ -943,6 +943,8 @@ function initIntroAnimation() {
       i++;
       setTimeout(typeWriter, Math.random() * 30 + 40);
     } else {
+      if (cursor) cursor.classList.remove("typing");
+      
       setTimeout(() => {
         if (cursor) cursor.style.display = "none";
 

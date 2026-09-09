@@ -5055,9 +5055,15 @@ blockquote {
 
 .intro-cursor {
   display: inline-block;
-  margin-left: 4px;
+  margin-left: 1px;
+  font-weight: 300;
   animation: blink 1s step-end infinite;
   color: var(--ink-2);
+}
+
+.intro-cursor.typing {
+  animation: none;
+  opacity: 1;
 }
 
 @keyframes blink {
