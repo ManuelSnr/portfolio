@@ -947,7 +947,7 @@ function initIntroAnimation() {
         if (cursor) cursor.style.display = "none";
 
         // 2. Smoothly move the text up to its final header position
-        heroHeading.style.transition = "transform 1.2s ease";
+        heroHeading.style.transition = "transform 0.85s ease";
         // Force reflow before applying transform to prevent frame drops
         heroHeading.offsetHeight; 
         heroHeading.style.transform = "translate3d(0px, 0px, 0px)";
@@ -968,8 +968,8 @@ function initIntroAnimation() {
             heroHeading.style.transition = "";
             heroHeading.style.zIndex = "1";
           }, 1000);
-        }, 1100); // 1.1s to let the move finish
-      }, 150); // Pause after typing
+        }, 800); // 0.8s to let the move finish
+      }, 400); // Pause after typing
     }
   }
 
