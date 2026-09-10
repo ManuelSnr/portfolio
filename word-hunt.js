@@ -1,0 +1,405 @@
+const words = [
+  "FIGMA", "GAMES", "SYSTEMS", "DETAIL", "CRAFT", "CODE", 
+  "SHIPPING", "MOTION", "PRODUCT", "RESEARCH", "AI", "TRUST", 
+  "DUEPAD", "COFFEE", "UNITED", "PIXEL", "DEADLINE", "FEEDBACK"
+];
+
+const GRID_SIZE = 8;
+let scoreYou = 0;
+let scoreManuel = 0;
+let currentTarget = "";
+let currentStreak = 0;
+let animationFrameId = null;
+let manuelTimeoutId = null;
+let startTime = 0;
+let totalTime = 0;
+let isDragging = false;
+let startCell = null;
+let currentCells = [];
+let gridData = [];
+let totalTimeSpent = 0;
+let wordsFound = 0;
+let fastestTimeMs = Infinity;
+let recentWords = [];
+
+const wordGrid = document.getElementById("word-grid");
+const targetEl = document.getElementById("target-word");
+const progressEl = document.getElementById("manuel-progress");
+const statusEl = document.getElementById("hunt-status");
+const startBtn = document.getElementById("word-hunt-start");
+const targetTextEl = document.getElementById("target-text");
+
+function initEmptyBoard() {
+  if (targetTextEl) targetTextEl.style.display = "none";
+  if (startBtn) startBtn.style.display = "inline-block";
+  targetEl.textContent = "???";
+  gridData = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(''));
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for (let r = 0; r < GRID_SIZE; r++) {
+    for (let c = 0; c < GRID_SIZE; c++) {
+      gridData[r][c] = alphabet[Math.floor(Math.random() * alphabet.length)];
+    }
+  }
+  renderGrid();
+}
+
+function initGame() {
+  if (startBtn) startBtn.style.display = "none";
+  if (targetTextEl) targetTextEl.style.display = "inline";
+  scoreYou = 0;
+  scoreManuel = 0;
+  currentStreak = 0;
+  totalTimeSpent = 0;
+  wordsFound = 0;
+  fastestTimeMs = Infinity;
+  wordGrid.innerHTML = "";
+  
+  // Remove existing play again button if it's lingering in the card
+  const existingBtn = document.querySelector(".play-again-btn");
+  if (existingBtn) existingBtn.remove();
+  
+  updateScoreboard();
+  nextRound();
+}
+
+function updateScoreboard() {
+  const youSegments = document.querySelectorAll("#health-you .health-segment");
+  const manuelSegments = document.querySelectorAll("#health-manuel .health-segment");
+  
+  youSegments.forEach((seg, i) => {
+    if (i < scoreYou) seg.classList.add("filled-you");
+    else seg.classList.remove("filled-you");
+  });
+  
+  manuelSegments.forEach((seg, i) => {
+    if (i < scoreManuel) seg.classList.add("filled-manuel");
+    else seg.classList.remove("filled-manuel");
+  });
+  
+  if (scoreYou >= 5) {
+    endGame("YOU WIN! 🎉");
+  } else if (scoreManuel >= 5) {
+    endGame("MANUEL WINS! 💀");
+  }
+}
+
+function endGame(msg) {
+  statusEl.textContent = "";
+  clearTimeout(manuelTimeoutId);
+  cancelAnimationFrame(animationFrameId);
+  progressEl.style.width = "0%";
+  
+  let avgTimeStr = "N/A";
+  let fastestTimeStr = "N/A";
+  if (wordsFound > 0) {
+    avgTimeStr = (totalTimeSpent / wordsFound / 1000).toFixed(1) + "s";
+    if (fastestTimeMs !== Infinity) {
+      fastestTimeStr = (fastestTimeMs / 1000).toFixed(1) + "s";
+    }
+  }
+  
+  const isWin = scoreYou >= 5;
+  const icon = isWin ? "🏆" : "💀";
+  const title = isWin ? "YOU BEAT MANUEL" : "MANUEL WAS FASTER";
+  const subtitle = isWin ? "Impressive." : "Better luck next time.";
+    
+  wordGrid.innerHTML = `
+    <div class="victory-screen" style="animation: popIn 0.5s ease forwards;">
+      <div class="victory-icon">${icon}</div>
+      <h3 class="victory-title">${title}</h3>
+      <p class="victory-subtitle">${subtitle}</p>
+      
+      <div class="victory-stats-row">
+        <div class="stat-box">
+          <span class="stat-label">AVG TIME</span>
+          <span class="stat-value">${avgTimeStr}</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">FASTEST</span>
+          <span class="stat-value">${fastestTimeStr}</span>
+        </div>
+      </div>
+      
+      <button class="btn btn-dark play-again-btn" onclick="initGame()">Play Again</button>
+    </div>
+  `;
+}
+
+function nextRound() {
+  if (scoreYou >= 5 || scoreManuel >= 5) return;
+  
+  if (currentStreak >= 3) {
+    statusEl.innerHTML = `<span class="streak-badge">🔥 ${currentStreak}x STREAK!</span>`;
+  } else {
+    statusEl.textContent = "Drag to select";
+  }
+  
+  // Pick random word not recently used
+  let candidate;
+  do {
+    candidate = words[Math.floor(Math.random() * words.length)];
+  } while (recentWords.includes(candidate));
+  
+  currentTarget = candidate;
+  recentWords.push(currentTarget);
+  if (recentWords.length > Math.floor(words.length / 2)) {
+    recentWords.shift();
+  }
+  
+  targetEl.textContent = currentTarget;
+  
+  generateGrid(currentTarget);
+  renderGrid();
+  startManuelTimer();
+}
+
+function generateGrid(target) {
+  gridData = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(''));
+  
+  const orientation = Math.floor(Math.random() * 3);
+  let placed = false;
+  
+  while (!placed) {
+    let row = Math.floor(Math.random() * GRID_SIZE);
+    let col = Math.floor(Math.random() * GRID_SIZE);
+    
+    if (canPlaceWord(target, row, col, orientation)) {
+      placeWord(target, row, col, orientation);
+      placed = true;
+    }
+  }
+  
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for (let r = 0; r < GRID_SIZE; r++) {
+    for (let c = 0; c < GRID_SIZE; c++) {
+      if (gridData[r][c] === '') {
+        gridData[r][c] = alphabet[Math.floor(Math.random() * alphabet.length)];
+      }
+    }
+  }
+}
+
+function canPlaceWord(word, r, c, o) {
+  if (o === 0) return c + word.length <= GRID_SIZE; // H
+  if (o === 1) return r + word.length <= GRID_SIZE; // V
+  if (o === 2) return r + word.length <= GRID_SIZE && c + word.length <= GRID_SIZE; // D
+  return false;
+}
+
+function placeWord(word, r, c, o) {
+  for (let i = 0; i < word.length; i++) {
+    if (o === 0) gridData[r][c + i] = word[i];
+    if (o === 1) gridData[r + i][c] = word[i];
+    if (o === 2) gridData[r + i][c + i] = word[i];
+  }
+}
+
+function renderGrid() {
+  wordGrid.innerHTML = "";
+  for (let r = 0; r < GRID_SIZE; r++) {
+    for (let c = 0; c < GRID_SIZE; c++) {
+      const cell = document.createElement("div");
+      cell.className = "grid-cell";
+      cell.dataset.r = r;
+      cell.dataset.c = c;
+      cell.textContent = gridData[r][c];
+      
+      cell.addEventListener("pointerdown", onPointerDown);
+      cell.addEventListener("pointerenter", onPointerEnter);
+      
+      wordGrid.appendChild(cell);
+    }
+  }
+}
+
+function onPointerDown(e) {
+  isDragging = true;
+  startCell = e.target;
+  currentCells = [startCell];
+  updateSelectionVisuals();
+  
+  document.addEventListener("pointerup", onPointerUp);
+  wordGrid.addEventListener("pointermove", onPointerMove);
+}
+
+function onPointerEnter(e) {
+  if (!isDragging) return;
+  const target = e.target;
+  if (!target.classList.contains("grid-cell")) return;
+  
+  const startR = parseInt(startCell.dataset.r);
+  const startC = parseInt(startCell.dataset.c);
+  const currR = parseInt(target.dataset.r);
+  const currC = parseInt(target.dataset.c);
+  
+  const dr = currR - startR;
+  const dc = currC - startC;
+  
+  if (dr === 0 || dc === 0 || Math.abs(dr) === Math.abs(dc)) {
+    currentCells = [];
+    const steps = Math.max(Math.abs(dr), Math.abs(dc));
+    const stepR = dr === 0 ? 0 : dr / steps;
+    const stepC = dc === 0 ? 0 : dc / steps;
+    
+    for (let i = 0; i <= steps; i++) {
+      const r = startR + (stepR * i);
+      const c = startC + (stepC * i);
+      const cell = document.querySelector(`.grid-cell[data-r="${r}"][data-c="${c}"]`);
+      if (cell) currentCells.push(cell);
+    }
+  }
+  
+  updateSelectionVisuals();
+}
+
+function onPointerMove(e) {
+  if (!isDragging) return;
+  if (e.pointerType === "touch") {
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    if (el && el.classList.contains("grid-cell") && !currentCells.includes(el)) {
+      onPointerEnter({target: el});
+    }
+  }
+}
+
+function onPointerUp(e) {
+  isDragging = false;
+  document.removeEventListener("pointerup", onPointerUp);
+  wordGrid.removeEventListener("pointermove", onPointerMove);
+  
+  checkSelection();
+}
+
+function updateSelectionVisuals() {
+  document.querySelectorAll(".grid-cell.selected").forEach(c => c.classList.remove("selected"));
+  currentCells.forEach(c => c.classList.add("selected"));
+}
+
+function checkSelection() {
+  if (currentCells.length === 0) return;
+  const selectedWord = currentCells.map(c => c.textContent).join('');
+  
+  if (selectedWord === currentTarget) {
+    currentCells.forEach(c => c.classList.add("found"));
+    
+    const timeTakenMs = performance.now() - startTime;
+    let points = 1;
+    if (timeTakenMs < 2000) { 
+      points = 2;
+      statusEl.textContent = "FAST! +2";
+    } else {
+      statusEl.textContent = "FOUND! +1";
+    }
+    
+    totalTimeSpent += timeTakenMs;
+    wordsFound++;
+    if (timeTakenMs < fastestTimeMs) fastestTimeMs = timeTakenMs;
+    
+    scoreYou += points;
+    currentStreak++;
+    
+    endRound();
+  } else {
+    currentCells.forEach(c => c.classList.add("error"));
+    
+    const card = document.querySelector(".word-hunt-card");
+    if (card) {
+      card.classList.add("shake");
+      setTimeout(() => card.classList.remove("shake"), 400);
+    }
+    
+    setTimeout(() => {
+      currentCells.forEach(c => c.classList.remove("error", "selected"));
+      currentCells = [];
+    }, 300);
+    currentStreak = 0;
+  }
+}
+
+function startManuelTimer() {
+  // Manuel reaction time: 4.0s to 10.0s (adjusted for 8x8 grid)
+  totalTime = Math.random() * 6000 + 4000;
+  startTime = performance.now();
+  
+  function updateProgress() {
+    const elapsed = performance.now() - startTime;
+    const progress = Math.max(0, 100 - (elapsed / totalTime) * 100);
+    progressEl.style.width = `${progress}%`;
+    
+    if (elapsed < totalTime) {
+      animationFrameId = requestAnimationFrame(updateProgress);
+    } else {
+      manuelWinsRound();
+    }
+  }
+  
+  animationFrameId = requestAnimationFrame(updateProgress);
+}
+
+function manuelWinsRound() {
+  scoreManuel++;
+  currentStreak = 0;
+  statusEl.textContent = "Manuel found it!";
+  
+  const allCells = document.querySelectorAll('.grid-cell');
+  allCells.forEach(c => c.classList.remove('selected'));
+  
+  let found = [];
+  for (let r=0; r<GRID_SIZE; r++) {
+    for (let c=0; c<GRID_SIZE; c++) {
+      if (checkWordAt(r, c, 0)) { found = getPath(r, c, 0); break; }
+      if (checkWordAt(r, c, 1)) { found = getPath(r, c, 1); break; }
+      if (checkWordAt(r, c, 2)) { found = getPath(r, c, 2); break; }
+    }
+    if (found.length) break;
+  }
+  
+  found.forEach((c, idx) => {
+    setTimeout(() => {
+      c.classList.add("manuel-found");
+    }, idx * 100);
+  });
+  
+  setTimeout(endRound, 1000);
+}
+
+function checkWordAt(r, c, o) {
+  let w = "";
+  for(let i=0; i<currentTarget.length; i++) {
+    if (o===0 && c+i<GRID_SIZE) w += gridData[r][c+i];
+    if (o===1 && r+i<GRID_SIZE) w += gridData[r+i][c];
+    if (o===2 && r+i<GRID_SIZE && c+i<GRID_SIZE) w += gridData[r+i][c+i];
+  }
+  if (w === currentTarget) return 1;
+  return 0;
+}
+
+function getPath(r, c, o) {
+  let cells = [];
+  for(let i=0; i<currentTarget.length; i++) {
+    let rr=r, cc=c;
+    if (o===0) cc+=i;
+    if (o===1) rr+=i;
+    if (o===2) {rr+=i; cc+=i;}
+    const el = document.querySelector(`.grid-cell[data-r="${rr}"][data-c="${cc}"]`);
+    if(el) cells.push(el);
+  }
+  return cells;
+}
+
+function endRound() {
+  cancelAnimationFrame(animationFrameId);
+  updateScoreboard();
+  progressEl.style.width = "0%";
+  
+  if (scoreYou < 5 && scoreManuel < 5) {
+    manuelTimeoutId = setTimeout(nextRound, 1500);
+  }
+}
+
+if (startBtn) {
+  startBtn.addEventListener("click", initGame);
+}
+
+// Show empty board on load
+document.addEventListener('DOMContentLoaded', initEmptyBoard);

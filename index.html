@@ -11,7 +11,8 @@
     href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
+  <script src="word-hunt.js" defer></script>
   <link rel="icon" type="image/jpeg" href="Assets/General/avi.jpg" />
 </head>
 
@@ -809,6 +810,39 @@
           </svg>
         </button>
       </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <div class="section fade" id="word-hunt">
+    <div class="section-label">FIND IT BEFORE I DO</div>
+    <div class="word-hunt-card">
+      <div class="word-hunt-header">
+        <div class="word-hunt-scoreboard">
+          <div class="score-pill you">
+            YOU
+            <div class="health-bars" id="health-you">
+              <div class="health-segment"></div><div class="health-segment"></div><div class="health-segment"></div><div class="health-segment"></div><div class="health-segment"></div>
+            </div>
+          </div>
+          <div class="word-hunt-target" id="target-container">
+            <button id="word-hunt-start" class="btn btn-dark" style="margin: 0; padding: 6px 16px; font-size: 13px;">Reveal Word</button>
+            <span id="target-text" style="display: none;">FIND: <span id="target-word">???</span></span>
+          </div>
+          <div class="score-pill manuel">
+            MANUEL
+            <div class="health-bars" id="health-manuel">
+              <div class="health-segment"></div><div class="health-segment"></div><div class="health-segment"></div><div class="health-segment"></div><div class="health-segment"></div>
+            </div>
+          </div>
+        </div>
+        <div class="word-hunt-progress-container">
+          <div class="word-hunt-progress" id="manuel-progress"></div>
+        </div>
+      </div>
+      <div id="word-grid" class="word-grid"></div>
+      <div class="word-hunt-status" id="hunt-status">Ready when you are.</div>
     </div>
   </div>
 
