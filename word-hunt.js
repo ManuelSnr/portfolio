@@ -1,7 +1,7 @@
 const words = [
-  "FIGMA", "GAMES", "SYSTEMS", "DETAIL", "CRAFT", "CODE", 
-  "SHIPPING", "MOTION", "PRODUCT", "RESEARCH", "AI", "TRUST", 
-  "DUEPAD", "COFFEE", "UNITED", "PIXEL", "DEADLINE", "FEEDBACK"
+  "DUEPAD", "CRAFT", "CODE", "PIXEL", "COFFEE", "MIDNIGHT", "CHAOS", "FOCUS", 
+  "GLITCH", "MAGIC", "VIBES", "HACK", "PIZZA", "DEBUG", "MUSIC", "SLEEP", 
+  "ZEN", "LATE", "WIZARD", "ART"
 ];
 
 const GRID_SIZE = 8;
@@ -29,6 +29,51 @@ const statusEl = document.getElementById("hunt-status");
 const startBtn = document.getElementById("word-hunt-start");
 const targetTextEl = document.getElementById("target-text");
 
+// -- AUDIO SYSTEM --
+let audioCtx = null;
+
+function initAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+function playTone(freq, type, duration, vol=0.1) {
+  if (!audioCtx) return;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = type;
+  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+  
+  gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+  
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration);
+}
+
+function playHover() { playTone(800, 'sine', 0.05, 0.02); }
+function playSuccess() { 
+  playTone(523.25, 'sine', 0.15, 0.05); // C5
+  setTimeout(() => playTone(659.25, 'sine', 0.3, 0.05), 100); // E5
+}
+function playError() { playTone(150, 'sawtooth', 0.3, 0.05); }
+function playManuelWin() {
+  playTone(300, 'triangle', 0.15, 0.05);
+  setTimeout(() => playTone(200, 'triangle', 0.3, 0.05), 150);
+}
+function playVictory() {
+  playTone(523.25, 'sine', 0.2, 0.05);
+  setTimeout(() => playTone(659.25, 'sine', 0.2, 0.05), 150);
+  setTimeout(() => playTone(783.99, 'sine', 0.4, 0.05), 300);
+}
+function playDefeat() {
+  playTone(400, 'sawtooth', 0.3, 0.05);
+  setTimeout(() => playTone(350, 'sawtooth', 0.3, 0.05), 250);
+  setTimeout(() => playTone(300, 'sawtooth', 0.5, 0.05), 500);
+}
+
 function initEmptyBoard() {
   if (targetTextEl) targetTextEl.style.display = "none";
   if (startBtn) startBtn.style.display = "inline-block";
@@ -44,6 +89,7 @@ function initEmptyBoard() {
 }
 
 function initGame() {
+  initAudio();
   if (startBtn) startBtn.style.display = "none";
   if (targetTextEl) targetTextEl.style.display = "inline";
   scoreYou = 0;
@@ -77,8 +123,10 @@ function updateScoreboard() {
   });
   
   if (scoreYou >= 5) {
+    playVictory();
     endGame("YOU WIN! 🎉");
   } else if (scoreManuel >= 5) {
+    playDefeat();
     endGame("MANUEL WINS! 💀");
   }
 }
@@ -169,11 +217,17 @@ function generateGrid(target) {
     }
   }
   
+  // Fill remaining with random letters, heavily weighted with letters from the target word
+  // to create optical camouflage (makes scanning much harder)
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for (let r = 0; r < GRID_SIZE; r++) {
     for (let c = 0; c < GRID_SIZE; c++) {
       if (gridData[r][c] === '') {
-        gridData[r][c] = alphabet[Math.floor(Math.random() * alphabet.length)];
+        if (Math.random() < 0.20) {
+          gridData[r][c] = target[Math.floor(Math.random() * target.length)];
+        } else {
+          gridData[r][c] = alphabet[Math.floor(Math.random() * alphabet.length)];
+        }
       }
     }
   }
@@ -216,6 +270,7 @@ function onPointerDown(e) {
   isDragging = true;
   startCell = e.target;
   currentCells = [startCell];
+  playHover();
   updateSelectionVisuals();
   
   document.addEventListener("pointerup", onPointerUp);
@@ -236,6 +291,7 @@ function onPointerEnter(e) {
   const dc = currC - startC;
   
   if (dr === 0 || dc === 0 || Math.abs(dr) === Math.abs(dc)) {
+    const oldLength = currentCells.length;
     currentCells = [];
     const steps = Math.max(Math.abs(dr), Math.abs(dc));
     const stepR = dr === 0 ? 0 : dr / steps;
@@ -246,6 +302,10 @@ function onPointerEnter(e) {
       const c = startC + (stepC * i);
       const cell = document.querySelector(`.grid-cell[data-r="${r}"][data-c="${c}"]`);
       if (cell) currentCells.push(cell);
+    }
+    
+    if (currentCells.length > oldLength) {
+      playHover();
     }
   }
   
@@ -280,15 +340,13 @@ function checkSelection() {
   const selectedWord = currentCells.map(c => c.textContent).join('');
   
   if (selectedWord === currentTarget) {
+    playSuccess();
     currentCells.forEach(c => c.classList.add("found"));
     
     const timeTakenMs = performance.now() - startTime;
     let points = 1;
     if (timeTakenMs < 2000) { 
       points = 2;
-      statusEl.textContent = "FAST! +2";
-    } else {
-      statusEl.textContent = "FOUND! +1";
     }
     
     totalTimeSpent += timeTakenMs;
@@ -300,6 +358,7 @@ function checkSelection() {
     
     endRound();
   } else {
+    playError();
     currentCells.forEach(c => c.classList.add("error"));
     
     const card = document.querySelector(".word-hunt-card");
@@ -317,8 +376,14 @@ function checkSelection() {
 }
 
 function startManuelTimer() {
-  // Manuel reaction time: 4.0s to 10.0s (adjusted for 8x8 grid)
-  totalTime = Math.random() * 6000 + 4000;
+  // Adaptive Difficulty: Manuel gets faster as you score more points
+  let minTime = 4000;
+  let timeRange = 6000; // Base: 4s - 10s
+  
+  if (scoreYou >= 2) { minTime = 2500; timeRange = 4500; } // 2.5s - 7.0s
+  if (scoreYou >= 4) { minTime = 1800; timeRange = 2700; } // 1.8s - 4.5s (Sweat Mode)
+  
+  totalTime = Math.random() * timeRange + minTime;
   startTime = performance.now();
   
   function updateProgress() {
@@ -359,6 +424,8 @@ function manuelWinsRound() {
       c.classList.add("manuel-found");
     }, idx * 100);
   });
+  
+  playManuelWin();
   
   setTimeout(endRound, 1000);
 }
