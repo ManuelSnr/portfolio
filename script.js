@@ -912,18 +912,26 @@ function initIntroAnimation() {
 
   const textToType = "I make complex products";
 
-  // 1. Calculate the exact center of the screen for the first line
-  // Temporarily set the text to measure it
+  // Hide cursor during measurement to prevent it from affecting layout
+  if (cursor) cursor.style.visibility = "hidden";
+
+  // Temporarily set the full text to measure the first line's vertical center
   typewriterText.textContent = textToType;
-  // Temporarily hide it so it doesn't flicker
   heroHeading.style.opacity = "0";
 
-  const rect = typewriterText.getBoundingClientRect();
-  const deltaX = (window.innerWidth / 2) - (rect.left + rect.width / 2);
-  const deltaY = (window.innerHeight / 2) - (rect.top + rect.height / 2);
+  // Measure the center of the FIRST LINE only (not the full wrapped block)
+  // getClientRects() returns a rect per visual line
+  const rects = typewriterText.getClientRects();
+  const firstLineRect = rects.length > 0 ? rects[0] : typewriterText.getBoundingClientRect();
+  
+  const deltaX = (window.innerWidth / 2) - (firstLineRect.left + firstLineRect.width / 2);
+  const deltaY = (window.innerHeight / 2) - (firstLineRect.top + firstLineRect.height / 2);
 
   // Reset text for typing
   typewriterText.textContent = "";
+
+  // Restore cursor visibility
+  if (cursor) cursor.style.visibility = "";
 
   // Instantly move the whole heading block so the first line sits dead center
   heroHeading.style.transition = "none";
@@ -988,7 +996,21 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   window.scrollTo(0, 0);
 
-  initIntroAnimation();
+  // Hide the hero heading immediately so it doesn't flash at the top while fonts load
+  const heroHeading = document.querySelector(".hero-heading");
+  if (heroHeading) {
+    heroHeading.style.opacity = "0";
+  }
+
+  // Wait for fonts to load before calculating intro dimensions to prevent layout sliding
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      initIntroAnimation();
+    });
+  } else {
+    initIntroAnimation();
+  }
+  
   initFadeInObserver();
   initMobileMenu();
   initShowreel();
