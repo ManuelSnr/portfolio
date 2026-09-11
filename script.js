@@ -1002,9 +1002,13 @@ document.addEventListener("DOMContentLoaded", function () {
     heroHeading.style.opacity = "0";
   }
 
-  // Wait for fonts to load before calculating intro dimensions to prevent layout sliding
+  // Wait for fonts to load before calculating intro dimensions (to prevent layout sliding), 
+  // but fallback after 300ms so the user isn't stuck on a blank screen on slow connections.
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => {
+    Promise.race([
+      document.fonts.ready,
+      new Promise(resolve => setTimeout(resolve, 300))
+    ]).then(() => {
       initIntroAnimation();
     });
   } else {
