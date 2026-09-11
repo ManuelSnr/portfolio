@@ -378,16 +378,12 @@ function checkSelection() {
     currentCells.forEach(c => c.classList.add("found"));
     
     const timeTakenMs = performance.now() - startTime;
-    let points = 1;
-    if (timeTakenMs < 2000) { 
-      points = 2;
-    }
     
     totalTimeSpent += timeTakenMs;
     wordsFound++;
     if (timeTakenMs < fastestTimeMs) fastestTimeMs = timeTakenMs;
     
-    scoreYou += points;
+    scoreYou += 1;
     currentStreak++;
     
     endRound();
