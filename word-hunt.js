@@ -23,11 +23,12 @@ let fastestTimeMs = Infinity;
 let recentWords = [];
 
 const wordGrid = document.getElementById("word-grid");
-const targetEl = document.getElementById("target-word");
+let targetEl = document.getElementById("target-word");
 const progressEl = document.getElementById("manuel-progress");
 const statusEl = document.getElementById("hunt-status");
 const startBtn = document.getElementById("word-hunt-start");
 const targetTextEl = document.getElementById("target-text");
+const headerEl = document.querySelector(".word-hunt-header");
 
 // -- AUDIO SYSTEM --
 let audioCtx = null;
@@ -75,6 +76,7 @@ function playDefeat() {
 }
 
 function initEmptyBoard() {
+  if (headerEl) headerEl.style.display = '';
   if (targetTextEl) targetTextEl.style.display = "none";
   if (startBtn) startBtn.style.display = "inline-block";
   targetEl.textContent = "???";
@@ -90,8 +92,20 @@ function initEmptyBoard() {
 
 function initGame() {
   initAudio();
+  if (headerEl) headerEl.style.display = '';
+  
+  // Re-establish the target word HTML in case it was overwritten previously
+  if (targetTextEl) {
+    targetTextEl.innerHTML = `FIND: <span id="target-word">???</span>`;
+    targetTextEl.style.display = "inline";
+    // Must re-query the inner span because we recreated it
+    const newTargetEl = document.getElementById("target-word");
+    if (newTargetEl) {
+      targetEl = newTargetEl;
+    }
+  }
+  
   if (startBtn) startBtn.style.display = "none";
-  if (targetTextEl) targetTextEl.style.display = "inline";
   scoreYou = 0;
   scoreManuel = 0;
   currentStreak = 0;
@@ -149,10 +163,30 @@ function endGame(msg) {
   const isWin = scoreYou >= 5;
   const icon = isWin ? "🏆" : "💀";
   const title = isWin ? "YOU BEAT MANUEL" : "MANUEL WAS FASTER";
-  const subtitle = isWin ? "Impressive." : "Better luck next time.";
+  
+  // Vary subtitle based on score margin
+  let subtitle;
+  const margin = Math.abs(scoreYou - scoreManuel);
+  if (isWin) {
+    if (margin >= 4) subtitle = "Flawless. Manuel didn't stand a chance.";
+    else if (margin >= 3) subtitle = "Dominant. That was clinical.";
+    else if (margin >= 2) subtitle = "Impressive. You had the edge.";
+    else subtitle = "Close call. Manuel almost had you.";
+  } else {
+    if (margin >= 4) subtitle = "Brutal. Manuel didn't even break a sweat.";
+    else if (margin >= 3) subtitle = "Outclassed. He was just faster.";
+    else if (margin >= 2) subtitle = "Not bad. You put up a fight.";
+    else subtitle = "So close. One more second and you had it.";
+  }
+  
+  // Hide the header (which contains the scoreboard and empty progress bar)
+  if (headerEl) headerEl.style.display = 'none';
     
   wordGrid.innerHTML = `
     <div class="victory-screen" style="animation: popIn 0.5s ease forwards;">
+      <div class="score-summary" style="margin-bottom: 24px;">
+        <span class="score-you">${scoreYou}</span><span class="score-divider">:</span><span class="score-manuel">${scoreManuel}</span>
+      </div>
       <div class="victory-icon">${icon}</div>
       <h3 class="victory-title">${title}</h3>
       <p class="victory-subtitle">${subtitle}</p>

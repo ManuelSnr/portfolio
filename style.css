@@ -3140,8 +3140,8 @@ nav {
   box-shadow: 8px 8px 0 var(--rule);
 }
 .word-hunt-header {
-  margin-bottom: 24px;
-  padding-bottom: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
   border-bottom: 1px dashed var(--rule);
 }
 .word-hunt-header h2 {
@@ -3200,12 +3200,31 @@ nav {
 #target-word {
   font-weight: 700;
 }
+.score-summary {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: "Lora", serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.score-you {
+  color: #10b981;
+}
+.score-divider {
+  color: var(--ink-3);
+  font-weight: 400;
+}
+.score-manuel {
+  color: var(--ink);
+}
 .word-hunt-progress-container {
   height: 4px;
   background: var(--surface);
   border-radius: 2px;
   overflow: hidden;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 .word-hunt-progress {
   height: 100%;
@@ -3303,7 +3322,7 @@ nav {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 48px 24px;
+  padding: 24px 24px 16px;
   background: var(--bg);
   border-radius: 8px;
 }
@@ -3322,12 +3341,12 @@ nav {
   font-family: "DM Sans", sans-serif;
   font-size: 15px;
   color: var(--ink-2);
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 }
 .victory-stats-row {
   display: flex;
   gap: 16px;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 }
 .stat-box {
   background: var(--surface);
