@@ -986,6 +986,38 @@ function initIntroAnimation() {
   setTimeout(typeWriter, 400);
 }
 
+function skipIntroAnimation() {
+  const overlay = document.getElementById("intro-overlay");
+  const typewriterText = document.getElementById("typewriter-text");
+  const secondHeading = document.getElementById("hero-heading-second");
+  const heroHeading = document.querySelector(".hero-heading");
+  const cursor = document.querySelector(".intro-cursor");
+
+  if (!overlay || !typewriterText || !secondHeading || !heroHeading) return;
+
+  // Instantly populate text and hide cursor
+  typewriterText.textContent = "I make complex products";
+  if (cursor) cursor.style.display = "none";
+  
+  // Instantly place heading in its final resting position
+  heroHeading.style.transition = "";
+  heroHeading.style.transform = "translate3d(0px, 0px, 0px)";
+  heroHeading.style.opacity = "1";
+  heroHeading.style.zIndex = "1";
+
+  // Reveal second half instantly
+  secondHeading.classList.add("visible");
+  
+  // Fade out overlay
+  overlay.classList.add("hidden");
+  document.body.style.overflow = "";
+
+  // Cleanup
+  setTimeout(() => {
+    overlay.remove();
+  }, 800);
+}
+
 // ═══════════════════════════════════════════════════════════════
 // INITIALIZATION
 // ═══════════════════════════════════════════════════════════════
@@ -1003,13 +1035,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Wait for fonts to load before calculating intro dimensions (to prevent layout sliding), 
-  // but fallback after 300ms so the user isn't stuck on a blank screen on slow connections.
+  // but if it takes longer than 300ms, skip the intro entirely for a better UX on slow connections.
   if (document.fonts && document.fonts.ready) {
     Promise.race([
-      document.fonts.ready,
-      new Promise(resolve => setTimeout(resolve, 300))
-    ]).then(() => {
-      initIntroAnimation();
+      document.fonts.ready.then(() => 'fonts'),
+      new Promise(resolve => setTimeout(() => resolve('timeout'), 1000))
+    ]).then((result) => {
+      if (result === 'timeout') {
+        skipIntroAnimation();
+      } else {
+        initIntroAnimation();
+      }
     });
   } else {
     initIntroAnimation();
