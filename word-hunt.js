@@ -469,4 +469,17 @@ if (startBtn) {
 }
 
 // Show empty board on load
-document.addEventListener('DOMContentLoaded', initEmptyBoard);
+document.addEventListener('DOMContentLoaded', () => {
+  const section = document.getElementById('word-hunt');
+  if (!section) { initEmptyBoard(); return; }
+  
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        initEmptyBoard();
+        obs.unobserve(section);
+      }
+    });
+  }, { threshold: 0.01 });
+  obs.observe(section);
+});
